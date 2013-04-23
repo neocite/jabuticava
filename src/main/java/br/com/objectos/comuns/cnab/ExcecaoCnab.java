@@ -21,8 +21,6 @@ import java.io.StringWriter;
 
 import br.com.objectos.comuns.io.FixedLine;
 
-import com.google.common.io.Closeables;
-
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
@@ -63,8 +61,11 @@ public class ExcecaoCnab extends RuntimeException {
       return super.getMessage();
 
     } finally {
-      Closeables.closeQuietly(writer);
-
+      try {
+        writer.close();
+      } catch (IOException e) {
+        // não há muito o que se fazer neste caso
+      }
     }
   }
 
