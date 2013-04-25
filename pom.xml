@@ -6,7 +6,7 @@
 		<version>1.0</version>
 	</parent>
 	<artifactId>way-debs</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>objectos :: way :: debentures.com.br</name>
 	<description>Extrai e trata informações do site debenture.com.br</description>
 	<url>https://github.com/objectos/way-debs</url>
