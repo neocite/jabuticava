@@ -1,6 +1,5 @@
-objectos comuns :: cnab 
+objectos :: way :: cnab 
 =======================
-
 
 License
 -------
