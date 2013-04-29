@@ -8,6 +8,7 @@ package br.com.objectos.way.debs.emissao;
 
 import org.joda.time.LocalDate;
 
+import br.com.objectos.comuns.io.ColumnKey;
 import br.com.objectos.way.io.AbstractLineSpec;
 import br.com.objectos.way.io.LineKey;
 
@@ -15,6 +16,11 @@ import br.com.objectos.way.io.LineKey;
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 public class CaracteristicaSpec extends AbstractLineSpec implements CaracteristicaKeys {
+
+  static final ColumnKey<LocalDate> DATA_VENCIMENTO =
+      ColumnKey.of(LocalDate.class, "dataVencimento");
+  static final ColumnKey<LocalDate> DATA_SAIDA =
+      ColumnKey.of(LocalDate.class, "dataSaida");
 
   private final LineKey<String> codigo;
   private final LineKey<String> empresa;
@@ -24,8 +30,22 @@ public class CaracteristicaSpec extends AbstractLineSpec implements Caracteristi
   private final LineKey<String> codigoIsin;
   private final LineKey<LocalDate> dataEmissao;
   private final LineKey<LocalDate> dataVencimento;
+  private final LineKey<String> motivoSaida;
+  private final LineKey<LocalDate> dataSaida;
   private final LineKey<Long> quantidadeEmitida;
+  private final LineKey<Long> artigo14;
+  private final LineKey<Long> artigo24;
   private final LineKey<Long> quantidadeMercado;
+  private final LineKey<Long> quantidadeTesouraria;
+  private final LineKey<Long> quantidadeResgatada;
+  private final LineKey<Long> quantidadeCancelada;
+  private final LineKey<Long> quantidadeConvertida;
+  private final LineKey<Long> quantidadeConvertidaFora;
+  private final LineKey<Long> quantidadePermutada;
+  private final LineKey<Long> quantidadePermutadaFora;
+  private final LineKey<Double> valorNominalEmissao;
+  private final LineKey<Double> valorNominalAtual;
+  private final LineKey<String> indice;
 
   public CaracteristicaSpec() {
     codigo = id("Código do Ativo")
@@ -59,8 +79,12 @@ public class CaracteristicaSpec extends AbstractLineSpec implements Caracteristi
     dataVencimento = id("Data de Vencimento")
         .get(DATA_VENCIMENTO);
 
-    id("Motivo de Saída ").get(String.class);
-    id("Data de Saída / Novo Vencimento").get(String.class);
+    motivoSaida = id("Motivo de Saída ")
+        .get(String.class);
+
+    dataSaida = id("Data de Saída / Novo Vencimento")
+        .get(DATA_SAIDA);
+
     id("Data do Início da Rentabilidade").get(String.class);
     id("Data do Início da Distribuição").get(String.class);
     id("Data da Próxima Repactuação").get(String.class);
@@ -75,25 +99,51 @@ public class CaracteristicaSpec extends AbstractLineSpec implements Caracteristi
     quantidadeEmitida = id("Quantidade Emitida")
         .get(Long.class);
 
-    id("Artigo 14º").get(String.class);
-    id("Artigo 24º").get(String.class);
+    artigo14 = id("Artigo 14º")
+        .get(Long.class);
+
+    artigo24 = id("Artigo 24º")
+        .get(Long.class);
 
     quantidadeMercado = id("Quantidade em Mercado")
         .get(Long.class);
 
-    id("Quantidade em Tesouraria").get(String.class);
-    id("Quantidade Resgatada").get(String.class);
-    id("Quantidade  Cancelada").get(String.class);
-    id("Quantidade Convertida no SND").get(String.class);
-    id("Quantidade Convertida fora do SND").get(String.class);
-    id("Quantidade Permutada no SND").get(String.class);
-    id("Quantidade Permutada fora do SND").get(String.class);
-    id("Unidade Monetária").get(String.class);
-    id("Valor Nominal na Emissão").get(String.class);
-    id("Unidade Monetária").get(String.class);
-    id("Valor Nominal Atual").get(String.class);
+    quantidadeTesouraria = id("Quantidade em Tesouraria")
+        .get(Long.class);
+
+    quantidadeResgatada = id("Quantidade Resgatada")
+        .get(Long.class);
+
+    quantidadeCancelada = id("Quantidade Cancelada")
+        .get(Long.class);
+
+    quantidadeConvertida = id("Quantidade Convertida no SND")
+        .get(Long.class);
+
+    quantidadeConvertidaFora = id("Quantidade Convertida fora do SND")
+        .get(Long.class);
+
+    quantidadePermutada = id("Quantidade Permutada no SND")
+        .get(Long.class);
+
+    quantidadePermutadaFora = id("Quantidade Permutada fora do SND")
+        .get(Long.class);
+
+    id("Unidade Monetária (1)").get(String.class);
+
+    valorNominalEmissao = id("Valor Nominal na Emissão")
+        .get(Double.class);
+
+    id("Unidade Monetária (2)").get(String.class);
+
+    valorNominalAtual = id("Valor Nominal Atual")
+        .get(Double.class);
+
     id("Data Últ. VNA").get(String.class);
-    id("Índice").get(String.class);
+
+    indice = id("Índice")
+        .get(String.class);
+
     id("Tipo").get(String.class);
     id("Critério de Cálculo").get(String.class);
     id("Dia de Referência para Índice de Preços").get(String.class);
@@ -184,6 +234,16 @@ public class CaracteristicaSpec extends AbstractLineSpec implements Caracteristi
   }
 
   @Override
+  public LineKey<String> motivoSaida() {
+    return motivoSaida;
+  }
+
+  @Override
+  public LineKey<LocalDate> dataSaida() {
+    return dataSaida;
+  }
+
+  @Override
   public LineKey<Long> quantidadeEmitida() {
     return quantidadeEmitida;
   }
@@ -191,6 +251,66 @@ public class CaracteristicaSpec extends AbstractLineSpec implements Caracteristi
   @Override
   public LineKey<Long> quantidadeMercado() {
     return quantidadeMercado;
+  }
+
+  @Override
+  public LineKey<Long> artigo14() {
+    return artigo14;
+  }
+
+  @Override
+  public LineKey<Long> artigo24() {
+    return artigo24;
+  }
+
+  @Override
+  public LineKey<Long> quantidadeTesouraria() {
+    return quantidadeTesouraria;
+  }
+
+  @Override
+  public LineKey<Long> quantidadeResgatada() {
+    return quantidadeResgatada;
+  }
+
+  @Override
+  public LineKey<Long> quantidadeCancelada() {
+    return quantidadeCancelada;
+  }
+
+  @Override
+  public LineKey<Long> quantidadeConvertida() {
+    return quantidadeConvertida;
+  }
+
+  @Override
+  public LineKey<Long> quantidadeConvertidaFora() {
+    return quantidadeConvertidaFora;
+  }
+
+  @Override
+  public LineKey<Long> quantidadePermutada() {
+    return quantidadePermutada;
+  }
+
+  @Override
+  public LineKey<Long> quantidadePermutadaFora() {
+    return quantidadePermutadaFora;
+  }
+
+  @Override
+  public LineKey<Double> valorNominalEmissao() {
+    return valorNominalEmissao;
+  }
+
+  @Override
+  public LineKey<Double> valorNominalAtual() {
+    return valorNominalAtual;
+  }
+
+  @Override
+  public LineKey<String> indice() {
+    return indice;
   }
 
 }

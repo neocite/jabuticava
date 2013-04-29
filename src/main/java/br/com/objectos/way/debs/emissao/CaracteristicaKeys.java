@@ -8,15 +8,12 @@ package br.com.objectos.way.debs.emissao;
 
 import org.joda.time.LocalDate;
 
-import br.com.objectos.comuns.io.ColumnKey;
 import br.com.objectos.way.io.LineKey;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 interface CaracteristicaKeys {
-
-  ColumnKey<LocalDate> DATA_VENCIMENTO = ColumnKey.of(LocalDate.class, "dataVencimento");
 
   LineKey<String> codigo();
 
@@ -34,8 +31,32 @@ interface CaracteristicaKeys {
 
   LineKey<LocalDate> dataVencimento();
 
+  LineKey<String> motivoSaida();
+
+  LineKey<LocalDate> dataSaida();
+
   LineKey<Long> quantidadeEmitida();
 
+  LineKey<Long> artigo14();
+  LineKey<Long> artigo24();
+
   LineKey<Long> quantidadeMercado();
+
+  LineKey<Long> quantidadeTesouraria();
+
+  LineKey<Long> quantidadeResgatada();
+
+  LineKey<Long> quantidadeCancelada();
+
+  LineKey<Long> quantidadeConvertida();
+  LineKey<Long> quantidadeConvertidaFora();
+
+  LineKey<Long> quantidadePermutada();
+  LineKey<Long> quantidadePermutadaFora();
+
+  LineKey<Double> valorNominalEmissao();
+  LineKey<Double> valorNominalAtual();
+
+  LineKey<String> indice();
 
 }
