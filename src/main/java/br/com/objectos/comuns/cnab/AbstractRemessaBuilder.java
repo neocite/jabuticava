@@ -26,6 +26,8 @@ import br.com.objectos.comuns.cnab.obj.Cobranca;
 import br.com.objectos.comuns.cnab.obj.Conta;
 import br.com.objectos.comuns.cnab.obj.Empresa;
 
+import com.google.common.base.Joiner;
+
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
@@ -84,5 +86,16 @@ abstract class AbstractRemessaBuilder implements RemessaBuilder {
     this.cobrancas.addAll(cobrancas);
     return this;
   }
+
+  @Override
+  public String toString() {
+    List<String> lines = build();
+
+    lines.add(" ");
+
+    return Joiner.on("\r\n").join(lines);
+  }
+
+  protected abstract List<String> build();
 
 }

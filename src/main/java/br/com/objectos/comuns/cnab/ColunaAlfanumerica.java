@@ -17,6 +17,7 @@ package br.com.objectos.comuns.cnab;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
+import br.com.objectos.comuns.base.Strings;
 import br.com.objectos.comuns.cnab.obj.Caixa;
 
 /**
@@ -82,7 +83,18 @@ class ColunaAlfanumerica extends Coluna<String> {
       break;
     }
 
+    res = paraTamanhoCorreto(res);
+    res = removeAcentos(res);
+
+    return res;
+  }
+
+  private String paraTamanhoCorreto(String res) {
     return res.substring(0, tamanho);
+  }
+
+  private String removeAcentos(String res) {
+    return Strings.accentsToAscii(res).toString();
   }
 
 }
