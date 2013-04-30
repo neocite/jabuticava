@@ -33,8 +33,9 @@ public class Caracteristica {
   }
 
   public static Caracteristica of(File file) {
+    LocalDate data = new DataParser(file).get();
     CsvFile csvFile = CsvFile.parse(file);
-    return new CaracteristicaParser(csvFile).get();
+    return new CaracteristicaParser(data, csvFile).get();
   }
 
   public static CaracteristicaSpec keys() {

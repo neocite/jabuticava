@@ -20,11 +20,14 @@ import org.testng.annotations.Test;
 
 import br.com.objectos.way.io.LineKey;
 import br.com.objectos.way.io.Record;
+import br.com.objectos.way.io.RecordKey;
 import br.com.objectos.way.io.ToEnumStringVal;
 import br.com.objectos.way.io.ToIntegerVal;
 import br.com.objectos.way.io.ToLocalDateVal;
 import br.com.objectos.way.io.ToLongVal;
 import br.com.objectos.way.io.ToStringVal;
+
+import com.google.common.base.Function;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -32,6 +35,7 @@ import br.com.objectos.way.io.ToStringVal;
 @Test
 public class TesteDeCaracteristica {
 
+  private Caracteristica snd;
   private List<Record> regs;
 
   private final int i0 = 2 - 2;
@@ -41,8 +45,12 @@ public class TesteDeCaracteristica {
   @BeforeClass
   public void prepararRegistros() {
     File file = CaracteristicasFalso.CARACTERISTICAS_20130424;
-    Caracteristica snd = Caracteristica.of(file);
+    snd = Caracteristica.of(file);
     regs = snd.getRegistros();
+  }
+
+  public void data() {
+    assertThat(snd.getData(), equalTo(new LocalDate(2013, 4, 24)));
   }
 
   public void codigo() {
@@ -117,6 +125,25 @@ public class TesteDeCaracteristica {
     assertThat(res.get(i2), equalTo(new LocalDate(1995, 1, 1)));
   }
 
+  public void motivo_saida() {
+    LineKey<String> key = keys().motivoSaida();
+    List<String> res = transform(regs, new ToStringVal(key));
+
+    assertThat(res.get(i0), equalTo("VENCIMENTO ANTECIPADO"));
+    assertThat(res.get(i1), equalTo("- - - - - -"));
+    assertThat(res.get(i2), equalTo("VENCIMENTO"));
+  }
+
+  public void data_saida() {
+    LineKey<LocalDate> key = keys().dataSaida();
+    List<LocalDate> res = transform(regs, new ToLocalDateVal(key));
+
+    assertThat(res.get(i0), equalTo(null));
+    assertThat(res.get(i1), equalTo(null));
+    assertThat(res.get(i2), equalTo(null));
+    assertThat(res.get(i(214)), equalTo(new LocalDate(1997, 5, 2)));
+  }
+
   public void qtd_emitida() {
     LineKey<Long> key = keys().quantidadeEmitida();
     List<Long> res = transform(regs, new ToLongVal(key));
@@ -126,6 +153,26 @@ public class TesteDeCaracteristica {
     assertThat(res.get(i2), equalTo(6000l));
   }
 
+  public void artig14() {
+    LineKey<Long> key = keys().artigo14();
+    List<Long> res = transform(regs, new ToLongVal(key));
+
+    assertThat(res.get(i0), equalTo(0l));
+    assertThat(res.get(i1), equalTo(0l));
+    assertThat(res.get(i2), equalTo(0l));
+    assertThat(res.get(i(309)), equalTo(112000l));
+  }
+
+  public void artig24() {
+    LineKey<Long> key = keys().artigo24();
+    List<Long> res = transform(regs, new ToLongVal(key));
+
+    assertThat(res.get(i0), equalTo(0l));
+    assertThat(res.get(i1), equalTo(0l));
+    assertThat(res.get(i2), equalTo(0l));
+    assertThat(res.get(i(309)), equalTo(28000l));
+  }
+
   public void qtd_mercado() {
     LineKey<Long> key = keys().quantidadeMercado();
     List<Long> res = transform(regs, new ToLongVal(key));
@@ -133,6 +180,119 @@ public class TesteDeCaracteristica {
     assertThat(res.get(i0), equalTo(0l));
     assertThat(res.get(i1), equalTo(60l));
     assertThat(res.get(i2), equalTo(0l));
+  }
+
+  public void qtd_tesouraria() {
+    LineKey<Long> key = keys().quantidadeTesouraria();
+    List<Long> res = transform(regs, new ToLongVal(key));
+
+    assertThat(res.get(i0), equalTo(0l));
+    assertThat(res.get(i1), equalTo(0l));
+    assertThat(res.get(i2), equalTo(0l));
+    assertThat(res.get(i(210)), equalTo(1519760l));
+  }
+
+  public void qtd_resgatada() {
+    LineKey<Long> key = keys().quantidadeResgatada();
+    List<Long> res = transform(regs, new ToLongVal(key));
+
+    assertThat(res.get(i0), equalTo(0l));
+    assertThat(res.get(i1), equalTo(0l));
+    assertThat(res.get(i2), equalTo(0l));
+    assertThat(res.get(i(605)), equalTo(15000l));
+  }
+
+  public void qtd_cancelada() {
+    LineKey<Long> key = keys().quantidadeCancelada();
+    List<Long> res = transform(regs, new ToLongVal(key));
+
+    assertThat(res.get(i0), equalTo(0l));
+    assertThat(res.get(i1), equalTo(0l));
+    assertThat(res.get(i2), equalTo(0l));
+    assertThat(res.get(i(361)), equalTo(1500l));
+  }
+
+  public void qtd_convertida() {
+    LineKey<Long> key = keys().quantidadeConvertida();
+    List<Long> res = transform(regs, new ToLongVal(key));
+
+    assertThat(res.get(i0), equalTo(0l));
+    assertThat(res.get(i1), equalTo(0l));
+    assertThat(res.get(i2), equalTo(0l));
+    assertThat(res.get(i(453)), equalTo(167243l));
+  }
+
+  public void qtd_convertida_fora() {
+    LineKey<Long> key = keys().quantidadeConvertidaFora();
+    List<Long> res = transform(regs, new ToLongVal(key));
+
+    assertThat(res.get(i0), equalTo(0l));
+    assertThat(res.get(i1), equalTo(0l));
+    assertThat(res.get(i2), equalTo(0l));
+  }
+
+  public void qtd_permutada() {
+    LineKey<Long> key = keys().quantidadePermutada();
+    List<Long> res = transform(regs, new ToLongVal(key));
+
+    assertThat(res.get(i0), equalTo(0l));
+    assertThat(res.get(i1), equalTo(0l));
+    assertThat(res.get(i2), equalTo(0l));
+  }
+
+  public void qtd_permutada_fora() {
+    LineKey<Long> key = keys().quantidadePermutadaFora();
+    List<Long> res = transform(regs, new ToLongVal(key));
+
+    assertThat(res.get(i0), equalTo(0l));
+    assertThat(res.get(i1), equalTo(0l));
+    assertThat(res.get(i2), equalTo(0l));
+  }
+
+  public void valor_nominal_emissao() {
+    LineKey<Double> key = keys().valorNominalEmissao();
+    List<Double> res = transform(regs, new ToDoubleVal(key));
+
+    assertThat(res.get(i0), equalTo(11727.04));
+    assertThat(res.get(i1), equalTo(1000000.0));
+    assertThat(res.get(i2), equalTo(3446800.0));
+  }
+
+  public void valor_nominal_atual() {
+    LineKey<Double> key = keys().valorNominalAtual();
+    List<Double> res = transform(regs, new ToDoubleVal(key));
+
+    assertThat(res.get(i0), equalTo(0.0));
+    assertThat(res.get(i1), equalTo(1000000.0));
+    assertThat(res.get(i2), equalTo(0.0));
+  }
+
+  public void indice() {
+    LineKey<String> key = keys().indice();
+    List<String> res = transform(regs, new ToStringVal(key));
+
+    assertThat(res.get(i0), equalTo("IGP-M"));
+    assertThat(res.get(i1), equalTo("DI"));
+    assertThat(res.get(i2), equalTo("IGP-M"));
+  }
+
+  private int i(int row) {
+    return row - 2;
+  }
+
+  private class ToDoubleVal implements Function<Record, Double> {
+
+    private final RecordKey<Double> key;
+
+    public ToDoubleVal(RecordKey<Double> key) {
+      this.key = key;
+    }
+
+    @Override
+    public Double apply(Record input) {
+      return input.get(key);
+    }
+
   }
 
 }
