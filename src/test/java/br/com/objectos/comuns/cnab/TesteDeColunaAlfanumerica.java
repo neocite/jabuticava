@@ -106,6 +106,32 @@ public class TesteDeColunaAlfanumerica {
     assertThat(res, equalTo("teste"));
   }
 
+  public void caso_texto_com_acento() {
+    int inicio = 0;
+    int fim = 2;
+    String valor = "São";
+    int tamanho = 3;
+
+    writer = new ColunaAlfanumerica(inicio, fim).set(valor);
+    String res = writer.get();
+
+    assertThat(res.length(), equalTo(tamanho));
+    assertThat(res, equalTo("Sao"));
+  }
+
+  public void caso_texto_com_cedilha() {
+    int inicio = 0;
+    int fim = 5;
+    String valor = "paçoca";
+    int tamanho = 6;
+
+    writer = new ColunaAlfanumerica(inicio, fim).set(valor);
+    String res = writer.get();
+
+    assertThat(res.length(), equalTo(tamanho));
+    assertThat(res, equalTo("pacoca"));
+  }
+
   private String caixaAlta(String texto, int largura) {
     return caixaNormal(texto, largura).toUpperCase();
   }

@@ -50,7 +50,7 @@ class BradescoRemessaBuilder extends AbstractRemessaBuilder {
   }
 
   @Override
-  public String toString() {
+  protected List<String> build() {
     List<String> lines = newArrayList();
 
     lines.add(doHeader());
@@ -59,7 +59,7 @@ class BradescoRemessaBuilder extends AbstractRemessaBuilder {
 
     lines.add(doTrailer());
 
-    return Joiner.on("\r\n").join(lines);
+    return lines;
   }
 
   private String doHeader() {

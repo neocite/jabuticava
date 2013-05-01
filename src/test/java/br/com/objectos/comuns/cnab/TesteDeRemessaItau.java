@@ -16,6 +16,8 @@
 package br.com.objectos.comuns.cnab;
 
 import static com.google.common.collect.Lists.newArrayList;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.testng.Assert.fail;
 
 import java.io.IOException;
@@ -131,6 +133,7 @@ public class TesteDeRemessaItau {
 
     assertRemessa(lines);
   }
+
   private ConstrutorDeCobrancaFalso novaCobranca() {
     return new ConstrutorDeCobrancaFalso()
         .carteira(carteira)
@@ -145,6 +148,9 @@ public class TesteDeRemessaItau {
   private void assertRemessa(List<String> lines) throws IOException {
     URL url = Resources.getResource(getClass(), "/remessa-itau.txt");
     List<String> prova = Resources.readLines(url, Charsets.UTF_8);
+
+    assertThat(lines.size(), equalTo(prova.size()));
+
     List<String> invalids = newArrayList();
 
     for (int i = 0; i < prova.size(); i++) {

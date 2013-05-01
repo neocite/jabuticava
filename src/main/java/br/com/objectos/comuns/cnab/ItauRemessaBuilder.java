@@ -38,7 +38,6 @@ import br.com.objectos.comuns.cnab.obj.Sacado;
 import br.com.objectos.comuns.cnab.obj.Titulo;
 
 import com.google.common.base.Function;
-import com.google.common.base.Joiner;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -52,7 +51,7 @@ class ItauRemessaBuilder extends AbstractRemessaBuilder {
   }
 
   @Override
-  public String toString() {
+  protected List<String> build() {
     List<String> lines = newArrayList();
 
     lines.add(doHeader());
@@ -61,7 +60,7 @@ class ItauRemessaBuilder extends AbstractRemessaBuilder {
 
     lines.add(doTrailer());
 
-    return Joiner.on("\r\n").join(lines);
+    return lines;
   }
 
   private String doHeader() {
