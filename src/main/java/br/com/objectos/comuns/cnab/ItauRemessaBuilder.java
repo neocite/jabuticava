@@ -102,6 +102,9 @@ class ItauRemessaBuilder extends AbstractRemessaBuilder {
       Instrucao instrucao1 = opcoes.getInstrucao1();
       Instrucao instrucao2 = opcoes.getInstrucao2();
 
+      int prazo = prazoDe(instrucao1, 0);
+      prazo = prazoDe(instrucao2, prazo);
+
       Cedente cedente = titulo.getCedente();
 
       Sacado sacado = titulo.getSacado();
@@ -125,6 +128,7 @@ class ItauRemessaBuilder extends AbstractRemessaBuilder {
           .put(loteRemessa().comando(), cobranca.getComando())
 
           // opções
+          .put(loteRemessa().aceite(), opcoes.isAceite())
           .put(loteRemessa().instrucao1(), instrucao1.getCodigo())
           .put(loteRemessa().instrucao2(), instrucao2.getCodigo())
           .put(loteRemessa().moraDia(), opcoes.getMoraDia())
@@ -136,7 +140,7 @@ class ItauRemessaBuilder extends AbstractRemessaBuilder {
           .put(loteRemessa().numeroDocumento(), titulo.getNumero())
           .put(loteRemessa().emissao(), titulo.getEmissao())
           .put(loteRemessa().vencimento(), titulo.getVencimento())
-          .put(loteRemessa().prazo(), titulo.getPrazo())
+          .put(loteRemessa().prazo(), prazo)
           .put(loteRemessa().valorTitulo(), titulo.getValor())
           .put(loteRemessa().valorIOF(), titulo.getValorIof())
           .put(loteRemessa().valorDesconto(), titulo.getValorDesconto())
@@ -158,6 +162,24 @@ class ItauRemessaBuilder extends AbstractRemessaBuilder {
           .put(loteRemessa().seqRegistro(), sequencia++)
 
           .toString();
+    }
+
+    private int prazoDe(Instrucao instrucao, int prazo) {
+      int codigo = instrucao.getCodigo();
+      switch (codigo) {
+      case 9:
+      case 34:
+      case 35:
+      case 42:
+      case 81:
+      case 82:
+      case 91:
+      case 92:
+        return instrucao.intValue();
+
+      default:
+        return prazo;
+      }
     }
 
   }

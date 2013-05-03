@@ -80,7 +80,7 @@ interface BradescoLoteRemessa extends BancoKey {
 
   CnabKey<BradescoLoteRemessa, EspecieDeTitulo> especieDeTitulo();
 
-  CnabKey<BradescoLoteRemessa, String> identificacao();
+  CnabKey<BradescoLoteRemessa, Boolean> aceite();
 
   CnabKey<BradescoLoteRemessa, LocalDate> emissaoDoTitulo();
 

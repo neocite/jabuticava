@@ -59,7 +59,7 @@ class BradescoLoteRemessaSpec
   private final CnabKey<BradescoLoteRemessa, String> bancoEncarregadoDaCobranca;
   private final CnabKey<BradescoLoteRemessa, String> agenciaDepositaria;
   private final CnabKey<BradescoLoteRemessa, EspecieDeTitulo> especieDeTitulo;
-  private final CnabKey<BradescoLoteRemessa, String> identificacao;
+  private final CnabKey<BradescoLoteRemessa, Boolean> aceite;
   private final CnabKey<BradescoLoteRemessa, LocalDate> emissaoDoTitulo;
   private final CnabKey<BradescoLoteRemessa, Integer> primeiraInstrucao;
   private final CnabKey<BradescoLoteRemessa, Integer> segundaInstrucao;
@@ -184,9 +184,9 @@ class BradescoLoteRemessaSpec
 
         .at(148, 149).colunaEnum(EspecieDeTitulo.class).toKey();
 
-    identificacao = id("Identificação")
+    aceite = id("Aceite")
 
-        .at(150, 150).colunaFixa("N").toKey();
+        .at(150, 150).colunaBoolean("A", "N").toKey();
 
     emissaoDoTitulo = id("Data da emissão do Título")
 
@@ -389,8 +389,8 @@ class BradescoLoteRemessaSpec
   }
 
   @Override
-  public CnabKey<BradescoLoteRemessa, String> identificacao() {
-    return identificacao;
+  public CnabKey<BradescoLoteRemessa, Boolean> aceite() {
+    return aceite;
   }
 
   @Override

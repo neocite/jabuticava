@@ -203,9 +203,9 @@ public class TesteDeLoteRemessaBradesco {
     writeAndAssert(col, valor);
   }
 
-  public void identificacao() {
-    String valor = "N";
-    CnabKey<BradescoLoteRemessa, String> col = loteRemessa().identificacao();
+  public void aceite() {
+    Boolean valor = Boolean.FALSE;
+    CnabKey<BradescoLoteRemessa, Boolean> col = loteRemessa().aceite();
     writeAndAssert(col, valor);
   }
 

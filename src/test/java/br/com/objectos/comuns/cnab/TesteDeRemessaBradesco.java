@@ -101,6 +101,7 @@ public class TesteDeRemessaBradesco {
         .valor(505d)
         .novaInstancia();
     CobrancaOpcoes opt1 = CobrancaOpcoes.padrao()
+        .aceite(true)
         .moraDia(1.35)
         .instrucao1(instrucao1);
     Cobranca cob1 = novaCobranca()

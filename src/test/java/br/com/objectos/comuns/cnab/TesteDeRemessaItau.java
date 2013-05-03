@@ -105,6 +105,7 @@ public class TesteDeRemessaItau {
         .valor(4715.76)
         .novaInstancia();
     CobrancaOpcoes opt1 = CobrancaOpcoes.padrao()
+        .aceite(true)
         .moraDia(12.58)
         .instrucao1(instrucao1)
         .instrucao2(instrucao2);
