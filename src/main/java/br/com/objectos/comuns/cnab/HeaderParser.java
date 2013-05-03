@@ -17,6 +17,7 @@ package br.com.objectos.comuns.cnab;
 
 import java.util.Iterator;
 
+import br.com.objectos.comuns.io.ColumnConversionException;
 import br.com.objectos.comuns.io.FixedLine;
 import br.com.objectos.comuns.io.ParsedFixedLines;
 
@@ -27,6 +28,9 @@ import com.google.common.collect.PeekingIterator;
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 class HeaderParser {
+
+  private static final String msg = "Primeira linha não corresponde a um header CNAB400. " +
+      "Talvez você tenha enviado o arquivo incorreto?";
 
   private final ParsedFixedLines lines;
 
@@ -40,11 +44,18 @@ class HeaderParser {
 
     FixedLine line = peeking.peek();
 
+    try {
+      return tryToGet(line);
+    } catch (ColumnConversionException e) {
+      throw new ExcecaoCnab(line, msg, e);
+    }
+  }
+
+  private Header tryToGet(FixedLine line) {
     Integer tipo = line.column(0, 1).get(Integer.class);
+
     if (tipo.intValue() != 0 || line.getText().length() != 400) {
-      throw new ExcecaoCnab(
-          line, "Primeira linha não corresponde a um header CNAB400. " +
-              "Talvez você tenha enviado o arquivo incorreto?");
+      throw new ExcecaoCnab(line, msg);
     }
 
     Integer codigo = line.column(76, 79).get(Integer.class);
