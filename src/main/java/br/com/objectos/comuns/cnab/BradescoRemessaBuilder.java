@@ -125,6 +125,7 @@ class BradescoRemessaBuilder extends AbstractRemessaBuilder {
           .put(loteRemessa().idDoCedenteNoBanco(), idDaEmpresa)
 
           // opções
+          .put(loteRemessa().aceite(), opcoes.isAceite())
           .put(loteRemessa().codigoDoBanco(), opcoes.isDebitoAutomatico() ? 237 : 0)
           .put(loteRemessa().condicaoParaEmissaoDeCobranca(), opcoes.isCobrancaSimples() ? 2 : 1)
           .put(loteRemessa().primeiraInstrucao(), instrucao1Value)

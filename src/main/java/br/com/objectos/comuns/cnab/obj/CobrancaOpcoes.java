@@ -22,8 +22,9 @@ import br.com.objectos.comuns.matematica.financeira.Percentual;
  */
 public class CobrancaOpcoes {
 
-  private final boolean cobrancaSimples = false;
-  private final boolean debitoAutomatico = false;
+  private boolean aceite = false;
+  private boolean cobrancaSimples = false;
+  private boolean debitoAutomatico = false;
 
   private final Percentual multa = Percentual.ZERO;
   private double moraDia = 0d;
@@ -43,6 +44,21 @@ public class CobrancaOpcoes {
 
   //
 
+  public CobrancaOpcoes aceite(boolean aceite) {
+    this.aceite = aceite;
+    return this;
+  }
+
+  public CobrancaOpcoes cobrancaSimples(boolean cobrancaSimples) {
+    this.cobrancaSimples = cobrancaSimples;
+    return this;
+  }
+
+  public CobrancaOpcoes debitoAutomatico(boolean debitoAutomatico) {
+    this.debitoAutomatico = debitoAutomatico;
+    return this;
+  }
+
   public CobrancaOpcoes moraDia(double moraDia) {
     this.moraDia = moraDia;
     return this;
@@ -59,6 +75,10 @@ public class CobrancaOpcoes {
   }
 
   //
+
+  public boolean isAceite() {
+    return aceite;
+  }
 
   public boolean isCobrancaSimples() {
     return cobrancaSimples;
