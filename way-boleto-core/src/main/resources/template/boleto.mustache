@@ -1,0 +1,228 @@
+<div class="way-boleto">
+  <div class="bol bol-hd">
+    <div class="col col00">
+      <div class="cwrap">
+        <span>
+          {{contaBancaria.banco.nome}}
+        </span>
+      </div>
+    </div>
+    <div class="col col01">
+      <div class="cwrap">
+        <span>
+          {{contaBancaria.banco.numero}}
+        </span>
+      </div>
+    </div>
+    <div class="col col02">
+      <div class="cwrap">
+        <span>
+          {{linhaDigitavel}}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="bol bol-bd">
+    <div class="col bd-lt">
+      <div class="bol bol00 bol-large">
+        <div class="col">
+          <div class="cwrap">
+            <span class="bol-label">Local de Pagamento</span>
+            <span class="bol-field">{{cobranca.localPagamento}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="bol bol01">
+        <div class="col">
+          <div class="cwrap">
+            <span class="bol-label">Cedente</span>
+            <span class="bol-field">{{cedente.nome}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="bol bol02">
+        <div class="col col00">
+          <div class="cwrap">
+            <span class="bol-label">Data do Documento</span>
+            <span class="bol-field">{{cobranca.dataDocumento}}</span>
+          </div>
+        </div>
+        <div class="col col01">
+          <div class="cwrap">
+            <span class="bol-label">No. do Documento</span>
+            <span class="bol-field">{{cobranca.numeroDocumento}}</span>
+          </div>
+        </div>
+        <div class="col col02">
+          <div class="cwrap">
+            <span class="bol-label">Espécie Doc.</span>
+            <span class="bol-field">&nbsp;</span>
+          </div>
+        </div>
+        <div class="col col03">
+          <div class="cwrap">
+            <span class="bol-label">Aceite</span>
+            <span class="bol-field">{{cobranca.aceite}}</span>
+          </div>
+        </div>
+        <div class="col col04">
+          <div class="cwrap">
+            <span class="bol-label">Data do processamento</span>
+            <span class="bol-field"></span>
+          </div>
+        </div>
+      </div>
+      <div class="bol bol03">
+        <div class="col col00">
+          <div class="cwrap">
+            <span class="bol-label">Uso do banco</span>
+            <span class="bol-field"></span>
+          </div>
+        </div>
+        <div class="col col01">
+          <div class="cwrap">
+            <span class="bol-label">Carteira</span>
+            <span class="bol-field"></span>
+          </div>
+        </div>
+        <div class="col col02">
+          <div class="cwrap">
+            <span class="bol-label">Espécie</span>
+            <span class="bol-field"></span>
+          </div>
+        </div>
+        <div class="col col03">
+          <div class="cwrap">
+            <span class="bol-label">Quantidade</span>
+            <span class="bol-field"></span>
+          </div>
+        </div>
+        <div class="col col04">
+          <div class="cwrap">
+            <span class="bol-label">Valor</span>
+            <span class="bol-field"></span>
+          </div>
+        </div>
+      </div>
+      <div class="bol bol04 bol-xlarge">
+        <div class="col">
+          <div class="cwrap">
+            <span class="bol-label">Instruções (Texto de responsabilidade do cedente)</span>
+            <span class="bol-field"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col bd-rt">
+      <div class="cwrap">
+        <div class="bol bol-large">
+          <div class="col">
+            <div class="cwrap">
+              <span class="bol-label">Vencimento</span>
+              <span class="bol-field">{{titulo.vencimento}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="bol">
+          <div class="col">
+            <div class="cwrap">
+              <span class="bol-label">Agência / Código Cedente</span>
+              <span class="bol-field">{{contaBancaria.agencia}}/{{contaBancaria.numero}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="bol">
+          <div class="col">
+            <div class="cwrap">
+              <span class="bol-label">Nosso Número</span>
+              <span class="bol-field">{{contaBancaria.agencia}}/{{contaBancaria.numero}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="bol">
+          <div class="col">
+            <div class="cwrap">
+              <span class="bol-label">(=) Valor do Documento</span>
+              <span class="bol-field">{{titulo.valor}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="bol">
+          <div class="col">
+            <div class="cwrap">
+              <span class="bol-label">(-) Desconto / Abatimento</span>
+              <span class="bol-field">{{contaBancaria.agencia}}/{{contaBancaria.numero}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="bol">
+          <div class="col">
+            <div class="cwrap">
+              <span class="bol-label">(-) Outras deduções</span>
+              <span class="bol-field">{{contaBancaria.agencia}}/{{contaBancaria.numero}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="bol">
+          <div class="col">
+            <div class="cwrap">
+              <span class="bol-label">(+) Mora / Multa</span>
+              <span class="bol-field">{{contaBancaria.agencia}}/{{contaBancaria.numero}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="bol">
+          <div class="col">
+            <div class="cwrap">
+              <span class="bol-label">(+) Outros acréscimos</span>
+              <span class="bol-field">{{contaBancaria.agencia}}/{{contaBancaria.numero}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="bol">
+          <div class="col">
+            <div class="cwrap">
+              <span class="bol-label">(=) Valor cobrado</span>
+              <span class="bol-field">{{contaBancaria.agencia}}/{{contaBancaria.numero}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bol bol-ft00">
+    <div class="col">
+      <div class="cwrap">
+        <span class="bol-label">Sacado</span>
+        <span class="bol-field">{{sacado.nome}}</span>
+        <span class="bol-field">{{sacado.endereco}} - {{sacado.bairro}}</span>
+        <span class="bol-field">{{sacado.cidade}} - {{sacado.estado}} - {{sacado.cep}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="bol bol-ft01">
+    <div class="col col00">
+      <div class="cwrap">
+        <span class="bol-label">Sacador avalista</span>
+      </div>
+    </div>
+    <div class="col col01">
+      <div class="cwrap">
+        <span class="bol-label">Código de baixa:</span>
+      </div>
+    </div>
+  </div>
+  <div class="bol bol-ft02">
+    <div class="col col00">
+      <div class="cwrap">
+        &nbsp;
+      </div>
+    </div>
+    <div class="col col01">
+      <div class="cwrap">
+        <span class="bol-label">Autenticação Mecânica / FICHA DE COMPENSAÇÃO</span>
+      </div>
+    </div>
+  </div>
+</div>
+<img src="{{bricks.imgUrl}}/boleto.png" />
