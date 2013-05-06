@@ -15,33 +15,22 @@
  */
 package br.com.objectos.way.boleto;
 
-import org.joda.time.LocalDate;
-
-import br.com.objectos.comuns.matematica.financeira.ValorFinanceiro;
-
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class TituloFalso implements BoletoTitulo {
+class MustacheCarteira {
 
-  @Override
-  public BoletoEspecie getEspecie() {
-    return BoletoEspecie.DM_DUPLICATA_MERCANTIL;
+  private final BoletoBanco banco;
+
+  private final BoletoCarteira carteira;
+
+  public MustacheCarteira(BoletoContaBancaria conta) {
+    this.banco = conta.getBanco();
+    this.carteira = conta.getCarteira();
   }
 
-  @Override
-  public ValorFinanceiro getValor() {
-    return new ValorFinanceiroImpl(1500.50);
-  }
-
-  @Override
-  public LocalDate getEmissao() {
-    return new LocalDate(2013, 4, 30);
-  }
-
-  @Override
-  public LocalDate getVencimento() {
-    return new LocalDate(2013, 5, 30);
+  public int getCodigo() {
+    return carteira.getCodigo(banco);
   }
 
 }

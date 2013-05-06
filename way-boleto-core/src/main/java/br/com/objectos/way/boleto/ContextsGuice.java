@@ -82,6 +82,11 @@ class ContextsGuice implements Contexts {
       return new MustacheCobranca(val);
     }
 
+    public MustacheCarteira getCarteira() {
+      BoletoContaBancaria val = boleto.getContaBancaria();
+      return new MustacheCarteira(val);
+    }
+
     public String getLinhaDigitavel() {
       return linhaDigitavel;
     }

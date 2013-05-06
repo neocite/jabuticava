@@ -30,8 +30,8 @@ class MustacheContaBancaria {
     return contaBancaria.getBanco();
   }
 
-  public BoletoCarteira getCarteira() {
-    return contaBancaria.getCarteira();
+  public MustacheCarteira getCarteira() {
+    return new MustacheCarteira(contaBancaria);
   }
 
   public String getAgencia() {

@@ -35,7 +35,7 @@ public class CobrancaFalso implements BoletoCobranca {
 
   @Override
   public String getInstrucao() {
-    return "Juros/Mora ao Dia : R$ 0,35 apos 03/05/2013\n" +
+    return "Juros/Mora ao Dia : R$ 0,35 apos 03/05/2013.\n" +
         "Multa de 2,00% apos 1 dia(s) do vencimento.";
   }
 
