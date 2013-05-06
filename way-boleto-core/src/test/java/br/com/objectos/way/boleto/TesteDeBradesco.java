@@ -24,18 +24,18 @@ import org.testng.annotations.Test;
 import br.com.objectos.comuns.matematica.financeira.ValorFinanceiro;
 
 /**
- * @author marcio.endo@objectos.com.br (Marcio Endo)
+ * @author "edenir.anschau@objectos.com.br (Edenir Norberto Anschau)"
  */
 @Test
-public class TesteDeItau {
+public class TesteDeBradesco {
 
-  private final Itau itau = new Itau();
+  private final Bradesco bradesco = new Bradesco();
 
   public void codigo_barras() {
     Boleto boleto = null;
-    String prova = "34198569000000340001120000105090123001232000";
+    String prova = "23795581000000340000123090000000105000123450";
 
-    String res = itau.codigoDeBarrasDe(boleto);
+    String res = bradesco.codigoDeBarrasDe(boleto);
 
     assertThat(res, equalTo(prova));
   }
@@ -48,19 +48,11 @@ public class TesteDeItau {
       return codigoMoeda;
     }
 
-    public DAC getDacCodigosDeBarras() {
+    public DigitoVerificador getDVCodigoDeBarras() {
       return null;
     }
 
     public FatorDeVencimento getFatorDeVencimento() {
-      return null;
-    }
-
-    public DAC getDacNossoNumero() {
-      return null;
-    }
-
-    public DAC getDacRepresentacaoNumerica() {
       return null;
     }
 
@@ -91,11 +83,35 @@ public class TesteDeItau {
 
   }
 
+  private class TituloFalso implements BoletoTitulo {
+
+    @Override
+    public BoletoEspecie getEspecie() {
+      return null;
+    }
+
+    @Override
+    public ValorFinanceiro getValor() {
+      return null; // retornar 340.00
+    }
+
+    @Override
+    public LocalDate getEmissao() {
+      return null;
+    }
+
+    @Override
+    public LocalDate getVencimento() {
+      return new LocalDate(2013, 5, 6);
+    }
+
+  }
+
   private class BoletoContaBancariaFalso implements BoletoContaBancaria {
 
     @Override
     public BoletoBanco getBanco() {
-      return BoletoBanco.ITAU;
+      return BoletoBanco.BRADESCO;
     }
 
     @Override
@@ -150,30 +166,6 @@ public class TesteDeItau {
     @Override
     public String getNumeroDocumento() {
       return null;
-    }
-
-  }
-
-  private class TituloFalso implements BoletoTitulo {
-
-    @Override
-    public BoletoEspecie getEspecie() {
-      return null;
-    }
-
-    @Override
-    public ValorFinanceiro getValor() {
-      return null; // retornar 340.00
-    }
-
-    @Override
-    public LocalDate getEmissao() {
-      return null;
-    }
-
-    @Override
-    public LocalDate getVencimento() {
-      return new LocalDate(2013, 5, 6);
     }
 
   }
