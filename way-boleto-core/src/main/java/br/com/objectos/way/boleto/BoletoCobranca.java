@@ -15,6 +15,8 @@
  */
 package br.com.objectos.way.boleto;
 
+import java.util.List;
+
 import org.joda.time.LocalDate;
 
 /**
@@ -30,7 +32,7 @@ public interface BoletoCobranca {
 
   boolean isAceite();
 
-  String getInstrucao();
+  List<String> getInstrucoes();
   String getLocalPagamento();
   String getNumeroDocumento();
 

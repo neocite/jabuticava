@@ -6,12 +6,16 @@
  */
 package br.com.objectos.way.boleto;
 
+import java.util.List;
+
 import org.joda.time.LocalDate;
+
+import com.google.common.collect.ImmutableList;
 
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public class CobrancaFalso implements BoletoCobranca {
+class CobrancaFalso implements BoletoCobranca {
 
   @Override
   public String getDescricao() {
@@ -20,7 +24,7 @@ public class CobrancaFalso implements BoletoCobranca {
 
   @Override
   public LocalDate getDataProcessamento() {
-    return new LocalDate();
+    return new LocalDate(2013, 5, 6);
   }
 
   @Override
@@ -34,9 +38,10 @@ public class CobrancaFalso implements BoletoCobranca {
   }
 
   @Override
-  public String getInstrucao() {
-    return "Juros/Mora ao Dia : R$ 0,35 apos 03/05/2013.\n" +
-        "Multa de 2,00% apos 1 dia(s) do vencimento.";
+  public List<String> getInstrucoes() {
+    return ImmutableList.of(
+        "Juros/Mora ao Dia : R$ 0,35 apos 03/05/2013.",
+        "Multa de 2,00% apos 1 dia(s) do vencimento.");
   }
 
   @Override

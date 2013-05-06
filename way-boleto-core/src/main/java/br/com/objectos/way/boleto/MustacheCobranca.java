@@ -15,6 +15,8 @@
  */
 package br.com.objectos.way.boleto;
 
+import java.util.List;
+
 import org.joda.time.LocalDate;
 
 /**
@@ -45,8 +47,8 @@ class MustacheCobranca {
     return cobranca.isAceite() ? "S" : "N";
   }
 
-  public String getInstrucao() {
-    return cobranca.getInstrucao();
+  public List<String> getInstrucoes() {
+    return cobranca.getInstrucoes();
   }
 
   public String getLocalPagamento() {

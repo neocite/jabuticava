@@ -19,18 +19,20 @@ import org.joda.time.Days;
 import org.joda.time.LocalDate;
 
 /**
- * @author "edenir.anschau@objectos.com.br (Edenir Norberto Anschau)"
+ * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public class FatorDeVencimento {
+class FatorDeVencimento {
 
-  private final LocalDate dataBase = new LocalDate(1997, 10, 7);
+  private static final LocalDate DATA_BASE = new LocalDate(1997, 10, 7);
 
-  public int fatorDeVencimentoDe(LocalDate dataVencimento) {
+  private final LocalDate vencimento;
 
-    int dias = Days.daysBetween(dataBase.toDateMidnight(),
-        dataVencimento.toDateMidnight()).getDays();
+  public FatorDeVencimento(LocalDate vencimento) {
+    this.vencimento = vencimento;
+  }
 
-    return dias;
+  public int intValue() {
+    return Days.daysBetween(DATA_BASE, vencimento).getDays();
   }
 
 }

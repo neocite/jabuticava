@@ -108,7 +108,9 @@
         <div class="col">
           <div class="cwrap">
             <span class="bol-label">Instruções (Texto de responsabilidade do cedente)</span>
-            <span class="bol-field">{{cobranca.instrucao}}</span>
+            {{#cobranca.instrucoes}}
+            <span class="bol-field">{{.}}</span>
+            {{/cobranca.instrucoes}}
           </div>
         </div>
       </div>
@@ -225,4 +227,3 @@
     </div>
   </div>
 </div>
-<img src="{{bricks.imgUrl}}/boleto.png" />

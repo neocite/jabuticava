@@ -17,70 +17,41 @@ package br.com.objectos.way.boleto;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasToString;
+
+import java.util.List;
 
 import org.joda.time.LocalDate;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import br.com.objectos.comuns.matematica.financeira.ValorFinanceiro;
 
 /**
- * @author "edenir.anschau@objectos.com.br (Edenir Norberto Anschau)"
+ * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
 @Test
 public class TesteDeBradesco {
 
-  private final Bradesco bradesco = new Bradesco();
+  private final BoletoBanco bradesco = BoletoBanco.BRADESCO;
 
-  public void codigo_barras() {
-    Boleto boleto = null;
-    String prova = "23795581000000340000123090000000105000123450";
+  private Boleto boleto;
 
-    String res = bradesco.codigoDeBarrasDe(boleto);
-
-    assertThat(res, equalTo(prova));
+  @BeforeClass
+  public void prepararBoleto() {
+    boleto = Boletos.novoBoleto()
+        .contaBancaria(new ContaBancariaFalso())
+        .titulo(new TituloFalso())
+        .cobranca(new CobrancaFalso())
+        .novaInstancia();
   }
 
-  private class BoletoFalso implements Boleto {
+  public void codigo_barras() {
+    String prova = "23795581000000340000123090000000105000123450";
 
-    private final int codigoMoeda = 9;
+    CodigoDeBarras res = bradesco.codigoDeBarrasDe(boleto);
 
-    public int getCodigoMoeda() {
-      return codigoMoeda;
-    }
-
-    public DigitoVerificador getDVCodigoDeBarras() {
-      return null;
-    }
-
-    public FatorDeVencimento getFatorDeVencimento() {
-      return null;
-    }
-
-    @Override
-    public BoletoContaBancaria getContaBancaria() {
-      return new BoletoContaBancariaFalso();
-    }
-
-    @Override
-    public BoletoCedente getCedente() {
-      return null;
-    }
-
-    @Override
-    public BoletoSacado getSacado() {
-      return null;
-    }
-
-    @Override
-    public BoletoTitulo getTitulo() {
-      return new TituloFalso();
-    }
-
-    @Override
-    public BoletoCobranca getCobranca() {
-      return new BoletoCobrancaFalso();
-    }
-
+    assertThat(res, hasToString(equalTo(prova)));
   }
 
   private class TituloFalso implements BoletoTitulo {
@@ -107,7 +78,7 @@ public class TesteDeBradesco {
 
   }
 
-  private class BoletoContaBancariaFalso implements BoletoContaBancaria {
+  private class ContaBancariaFalso implements BoletoContaBancaria {
 
     @Override
     public BoletoBanco getBanco() {
@@ -131,7 +102,7 @@ public class TesteDeBradesco {
 
   }
 
-  private class BoletoCobrancaFalso implements BoletoCobranca {
+  private class CobrancaFalso implements BoletoCobranca {
 
     @Override
     public String getDescricao() {
@@ -145,7 +116,7 @@ public class TesteDeBradesco {
 
     @Override
     public String getNossoNumero() {
-      return "112/00001050-9";
+      return "00001050";
     }
 
     @Override
@@ -154,7 +125,7 @@ public class TesteDeBradesco {
     }
 
     @Override
-    public String getInstrucao() {
+    public List<String> getInstrucoes() {
       return null;
     }
 

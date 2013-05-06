@@ -13,13 +13,32 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.way.boleto;
+package br.com.objectos.way.base;
+
+import com.google.common.primitives.Ints;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-interface Banco {
+public class CheckDigit {
 
-  String codigoDeBarrasDe(Boleto boleto);
+  private final int[] data;
+
+  private final int digit;
+
+  CheckDigit(int[] data, int digit) {
+    this.data = data;
+    this.digit = digit;
+  }
+
+  public int intValue() {
+    return digit;
+  }
+
+  @Override
+  public String toString() {
+    String _data = Ints.join("", data);
+    return String.format("%s-%d", _data, digit);
+  }
 
 }

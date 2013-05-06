@@ -9,7 +9,7 @@ package br.com.objectos.way.boleto;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public class CedenteFalso implements BoletoCedente {
+class CedenteFalso implements BoletoCedente {
 
   @Override
   public String getNome() {

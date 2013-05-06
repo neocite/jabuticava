@@ -50,11 +50,17 @@ class ContextsGuice implements Contexts {
 
     private final Boleto boleto;
 
-    private final String linhaDigitavel;
+    private final CodigoDeBarras codigoDeBarras;
+
+    private final LinhaDigitavel linhaDigitavel;
 
     public Context(Boleto boleto) {
       this.boleto = boleto;
-      this.linhaDigitavel = "";
+
+      BoletoContaBancaria conta = boleto.getContaBancaria();
+      BoletoBanco banco = conta.getBanco();
+      codigoDeBarras = banco.codigoDeBarrasDe(boleto);
+      linhaDigitavel = codigoDeBarras.toLinhaDigitavel();
     }
 
     public MustacheContaBancaria getContaBancaria() {
@@ -87,7 +93,11 @@ class ContextsGuice implements Contexts {
       return new MustacheCarteira(val);
     }
 
-    public String getLinhaDigitavel() {
+    public CodigoDeBarras getCodigoDeBarras() {
+      return codigoDeBarras;
+    }
+
+    public LinhaDigitavel getLinhaDigitavel() {
       return linhaDigitavel;
     }
 

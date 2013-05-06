@@ -13,11 +13,13 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.way.boleto;
+package br.com.objectos.way.base;
 
 /**
- * @author "edenir.anschau@objectos.com.br (Edenir Norberto Anschau)"
+ * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public interface DAC {
+public interface HasIntValue {
+
+  int intValue();
 
 }

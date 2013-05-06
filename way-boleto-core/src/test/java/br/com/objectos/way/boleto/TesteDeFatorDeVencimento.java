@@ -22,31 +22,25 @@ import org.joda.time.LocalDate;
 import org.testng.annotations.Test;
 
 /**
- * @author "edenir.anschau@objectos.com.br (Edenir Norberto Anschau)"
+ * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
 @Test
 public class TesteDeFatorDeVencimento {
 
-  FatorDeVencimento fatorDeVencimento = new FatorDeVencimento();
-
   public void fator_1000() {
-    int prova = 1000;
+    LocalDate vencimento = new LocalDate(2000, 7, 3);
 
-    LocalDate dataVencimento = new LocalDate(2000, 7, 3);
+    FatorDeVencimento res = new FatorDeVencimento(vencimento);
 
-    int res = fatorDeVencimento.fatorDeVencimentoDe(dataVencimento);
-
-    assertThat(res, equalTo(prova));
+    assertThat(res.intValue(), equalTo(1000));
   }
 
   public void fator_06052013() {
-    int prova = 5690;
+    LocalDate vencimento = new LocalDate(2013, 5, 6);
 
-    LocalDate dataVencimento = new LocalDate(2013, 5, 6);
+    FatorDeVencimento res = new FatorDeVencimento(vencimento);
 
-    int res = fatorDeVencimento.fatorDeVencimentoDe(dataVencimento);
-
-    assertThat(res, equalTo(prova));
+    assertThat(res.intValue(), equalTo(5690));
   }
 
 }

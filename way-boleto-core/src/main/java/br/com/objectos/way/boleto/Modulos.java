@@ -15,14 +15,26 @@
  */
 package br.com.objectos.way.boleto;
 
-/**
- * @author "edenir.anschau@objectos.com.br (Edenir Norberto Anschau)"
- */
-public class Bradesco implements Banco {
+import br.com.objectos.way.base.ModuloCheckDigit;
 
-  @Override
-  public String codigoDeBarrasDe(Boleto boleto) {
-    return null;
+/**
+ * @author marcio.endo@objectos.com.br (Marcio Endo)
+ */
+class Modulos {
+
+  public static final ModuloCheckDigit MODULO_10 = ModuloCheckDigit
+      .newMod(10)
+      .multipliers(2, 1)
+      .whenResult(10).replaceWith(0)
+      .build();
+
+  public static final ModuloCheckDigit MODULO_11 = ModuloCheckDigit
+      .newMod(11)
+      .multiplierRangeOf(2, 9)
+      .whenResult(0, 10, 11).replaceWith(1)
+      .build();
+
+  private Modulos() {
   }
 
 }

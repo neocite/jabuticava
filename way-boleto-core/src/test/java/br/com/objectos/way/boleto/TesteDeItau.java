@@ -17,8 +17,12 @@ package br.com.objectos.way.boleto;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasToString;
+
+import java.util.List;
 
 import org.joda.time.LocalDate;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import br.com.objectos.comuns.matematica.financeira.ValorFinanceiro;
@@ -29,69 +33,40 @@ import br.com.objectos.comuns.matematica.financeira.ValorFinanceiro;
 @Test
 public class TesteDeItau {
 
-  private final Itau itau = new Itau();
+  private final BoletoBanco banco = BoletoBanco.ITAU;
+
+  private Boleto boleto;
+
+  @BeforeClass
+  public void prepararBoleto() {
+    boleto = Boletos.novoBoleto()
+        .contaBancaria(new ContaBancariaFalso())
+        .titulo(new TituloFalso())
+        .cobranca(new CobrancaFalso())
+        .novaInstancia();
+  }
 
   public void codigo_barras() {
-    Boleto boleto = null;
-    String prova = "34198569000000340001120000105090123001232000";
+    String prova = "34195250000000340001120000105090123001232000";
 
-    String res = itau.codigoDeBarrasDe(boleto);
+    CodigoDeBarras res = banco.codigoDeBarrasDe(boleto);
 
-    assertThat(res, equalTo(prova));
+    assertThat(res, hasToString(equalTo(prova)));
   }
 
-  private class BoletoFalso implements Boleto {
+  public void linha_digitavel() {
+    String prova = "34191.12002 00105.090120 30012.320005 5 25000000034000";
 
-    private final int codigoMoeda = 9;
+    CodigoDeBarras codigo = banco.codigoDeBarrasDe(boleto);
+    LinhaDigitavel res = codigo.toLinhaDigitavel();
 
-    public int getCodigoMoeda() {
-      return codigoMoeda;
-    }
+    System.out.println(prova);
+    System.out.println(res);
 
-    public DAC getDacCodigosDeBarras() {
-      return null;
-    }
-
-    public FatorDeVencimento getFatorDeVencimento() {
-      return null;
-    }
-
-    public DAC getDacNossoNumero() {
-      return null;
-    }
-
-    public DAC getDacRepresentacaoNumerica() {
-      return null;
-    }
-
-    @Override
-    public BoletoContaBancaria getContaBancaria() {
-      return new BoletoContaBancariaFalso();
-    }
-
-    @Override
-    public BoletoCedente getCedente() {
-      return null;
-    }
-
-    @Override
-    public BoletoSacado getSacado() {
-      return null;
-    }
-
-    @Override
-    public BoletoTitulo getTitulo() {
-      return new TituloFalso();
-    }
-
-    @Override
-    public BoletoCobranca getCobranca() {
-      return new BoletoCobrancaFalso();
-    }
-
+    assertThat(res, hasToString(equalTo(prova)));
   }
 
-  private class BoletoContaBancariaFalso implements BoletoContaBancaria {
+  private class ContaBancariaFalso implements BoletoContaBancaria {
 
     @Override
     public BoletoBanco getBanco() {
@@ -115,7 +90,31 @@ public class TesteDeItau {
 
   }
 
-  private class BoletoCobrancaFalso implements BoletoCobranca {
+  private class TituloFalso implements BoletoTitulo {
+
+    @Override
+    public BoletoEspecie getEspecie() {
+      return BoletoEspecie.DM_DUPLICATA_MERCANTIL;
+    }
+
+    @Override
+    public ValorFinanceiro getValor() {
+      return new ValorFinanceiroImpl(340.0);
+    }
+
+    @Override
+    public LocalDate getEmissao() {
+      return new LocalDate(2004, 8, 11);
+    }
+
+    @Override
+    public LocalDate getVencimento() {
+      return new LocalDate(2004, 8, 11);
+    }
+
+  }
+
+  private class CobrancaFalso implements BoletoCobranca {
 
     @Override
     public String getDescricao() {
@@ -129,16 +128,16 @@ public class TesteDeItau {
 
     @Override
     public String getNossoNumero() {
-      return "112/00001050-9";
+      return "00001050";
     }
 
     @Override
     public boolean isAceite() {
-      return false;
+      return true;
     }
 
     @Override
-    public String getInstrucao() {
+    public List<String> getInstrucoes() {
       return null;
     }
 
@@ -149,31 +148,7 @@ public class TesteDeItau {
 
     @Override
     public String getNumeroDocumento() {
-      return null;
-    }
-
-  }
-
-  private class TituloFalso implements BoletoTitulo {
-
-    @Override
-    public BoletoEspecie getEspecie() {
-      return null;
-    }
-
-    @Override
-    public ValorFinanceiro getValor() {
-      return null; // retornar 340.00
-    }
-
-    @Override
-    public LocalDate getEmissao() {
-      return null;
-    }
-
-    @Override
-    public LocalDate getVencimento() {
-      return new LocalDate(2013, 5, 6);
+      return "0051";
     }
 
   }

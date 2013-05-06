@@ -19,6 +19,10 @@ import static com.google.common.collect.Maps.newHashMap;
 
 import java.util.Map;
 
+import org.joda.time.LocalDate;
+
+import br.com.objectos.way.base.SeqNum;
+
 /**
  * @author ricardo.murad@objectos.com.br (Ricardo Murad)
  */
@@ -27,8 +31,16 @@ public enum BoletoBanco {
   BRADESCO(237, 2) {
 
     @Override
-    public String getNome() {
+    String getNome() {
       return "Banco Bradesco SA";
+    }
+
+    @Override
+    CodigoDeBarras codigoDeBarrasDe(Boleto boleto) {
+      SeqNum seqNum = SeqNum.builder()
+          .build();
+
+      return CodigoDeBarras.of(seqNum);
     }
 
   },
@@ -36,8 +48,68 @@ public enum BoletoBanco {
   ITAU(341, 7) {
 
     @Override
-    public String getNome() {
+    String getNome() {
       return "Banco Itaú SA";
+    }
+
+    @Override
+    CodigoDeBarras codigoDeBarrasDe(Boleto boleto) {
+      BoletoContaBancaria conta = boleto.getContaBancaria();
+      String _agencia = conta.getAgencia();
+      NumeroBancario agencia = new NumeroBancario(_agencia);
+      String _numero = conta.getNumero();
+      NumeroBancario numero = new NumeroBancario(_numero);
+      BoletoCarteira carteira = conta.getCarteira();
+      BoletoCobranca cobranca = boleto.getCobranca();
+      String _nossoNumero = cobranca.getNossoNumero();
+      NumeroBancario nossoNumero = new NumeroBancario(_nossoNumero);
+      BoletoTitulo titulo = boleto.getTitulo();
+      LocalDate vencimento = titulo.getVencimento();
+      FatorDeVencimento fatorDeVencimento = new FatorDeVencimento(vencimento);
+
+      SeqNum seqNum = SeqNum.builder()
+
+          .col("Banco")
+          .at(1, 3).integer(341)
+
+          .col("Moeda")
+          .at(4, 4).integer(9)
+
+          .col("DAC")
+          .at(5, 5).integer(0)
+
+          .col("Fator de Vencimento")
+          .at(6, 9).integer(fatorDeVencimento.intValue())
+
+          .col("Valor")
+          .at(10, 19).valorFin(titulo.getValor())
+
+          .col("Carteira")
+          .at(20, 22).integer(carteira.getCodigo(this))
+
+          .col("Nosso número")
+          .at(23, 30).hasIntValue(nossoNumero)
+
+          .col("DAC [Agência/Conta/Carteira/Nosso Número]")
+          .at(31, 31).checkDigit(Modulos.MODULO_10)
+          .of("Agência", "Conta Corrente", "Carteira", "Nosso número")
+
+          .col("Agência")
+          .at(32, 35).hasIntValue(agencia)
+
+          .col("Conta Corrente")
+          .at(36, 40).hasIntValue(numero)
+
+          .col("DAC [Agência/Conta Corrente]")
+          .at(41, 41).checkDigit(Modulos.MODULO_10)
+          .of("Agência", "Conta Corrente")
+
+          .col("Zeros")
+          .at(42, 44).integer(0)
+
+          .build();
+
+      return CodigoDeBarras.of(seqNum);
     }
 
   };
@@ -69,18 +141,20 @@ public enum BoletoBanco {
     return boletoBanco;
   }
 
-  public int getCodigo() {
+  int getCodigo() {
     return codigo;
   }
 
-  public int getDigito() {
+  int getDigito() {
     return digito;
   }
 
-  public abstract String getNome();
-
-  public String getNumero() {
+  String getNumero() {
     return String.format("%d-%d", codigo, digito);
   }
+
+  abstract String getNome();
+
+  abstract CodigoDeBarras codigoDeBarrasDe(Boleto boleto);
 
 }

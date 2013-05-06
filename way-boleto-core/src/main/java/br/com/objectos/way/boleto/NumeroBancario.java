@@ -9,13 +9,15 @@ package br.com.objectos.way.boleto;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import br.com.objectos.way.base.HasIntValue;
+
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class NumeroBancario {
+class NumeroBancario implements HasIntValue {
 
   private static final Pattern pattern = Pattern.compile("([0-9]+)(|\\-([0-9]))");
 
@@ -34,6 +36,7 @@ class NumeroBancario {
     this.digito = Strings.isNullOrEmpty(_digito) ? 0 : _digito.charAt(0);
   }
 
+  @Override
   public int intValue() {
     return (int) numero;
   }
