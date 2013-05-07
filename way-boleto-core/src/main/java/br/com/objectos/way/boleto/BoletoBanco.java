@@ -45,7 +45,7 @@ public enum BoletoBanco {
       BoletoCarteira carteira = conta.getCarteira();
       BoletoCobranca cobranca = boleto.getCobranca();
       String _nossoNumero = cobranca.getNossoNumero();
-      NumeroBancario nossoNumero = new NumeroBancario(_nossoNumero);
+      NossoNumero nossoNumero = new NossoNumero(_nossoNumero);
       BoletoTitulo titulo = boleto.getTitulo();
       LocalDate vencimento = titulo.getVencimento();
       FatorDeVencimento fatorDeVencimento = new FatorDeVencimento(vencimento);
