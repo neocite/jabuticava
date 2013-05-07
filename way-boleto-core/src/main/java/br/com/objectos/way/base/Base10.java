@@ -13,29 +13,29 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.way.boleto;
-
-import br.com.objectos.way.base.ModuloCheckDigit;
+package br.com.objectos.way.base;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class Modulos {
+class Base10 {
 
-  public static final ModuloCheckDigit MODULO_10 = ModuloCheckDigit
-      .newMod(10)
-      .multipliers(2, 1)
-      .digits()
-      .whenResult(10).replaceWith(0)
-      .build();
+  private Base10() {
+  }
 
-  public static final ModuloCheckDigit MODULO_11 = ModuloCheckDigit
-      .newMod(11)
-      .multiplierRangeOf(2, 9)
-      .whenResult(0, 10, 11).replaceWith(1)
-      .build();
+  static int[] toArray(int val) {
+    int size = (int) Math.abs(Math.log10(val)) + 1;
+    size = size <= 0 ? 1 : size;
+    int[] data = new int[size];
 
-  private Modulos() {
+    int i = size;
+    int temp = val;
+    do {
+      data[--i] = temp % 10;
+      temp = temp / 10;
+    } while (temp > 0);
+
+    return data;
   }
 
 }

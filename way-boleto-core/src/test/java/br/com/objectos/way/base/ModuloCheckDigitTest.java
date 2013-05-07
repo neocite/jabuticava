@@ -46,7 +46,7 @@ public class ModuloCheckDigitTest {
     assertThat(res, hasToString(equalTo("3419166700000123451101234567880057123457000-6")));
   }
 
-  public void boleto_replave_value() {
+  public void boleto_replace_value() {
     ModuloCheckDigit checker = ModuloCheckDigit.newMod(11)
         .multiplierRangeOf(1, 2)
         .whenResult(0, 10, 11).replaceWith(1)
@@ -57,6 +57,20 @@ public class ModuloCheckDigitTest {
         .compute();
 
     assertThat(res, hasToString(equalTo("51-1")));
+  }
+
+  public void linha_digitavel() {
+    ModuloCheckDigit checker = ModuloCheckDigit.newMod(10)
+        .multipliers(2, 1)
+        .digits()
+        .whenResult(10).replaceWith(0)
+        .build();
+
+    CheckDigit res = checker.start()
+        .append(new int[] { 7, 1, 2, 3, 4, 5, 7, 0, 0, 0 })
+        .compute();
+
+    assertThat(res, hasToString(equalTo("7123457000-1")));
   }
 
 }

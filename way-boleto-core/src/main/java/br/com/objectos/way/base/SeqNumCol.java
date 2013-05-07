@@ -76,15 +76,8 @@ public class SeqNumCol implements Comparable<SeqNumCol> {
 
   SeqNumCol toInteger(int val) {
     Preconditions.checkArgument(val < Math.pow(10, size));
-
-    int i = size;
-    int temp = val;
-    do {
-      data[--i] = temp % 10;
-      temp = temp / 10;
-    } while (temp > 0);
-
-    return this;
+    int[] data = Base10.toArray(val);
+    return toIntArray(data);
   }
 
   SeqNumCol toHasIntValue(HasIntValue val) {

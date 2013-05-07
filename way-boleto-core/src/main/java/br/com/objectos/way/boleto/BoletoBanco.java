@@ -37,7 +37,51 @@ public enum BoletoBanco {
 
     @Override
     CodigoDeBarras codigoDeBarrasDe(Boleto boleto) {
+      BoletoContaBancaria conta = boleto.getContaBancaria();
+      String _agencia = conta.getAgencia();
+      NumeroBancario agencia = new NumeroBancario(_agencia);
+      String _numero = conta.getNumero();
+      NumeroBancario numero = new NumeroBancario(_numero);
+      BoletoCarteira carteira = conta.getCarteira();
+      BoletoCobranca cobranca = boleto.getCobranca();
+      String _nossoNumero = cobranca.getNossoNumero();
+      NumeroBancario nossoNumero = new NumeroBancario(_nossoNumero);
+      BoletoTitulo titulo = boleto.getTitulo();
+      LocalDate vencimento = titulo.getVencimento();
+      FatorDeVencimento fatorDeVencimento = new FatorDeVencimento(vencimento);
+
       SeqNum seqNum = SeqNum.builder()
+
+          .col("Banco")
+          .at(1, 3).integer(237)
+
+          .col("Moeda")
+          .at(4, 4).integer(9)
+
+          .col("DV codigo de barras")
+          .at(5, 5).integer(0)
+
+          .col("Fator de Vencimento")
+          .at(6, 9).integer(fatorDeVencimento.intValue())
+
+          .col("Valor")
+          .at(10, 19).valorFin(titulo.getValor())
+
+          .col("Agência")
+          .at(20, 23).hasIntValue(agencia)
+
+          .col("Carteira")
+          .at(24, 25).integer(carteira.getCodigo(this))
+
+          .col("Nosso Número")
+          .at(26, 36).hasIntValue(nossoNumero)
+
+          .col("Conta corrente")
+          .at(37, 43).hasIntValue(numero)
+
+          .col("Zeros")
+          .at(44, 44).integer(0)
+
           .build();
 
       return CodigoDeBarras.of(seqNum);

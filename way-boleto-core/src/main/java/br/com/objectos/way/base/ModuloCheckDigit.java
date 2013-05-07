@@ -31,21 +31,28 @@ public class ModuloCheckDigit {
 
   private final int[] multipliers;
 
+  private final boolean digits;
+
   private final int[] invalids;
 
   private final int replaceValue;
 
-  private ModuloCheckDigit(int mod, int[] multipliers, int[] invalids, int replaceValue) {
+  private ModuloCheckDigit(int mod,
+                           int[] multipliers,
+                           boolean digits,
+                           int[] invalids,
+                           int replaceValue) {
     this.mod = mod;
     this.multipliers = multipliers;
+    this.digits = digits;
     this.invalids = invalids;
     this.replaceValue = replaceValue;
 
     Arrays.sort(this.invalids);
   }
 
-  private ModuloCheckDigit(int mod, int[] multipliers) {
-    this(mod, multipliers, new int[] {}, 0);
+  private ModuloCheckDigit(int mod, int[] multipliers, boolean digits) {
+    this(mod, multipliers, digits, new int[] {}, 0);
   }
 
   public static ModBuilder newMod(int mod) {
@@ -80,8 +87,16 @@ public class ModuloCheckDigit {
 
         mindex = mindex < multipliers.length ? mindex : 0;
         int multiplier = multipliers[mindex++];
+        int times = data * multiplier;
 
-        sum = sum + (data * multiplier);
+        if (!digits) {
+          sum = sum + times;
+        } else {
+          int[] digitArray = Base10.toArray(times);
+          for (int j = 0; j < digitArray.length; j++) {
+            sum = sum + digitArray[j];
+          }
+        }
       }
 
       int partial = sum % mod;
@@ -123,6 +138,7 @@ public class ModuloCheckDigit {
 
     private final int mod;
     private final int[] multipliers;
+    private boolean digits = false;
 
     public MultiplierBuilder(int mod, int[] multipliers) {
       this.mod = mod;
@@ -130,11 +146,16 @@ public class ModuloCheckDigit {
     }
 
     public ModuloCheckDigit build() {
-      return new ModuloCheckDigit(mod, multipliers);
+      return new ModuloCheckDigit(mod, multipliers, digits);
     }
 
     public WhenResultBuilder whenResult(int... invalids) {
-      return new WhenResultBuilder(mod, multipliers, invalids);
+      return new WhenResultBuilder(mod, multipliers, digits, invalids);
+    }
+
+    public MultiplierBuilder digits() {
+      this.digits = true;
+      return this;
     }
 
   }
@@ -143,16 +164,18 @@ public class ModuloCheckDigit {
 
     private final int mod;
     private final int[] multipliers;
+    private final boolean digits;
     private final int[] invalids;
 
-    public WhenResultBuilder(int mod, int[] multipliers, int[] invalids) {
+    public WhenResultBuilder(int mod, int[] multipliers, boolean digits, int[] invalids) {
       this.mod = mod;
       this.multipliers = multipliers;
+      this.digits = digits;
       this.invalids = invalids;
     }
 
     public FinalBuilder replaceWith(int replaceValue) {
-      return new FinalBuilder(mod, multipliers, invalids, replaceValue);
+      return new FinalBuilder(mod, multipliers, digits, invalids, replaceValue);
     }
 
   }
@@ -161,18 +184,20 @@ public class ModuloCheckDigit {
 
     private final int mod;
     private final int[] multipliers;
+    private final boolean digits;
     private final int[] invalids;
     private final int replaceValue;
 
-    public FinalBuilder(int mod, int[] multipliers, int[] invalids, int replaceValue) {
+    public FinalBuilder(int mod, int[] multipliers, boolean digits, int[] invalids, int replaceValue) {
       this.mod = mod;
       this.multipliers = multipliers;
+      this.digits = digits;
       this.invalids = invalids;
       this.replaceValue = replaceValue;
     }
 
     public ModuloCheckDigit build() {
-      return new ModuloCheckDigit(mod, multipliers, invalids, replaceValue);
+      return new ModuloCheckDigit(mod, multipliers, digits, invalids, replaceValue);
     }
 
   }

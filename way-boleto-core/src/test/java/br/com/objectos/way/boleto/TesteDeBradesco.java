@@ -47,9 +47,21 @@ public class TesteDeBradesco {
   }
 
   public void codigo_barras() {
-    String prova = "23795581000000340000123090000000105000123450";
+    String prova = "23791570100000150001018090000000502000163240";
 
     CodigoDeBarras res = bradesco.codigoDeBarrasDe(boleto);
+
+    assertThat(res, hasToString(equalTo(prova)));
+  }
+
+  public void linha_digitavel() {
+    String prova = "23791.01807 90000.000506 20001.632403 1 57010000015000";
+
+    CodigoDeBarras codigo = bradesco.codigoDeBarrasDe(boleto);
+    LinhaDigitavel res = codigo.toLinhaDigitavel();
+
+    System.out.println(prova);
+    System.out.println(res);
 
     assertThat(res, hasToString(equalTo(prova)));
   }
@@ -58,22 +70,22 @@ public class TesteDeBradesco {
 
     @Override
     public BoletoEspecie getEspecie() {
-      return null;
+      return BoletoEspecie.DM_DUPLICATA_MERCANTIL;
     }
 
     @Override
     public ValorFinanceiro getValor() {
-      return null; // retornar 340.00
+      return new ValorFinanceiroImpl(150.0);
     }
 
     @Override
     public LocalDate getEmissao() {
-      return null;
+      return new LocalDate(2013, 5, 7);
     }
 
     @Override
     public LocalDate getVencimento() {
-      return new LocalDate(2013, 5, 6);
+      return new LocalDate(2013, 5, 17);
     }
 
   }
@@ -92,12 +104,12 @@ public class TesteDeBradesco {
 
     @Override
     public String getAgencia() {
-      return "0123";
+      return "1018";
     }
 
     @Override
     public String getNumero() {
-      return "00123-4";
+      return "16324";
     }
 
   }
@@ -116,7 +128,7 @@ public class TesteDeBradesco {
 
     @Override
     public String getNossoNumero() {
-      return "00001050";
+      return "5020";
     }
 
     @Override
@@ -136,7 +148,7 @@ public class TesteDeBradesco {
 
     @Override
     public String getNumeroDocumento() {
-      return null;
+      return "1002";
     }
 
   }
