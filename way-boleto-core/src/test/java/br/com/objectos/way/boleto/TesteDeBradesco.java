@@ -128,7 +128,7 @@ public class TesteDeBradesco {
 
     @Override
     public String getNossoNumero() {
-      return "5020";
+      return "50200";
     }
 
     @Override

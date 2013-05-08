@@ -20,7 +20,7 @@ import com.github.mustachejava.MustacheFactory;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class WayBoletoConfigTest implements WayBoletoConfig {
+public class WayBoletoConfigTest implements WayBoletoConfig {
 
   @Override
   public MustacheFactory getMustacheFactory() {

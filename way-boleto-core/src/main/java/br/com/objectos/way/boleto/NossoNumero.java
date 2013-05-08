@@ -18,7 +18,7 @@ import com.google.common.base.Preconditions;
  */
 class NossoNumero implements HasIntValue {
 
-  private static final Pattern pattern = Pattern.compile("[0-9]+");
+  private static final Pattern pattern = Pattern.compile("[0-9]+[A-Za-z]?$");
 
   private final long numero;
 

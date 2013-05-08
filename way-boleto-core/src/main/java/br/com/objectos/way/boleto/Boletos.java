@@ -16,7 +16,8 @@
 package br.com.objectos.way.boleto;
 
 import java.io.File;
-import java.net.URISyntaxException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.text.NumberFormat;
 
@@ -27,6 +28,7 @@ import br.com.objectos.comuns.matematica.financeira.ValorFinanceiro;
 
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.MustacheFactory;
+import com.google.common.io.Files;
 import com.google.common.io.Resources;
 
 /**
@@ -41,12 +43,19 @@ public class Boletos {
     return new ConstrutorDeBoleto();
   }
 
+  public static MustacheFactory newMustacheFactoryAt(File dir) throws IOException {
+    copyMustache("boleto.mustache", dir);
+    copyMustache("boleto-inline-css.mustache", dir);
+    copyMustache("boleto-page.mustache", dir);
+
+    return new DefaultMustacheFactory(dir);
+  }
+
   static MustacheFactory resourcesMf() {
     try {
-      URL url = Resources.getResource(Boletos.class, "/template");
-      File dir = new File(url.toURI());
-      return new DefaultMustacheFactory(dir);
-    } catch (URISyntaxException e) {
+      File tempDir = Files.createTempDir();
+      return newMustacheFactoryAt(tempDir);
+    } catch (IOException e) {
       return new DefaultMustacheFactory();
     }
   }
@@ -65,6 +74,14 @@ public class Boletos {
     }
 
     return res;
+  }
+
+  private static File copyMustache(String from, File to) throws IOException {
+    URL url = Resources.getResource(Styles.class, String.format("/template/%s", from));
+    File dest = new File(to, from);
+    FileOutputStream out = new FileOutputStream(dest);
+    Resources.copy(url, out);
+    return dest;
   }
 
 }
