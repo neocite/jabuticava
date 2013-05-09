@@ -11,8 +11,6 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.testng.annotations.Test;
 
-import br.com.objectos.way.boleto.NumeroBancario;
-
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
