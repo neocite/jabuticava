@@ -15,7 +15,14 @@
  */
 package br.com.objectos.way.barcode;
 
+import static com.google.common.collect.Lists.transform;
+
 import java.util.List;
+
+import br.com.objectos.way.barcode.i25.InterleavedTwoFive;
+
+import com.google.common.base.Functions;
+import com.google.common.base.Joiner;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -28,16 +35,33 @@ public class Barcode {
     this.bars = bars;
   }
 
-  public static Barcode of(int[] barcodes) {
-    List<Pair> pairs = Pair.pairOf(barcodes);
-    List<BarWidth> widths = new PairGen().pair(pairs);
-    List<Bar> bars = new BarGen().of(widths);
-    List<Bar> _bars = new StartStop().of(bars);
-    return new Barcode(_bars);
+  public static IntArrayBuilder encode(int[] digits) {
+    return new IntArrayBuilder(digits);
   }
 
   public List<Bar> getBars() {
     return bars;
+  }
+
+  @Override
+  public String toString() {
+    List<String> strs = transform(bars, Functions.toStringFunction());
+    return Joiner.on("").join(strs);
+  }
+
+  public static class IntArrayBuilder {
+
+    private final int[] digits;
+
+    public IntArrayBuilder(int[] digits) {
+      this.digits = digits;
+    }
+
+    public Barcode asInterleavedTwoFive() {
+      List<Bar> bars = InterleavedTwoFive.barsOf(digits);
+      return new Barcode(bars);
+    }
+
   }
 
 }

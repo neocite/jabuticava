@@ -27,28 +27,38 @@ import com.google.common.base.Objects;
  */
 public class Bar {
 
-  private final BarWidth width;
-  private final BarColor color;
+  private static final Bar WHITE_NARROW = new Bar(WHITE, NARROW);
+  private static final Bar WHITE_WIDE = new Bar(WHITE, WIDE);
 
-  Bar(BarWidth width, BarColor color) {
-    this.width = width;
+  private static final Bar BLACK_NARROW = new Bar(BLACK, NARROW);
+  private static final Bar BLACK_WIDE = new Bar(BLACK, WIDE);
+
+  private final BarColor color;
+  private final BarWidth width;
+
+  private Bar(BarColor color, BarWidth width) {
     this.color = color;
+    this.width = width;
+  }
+
+  public static Bar of(BarColor color, BarWidth width) {
+    return new Bar(color, width);
   }
 
   public static Bar whiteNarrow() {
-    return new Bar(NARROW, WHITE);
+    return WHITE_NARROW;
   }
 
   public static Bar blackNarrow() {
-    return new Bar(NARROW, BLACK);
+    return BLACK_NARROW;
   }
 
   public static Bar whiteWide() {
-    return new Bar(WIDE, WHITE);
+    return WHITE_WIDE;
   }
 
   public static Bar blackWide() {
-    return new Bar(WIDE, BLACK);
+    return BLACK_WIDE;
   }
 
   public BarWidth getWidth() {
@@ -61,13 +71,8 @@ public class Bar {
 
   @Override
   public String toString() {
-    String l = BarColor.BLACK.equals(color) ? "x" : " ";
-
-    if (BarWidth.WIDE.equals(width)) {
-      return l + l;
-    } else {
-      return l;
-    }
+    String symbol = BLACK.equals(color) ? "x" : " ";
+    return WIDE.equals(width) ? symbol + symbol : symbol;
   }
 
   @Override

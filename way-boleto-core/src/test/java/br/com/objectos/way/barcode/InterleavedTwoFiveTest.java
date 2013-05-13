@@ -31,10 +31,10 @@ import com.google.common.collect.ImmutableList;
  * @author carolene.bertoldi@objectos.com.br (Carolene Bertoldi)
  */
 @Test
-public class BarcodeTest {
+public class InterleavedTwoFiveTest {
 
-  public void should_generate_barcode() {
-    int[] barcodes = { 2, 3, 7, 9, 5, 2, 5, 0, 0, 0, 0, 0, 0, 0, 3, 4, 0, 0, 0, 0, 1, 2, 3, 0, 6, 0, 0, 0, 0, 0, 0, 0, 1, 0, 5, 0, 0, 0, 1, 2, 3, 4, 5, 0 };
+  public void encode_digits() {
+    int[] digits = { 2, 3, 7, 9, 5, 2, 5, 0, 0, 0, 0, 0, 0, 0, 3, 4, 0, 0, 0, 0, 1, 2, 3, 0, 6, 0, 0, 0, 0, 0, 0, 0, 1, 0, 5, 0, 0, 0, 1, 2, 3, 4, 5, 0 };
 
     List<Bar> proof = ImmutableList.<Bar> builder()
         .add(Bar.blackNarrow())
@@ -267,20 +267,21 @@ public class BarcodeTest {
 
         .build();
 
-    Barcode res = Barcode.of(barcodes);
+    Barcode res = Barcode.encode(digits).asInterleavedTwoFive();
     List<Bar> bars = res.getBars();
 
     assertThat(bars.size(), equalTo(44 * 5 + 7));
 
-    String _b = toBarString(bars);
-    String _p = toBarString(proof);
+    String _b = res.toString();
+    String _p = toString(proof);
 
     System.out.println("res: " + _b);
     System.out.println("pro: " + _p);
+
     assertThat(_b, equalTo(_p));
   }
 
-  private String toBarString(List<Bar> bars) {
+  private String toString(List<Bar> bars) {
     List<String> strs = transform(bars, Functions.toStringFunction());
     return Joiner.on("").join(strs);
   }

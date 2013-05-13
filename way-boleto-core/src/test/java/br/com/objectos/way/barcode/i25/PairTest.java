@@ -13,10 +13,10 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.way.barcode;
+package br.com.objectos.way.barcode.i25;
 
-import static br.com.objectos.way.barcode.BarWidth.NARROW;
-import static br.com.objectos.way.barcode.BarWidth.WIDE;
+import static br.com.objectos.way.barcode.BarWidth.N;
+import static br.com.objectos.way.barcode.BarWidth.W;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -24,29 +24,19 @@ import java.util.List;
 
 import org.testng.annotations.Test;
 
+import br.com.objectos.way.barcode.BarWidth;
+
 import com.google.common.collect.ImmutableList;
 
 /**
- * @author "edenir.anschau@objectos.com.br (Edenir Norberto Anschau)"
+ * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
 @Test
 public class PairTest {
 
-  public void deve_gerar_codigo_num_38() {
+  public void should_encode_one_pair() {
     List<BarWidth> proof;
-    proof = ImmutableList.<BarWidth> builder()
-        .add(WIDE)
-        .add(WIDE)
-        .add(WIDE)
-        .add(NARROW)
-        .add(NARROW)
-        .add(NARROW)
-        .add(NARROW)
-        .add(WIDE)
-        .add(NARROW)
-        .add(NARROW)
-
-        .build();
+    proof = ImmutableList.of(W(), W(), W(), N(), N(), N(), N(), W(), N(), N());
 
     Pair res = Pair.pairOf(3, 8);
     List<BarWidth> widths = res.getWidths();
@@ -55,38 +45,14 @@ public class PairTest {
     assertThat(widths, equalTo(proof));
   }
 
-  public void deve_gerar_codigo() {
+  public void should_split_array_into_pairs() {
     int[] input = { 3, 8, 5, 2 };
 
     List<BarWidth> proof_38;
-    proof_38 = ImmutableList.<BarWidth> builder()
-        .add(WIDE)
-        .add(WIDE)
-        .add(WIDE)
-        .add(NARROW)
-        .add(NARROW)
-        .add(NARROW)
-        .add(NARROW)
-        .add(WIDE)
-        .add(NARROW)
-        .add(NARROW)
-
-        .build();
+    proof_38 = ImmutableList.of(W(), W(), W(), N(), N(), N(), N(), W(), N(), N());
 
     List<BarWidth> proof_52;
-    proof_52 = ImmutableList.<BarWidth> builder()
-        .add(WIDE)
-        .add(NARROW)
-        .add(NARROW)
-        .add(WIDE)
-        .add(WIDE)
-        .add(NARROW)
-        .add(NARROW)
-        .add(NARROW)
-        .add(NARROW)
-        .add(WIDE)
-
-        .build();
+    proof_52 = ImmutableList.of(W(), N(), N(), W(), W(), N(), N(), N(), N(), W());
 
     List<Pair> res = Pair.pairOf(input);
     assertThat(res.size(), equalTo(2));
@@ -97,4 +63,5 @@ public class PairTest {
     Pair r1 = res.get(1);
     assertThat(r1.getWidths(), equalTo(proof_52));
   }
+
 }

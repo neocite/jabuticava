@@ -13,17 +13,18 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.way.barcode;
+package br.com.objectos.way.barcode.i25;
 
-import static br.com.objectos.way.barcode.BarWidth.NARROW;
-import static br.com.objectos.way.barcode.BarWidth.WIDE;
+import static br.com.objectos.way.barcode.BarWidth.N;
+import static br.com.objectos.way.barcode.BarWidth.W;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 import java.util.List;
 
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import br.com.objectos.way.barcode.BarWidth;
 
 import com.google.common.collect.ImmutableList;
 
@@ -31,47 +32,25 @@ import com.google.common.collect.ImmutableList;
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
 @Test
-public class PairGenTest {
+public class JoinerTest {
 
-  private PairGen gen;
-
-  @BeforeClass
-  public void setUp() {
-    gen = new PairGen();
-  }
-
-  public void deve_juntar_pares() {
+  public void should_join() {
     Pair pair38 = Pair.pairOf(3, 8);
     Pair pair52 = Pair.pairOf(5, 2);
 
+    List<BarWidth> proof_38;
+    proof_38 = ImmutableList.of(W(), W(), W(), N(), N(), N(), N(), W(), N(), N());
+    List<BarWidth> proof_52;
+    proof_52 = ImmutableList.of(W(), N(), N(), W(), W(), N(), N(), N(), N(), W());
+
     List<BarWidth> proof;
     proof = ImmutableList.<BarWidth> builder()
-        .add(WIDE)
-        .add(WIDE)
-        .add(WIDE)
-        .add(NARROW)
-        .add(NARROW)
-        .add(NARROW)
-        .add(NARROW)
-        .add(WIDE)
-        .add(NARROW)
-        .add(NARROW)
-
-        .add(WIDE)
-        .add(NARROW)
-        .add(NARROW)
-        .add(WIDE)
-        .add(WIDE)
-        .add(NARROW)
-        .add(NARROW)
-        .add(NARROW)
-        .add(NARROW)
-        .add(WIDE)
-
+        .addAll(proof_38)
+        .addAll(proof_52)
         .build();
 
     List<Pair> pairs = ImmutableList.of(pair38, pair52);
-    List<BarWidth> res = gen.pair(pairs);
+    List<BarWidth> res = Joiner.join(pairs);
 
     assertThat(res.size(), equalTo(20));
     assertThat(res, equalTo(proof));

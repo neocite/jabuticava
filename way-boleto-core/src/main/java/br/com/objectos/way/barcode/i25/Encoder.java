@@ -13,24 +13,31 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.way.barcode;
+package br.com.objectos.way.barcode.i25;
 
 import static com.google.common.collect.Lists.newArrayList;
 
 import java.util.List;
 
+import br.com.objectos.way.barcode.Bar;
+import br.com.objectos.way.barcode.BarColor;
+import br.com.objectos.way.barcode.BarWidth;
+
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-class BarGen {
+class Encoder {
 
-  public List<Bar> of(List<BarWidth> widths) {
+  private Encoder() {
+  }
+
+  public static List<Bar> of(List<BarWidth> widths) {
     List<Bar> res = newArrayList();
 
     for (int i = 0; i < widths.size(); i++) {
-      BarWidth barWidth = widths.get(i);
       BarColor color = i % 2 == 0 ? BarColor.BLACK : BarColor.WHITE;
-      Bar bar = new Bar(barWidth, color);
+      BarWidth width = widths.get(i);
+      Bar bar = Bar.of(color, width);
       res.add(bar);
     }
 

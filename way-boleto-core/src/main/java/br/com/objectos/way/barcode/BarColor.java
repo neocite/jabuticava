@@ -16,7 +16,7 @@
 package br.com.objectos.way.barcode;
 
 /**
- * @author "edenir.anschau@objectos.com.br (Edenir Norberto Anschau)"
+ * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
 public enum BarColor {
 

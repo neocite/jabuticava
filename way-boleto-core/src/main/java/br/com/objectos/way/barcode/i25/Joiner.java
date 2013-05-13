@@ -13,18 +13,23 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.way.barcode;
+package br.com.objectos.way.barcode.i25;
 
 import static com.google.common.collect.Lists.newArrayList;
 
 import java.util.List;
 
+import br.com.objectos.way.barcode.BarWidth;
+
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-class PairGen {
+class Joiner {
 
-  public List<BarWidth> pair(List<Pair> pairs) {
+  private Joiner() {
+  }
+
+  public static List<BarWidth> join(List<Pair> pairs) {
     List<BarWidth> res = newArrayList();
 
     for (Pair pair : pairs) {

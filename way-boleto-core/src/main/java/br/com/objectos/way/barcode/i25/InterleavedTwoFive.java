@@ -13,23 +13,26 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.way.barcode;
+package br.com.objectos.way.barcode.i25;
+
+import java.util.List;
+
+import br.com.objectos.way.barcode.Bar;
+import br.com.objectos.way.barcode.BarWidth;
 
 /**
- * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
+ * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public enum BarWidth {
+public class InterleavedTwoFive {
 
-  NARROW,
-
-  WIDE;
-
-  public static BarWidth N() {
-    return BarWidth.NARROW;
+  private InterleavedTwoFive() {
   }
 
-  public static BarWidth W() {
-    return BarWidth.WIDE;
+  public static List<Bar> barsOf(int[] digits) {
+    List<Pair> pairs = Pair.pairOf(digits);
+    List<BarWidth> widths = Joiner.join(pairs);
+    List<Bar> bars = Encoder.of(widths);
+    return StartStop.decorate(bars);
   }
 
 }

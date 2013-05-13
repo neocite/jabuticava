@@ -13,15 +13,16 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.way.barcode;
+package br.com.objectos.way.barcode.i25;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 import java.util.List;
 
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import br.com.objectos.way.barcode.Bar;
 
 import com.google.common.collect.ImmutableList;
 
@@ -30,13 +31,6 @@ import com.google.common.collect.ImmutableList;
  */
 @Test
 public class StartStopTest {
-
-  private StartStop startStop;
-
-  @BeforeClass
-  public void setUp() {
-    startStop = new StartStop();
-  }
 
   public void should_generate_bar_with_start_and_stop_empty() {
     List<Bar> input = ImmutableList.of();
@@ -52,7 +46,7 @@ public class StartStopTest {
         .add(Bar.blackNarrow())
         .build();
 
-    List<Bar> res = startStop.of(input);
+    List<Bar> res = StartStop.decorate(input);
     assertThat(res.size(), equalTo(7));
     assertThat(res, equalTo(proof));
   }
@@ -82,7 +76,7 @@ public class StartStopTest {
         .add(Bar.blackNarrow())
         .build();
 
-    List<Bar> res = startStop.of(input);
+    List<Bar> res = StartStop.decorate(input);
     assertThat(res.size(), equalTo(7 + 4));
     assertThat(res, equalTo(proof));
   }

@@ -13,14 +13,15 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.way.barcode;
+package br.com.objectos.way.barcode.i25;
 
 import static br.com.objectos.way.barcode.Bar.blackNarrow;
 import static br.com.objectos.way.barcode.Bar.blackWide;
 import static br.com.objectos.way.barcode.Bar.whiteNarrow;
-import static com.google.common.collect.Lists.newArrayList;
 
 import java.util.List;
+
+import br.com.objectos.way.barcode.Bar;
 
 import com.google.common.collect.ImmutableList;
 
@@ -29,17 +30,26 @@ import com.google.common.collect.ImmutableList;
  */
 class StartStop {
 
-  private final List<Bar> start = ImmutableList.of(blackNarrow(), whiteNarrow(), blackNarrow(),
+  private static final List<Bar> start = ImmutableList.of(
+      blackNarrow(),
+      whiteNarrow(),
+      blackNarrow(),
       whiteNarrow());
-  private final List<Bar> stop = ImmutableList.of(blackWide(), whiteNarrow(), blackNarrow());
 
-  public List<Bar> of(List<Bar> input) {
-    List<Bar> res = newArrayList();
-    res.addAll(start);
-    res.addAll(input);
-    res.addAll(stop);
+  private static final List<Bar> stop = ImmutableList.of(
+      blackWide(),
+      whiteNarrow(),
+      blackNarrow());
 
-    return res;
+  private StartStop() {
+  }
+
+  public static List<Bar> decorate(List<Bar> input) {
+    return ImmutableList.<Bar> builder()
+        .addAll(start)
+        .addAll(input)
+        .addAll(stop)
+        .build();
   }
 
 }

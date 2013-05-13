@@ -15,21 +15,20 @@
  */
 package br.com.objectos.way.barcode;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
+
+import org.testng.annotations.Test;
+
 /**
- * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
+ * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public enum BarWidth {
+@Test
+public class BarTest {
 
-  NARROW,
-
-  WIDE;
-
-  public static BarWidth N() {
-    return BarWidth.NARROW;
-  }
-
-  public static BarWidth W() {
-    return BarWidth.WIDE;
+  public void equals_test() {
+    EqualsVerifier
+        .forClass(Bar.class)
+        .verify();
   }
 
 }

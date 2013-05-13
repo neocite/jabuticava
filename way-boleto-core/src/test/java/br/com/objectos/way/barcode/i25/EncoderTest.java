@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.way.barcode;
+package br.com.objectos.way.barcode.i25;
 
 import static br.com.objectos.way.barcode.BarColor.BLACK;
 import static br.com.objectos.way.barcode.BarColor.WHITE;
@@ -25,8 +25,11 @@ import static org.hamcrest.Matchers.equalTo;
 
 import java.util.List;
 
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import br.com.objectos.way.barcode.Bar;
+import br.com.objectos.way.barcode.BarColor;
+import br.com.objectos.way.barcode.BarWidth;
 
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
@@ -35,19 +38,12 @@ import com.google.common.collect.ImmutableList;
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
 @Test
-public class BarGenTest {
-
-  private BarGen gen;
-
-  @BeforeClass
-  public void setUp() {
-    gen = new BarGen();
-  }
+public class EncoderTest {
 
   public void should_generate_barcode_with_colors() {
     List<BarWidth> widths = ImmutableList.of(WIDE, NARROW);
 
-    List<Bar> res = gen.of(widths);
+    List<Bar> res = Encoder.of(widths);
 
     List<BarWidth> w = transform(res, new ToWidth());
     assertThat(w.size(), equalTo(2));
@@ -63,7 +59,7 @@ public class BarGenTest {
   public void should_generate_barcode_with_four_colors() {
     List<BarWidth> widths = ImmutableList.of(WIDE, NARROW, NARROW, WIDE);
 
-    List<Bar> res = gen.of(widths);
+    List<Bar> res = Encoder.of(widths);
 
     List<BarWidth> w = transform(res, new ToWidth());
     assertThat(w.size(), equalTo(4));
