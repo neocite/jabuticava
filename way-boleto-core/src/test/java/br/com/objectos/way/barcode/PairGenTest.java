@@ -41,8 +41,8 @@ public class PairGenTest {
   }
 
   public void deve_juntar_pares() {
-    Pair pair38 = Pair.pairOf(new int[] { 3, 8 });
-    Pair pair52 = Pair.pairOf(new int[] { 5, 2 });
+    Pair pair38 = Pair.pairOf(3, 8);
+    Pair pair52 = Pair.pairOf(5, 2);
 
     List<BarWidth> proof;
     proof = ImmutableList.<BarWidth> builder()

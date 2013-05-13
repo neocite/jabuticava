@@ -29,7 +29,8 @@ import com.google.common.collect.ImmutableList;
  */
 class StartStop {
 
-  private final List<Bar> start = ImmutableList.of(blackNarrow(), whiteNarrow(), blackNarrow());
+  private final List<Bar> start = ImmutableList.of(blackNarrow(), whiteNarrow(), blackNarrow(),
+      whiteNarrow());
   private final List<Bar> stop = ImmutableList.of(blackWide(), whiteNarrow(), blackNarrow());
 
   public List<Bar> of(List<Bar> input) {

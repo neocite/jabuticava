@@ -60,6 +60,17 @@ public class Bar {
   }
 
   @Override
+  public String toString() {
+    String l = BarColor.BLACK.equals(color) ? "x" : " ";
+
+    if (BarWidth.WIDE.equals(width)) {
+      return l + l;
+    } else {
+      return l;
+    }
+  }
+
+  @Override
   public final int hashCode() {
     return Objects.hashCode(width, color);
   }

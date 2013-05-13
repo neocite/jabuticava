@@ -33,11 +33,6 @@ import com.google.common.collect.ImmutableList;
 public class PairTest {
 
   public void deve_gerar_codigo_num_38() {
-    // String number = "38";
-    int[] par = {
-      3,
-      8 };
-
     List<BarWidth> proof;
     proof = ImmutableList.<BarWidth> builder()
         .add(WIDE)
@@ -50,15 +45,56 @@ public class PairTest {
         .add(WIDE)
         .add(NARROW)
         .add(NARROW)
-        
-        
+
         .build();
 
-    Pair res = Pair.pairOf(par);
+    Pair res = Pair.pairOf(3, 8);
     List<BarWidth> widths = res.getWidths();
 
     assertThat(widths.size(), equalTo(10));
     assertThat(widths, equalTo(proof));
   }
 
+  public void deve_gerar_codigo() {
+    int[] input = { 3, 8, 5, 2 };
+
+    List<BarWidth> proof_38;
+    proof_38 = ImmutableList.<BarWidth> builder()
+        .add(WIDE)
+        .add(WIDE)
+        .add(WIDE)
+        .add(NARROW)
+        .add(NARROW)
+        .add(NARROW)
+        .add(NARROW)
+        .add(WIDE)
+        .add(NARROW)
+        .add(NARROW)
+
+        .build();
+
+    List<BarWidth> proof_52;
+    proof_52 = ImmutableList.<BarWidth> builder()
+        .add(WIDE)
+        .add(NARROW)
+        .add(NARROW)
+        .add(WIDE)
+        .add(WIDE)
+        .add(NARROW)
+        .add(NARROW)
+        .add(NARROW)
+        .add(NARROW)
+        .add(WIDE)
+
+        .build();
+
+    List<Pair> res = Pair.pairOf(input);
+    assertThat(res.size(), equalTo(2));
+
+    Pair r0 = res.get(0);
+    assertThat(r0.getWidths(), equalTo(proof_38));
+
+    Pair r1 = res.get(1);
+    assertThat(r1.getWidths(), equalTo(proof_52));
+  }
 }

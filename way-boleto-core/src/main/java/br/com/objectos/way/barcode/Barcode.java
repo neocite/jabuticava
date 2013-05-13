@@ -15,24 +15,29 @@
  */
 package br.com.objectos.way.barcode;
 
-import static com.google.common.collect.Lists.newArrayList;
-
 import java.util.List;
 
 /**
- * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
+ * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class PairGen {
+public class Barcode {
 
-  public List<BarWidth> pair(List<Pair> pairs) {
-    List<BarWidth> res = newArrayList();
+  private final List<Bar> bars;
 
-    for (Pair pair : pairs) {
-      List<BarWidth> widths = pair.getWidths();
-      res.addAll(widths);
-    }
+  private Barcode(List<Bar> bars) {
+    this.bars = bars;
+  }
 
-    return res;
+  public static Barcode of(int[] barcodes) {
+    List<Pair> pairs = Pair.pairOf(barcodes);
+    List<BarWidth> widths = new PairGen().pair(pairs);
+    List<Bar> bars = new BarGen().of(widths);
+    List<Bar> _bars = new StartStop().of(bars);
+    return new Barcode(_bars);
+  }
+
+  public List<Bar> getBars() {
+    return bars;
   }
 
 }

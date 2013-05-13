@@ -15,6 +15,8 @@
  */
 package br.com.objectos.way.barcode;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
@@ -30,9 +32,9 @@ class Pair {
     this.widths = pair;
   }
 
-  public static Pair pairOf(int[] par) {
-    List<BarWidth> ref1 = BarcodeType.INTERLEAVED_2_5.encode(par[0]);
-    List<BarWidth> ref2 = BarcodeType.INTERLEAVED_2_5.encode(par[1]);
+  public static Pair pairOf(int n1, int n2) {
+    List<BarWidth> ref1 = BarcodeType.INTERLEAVED_2_5.encode(n1);
+    List<BarWidth> ref2 = BarcodeType.INTERLEAVED_2_5.encode(n2);
 
     BarWidth[] barWdths = new BarWidth[10];
     barWdths[0] = ref1.get(0);
@@ -53,6 +55,21 @@ class Pair {
 
   public List<BarWidth> getWidths() {
     return widths;
+  }
+
+  public static List<Pair> pairOf(int[] input) {
+    List<Pair> res = newArrayList();
+
+    int limite = input.length;
+
+    for (int i = 0; i < limite; i = i + 2) {
+      int value1 = input[i];
+      int value2 = input[i + 1];
+      Pair pair = pairOf(value1, value2);
+      res.add(pair);
+    }
+
+    return res;
   }
 
 }

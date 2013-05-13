@@ -45,6 +45,7 @@ public class StartStopTest {
         .add(Bar.blackNarrow())
         .add(Bar.whiteNarrow())
         .add(Bar.blackNarrow())
+        .add(Bar.whiteNarrow())
 
         .add(Bar.blackWide())
         .add(Bar.whiteNarrow())
@@ -52,7 +53,7 @@ public class StartStopTest {
         .build();
 
     List<Bar> res = startStop.of(input);
-    assertThat(res.size(), equalTo(6));
+    assertThat(res.size(), equalTo(7));
     assertThat(res, equalTo(proof));
   }
 
@@ -69,6 +70,7 @@ public class StartStopTest {
         .add(Bar.blackNarrow())
         .add(Bar.whiteNarrow())
         .add(Bar.blackNarrow())
+        .add(Bar.whiteNarrow())
 
         .add(Bar.blackNarrow())
         .add(Bar.whiteNarrow())
@@ -81,7 +83,7 @@ public class StartStopTest {
         .build();
 
     List<Bar> res = startStop.of(input);
-    assertThat(res.size(), equalTo(6 + 4));
+    assertThat(res.size(), equalTo(7 + 4));
     assertThat(res, equalTo(proof));
   }
 
