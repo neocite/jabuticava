@@ -217,7 +217,11 @@
   <div class="bol bol-ft02">
     <div class="col col00">
       <div class="cwrap">
-        &nbsp;
+        <div class="barcode">
+        {{#codigoDeBarras.barras}}
+          <div class="bar {{styleClass}}">&nbsp;</div>
+        {{/codigoDeBarras.barras}}
+        </div>
       </div>
     </div>
     <div class="col col01">
