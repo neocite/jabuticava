@@ -211,8 +211,33 @@
 		&.bol-ft02 {
 			@height: 62px;
 			height: @height;
+			@heightBar: 50px;
+			@width: 1px;
 			@col00: 61%;
 
+			.barcode {
+				.clearfix();
+				padding: 10px 0 0 10px;
+				
+				.bar {
+					float: left;
+					height: @heightBar;
+				}
+
+				.bc-black {
+					background-color: @black;
+				}
+				.bc-white {
+				}
+				
+				.bc-narrow {
+					width: @width;
+				}
+				.bc-wide {
+					width: @width * 3;
+				}
+			}
+	
 			.col {
 				.col-height(@height, 0px);
 			}

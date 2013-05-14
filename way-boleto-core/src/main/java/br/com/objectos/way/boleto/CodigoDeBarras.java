@@ -15,10 +15,18 @@
  */
 package br.com.objectos.way.boleto;
 
+import static com.google.common.collect.Lists.transform;
 import static java.util.Arrays.copyOfRange;
+
+import java.util.List;
+
+import br.com.objectos.way.barcode.Bar;
+import br.com.objectos.way.barcode.Barcode;
 import br.com.objectos.way.base.SeqNum;
 
+import com.google.common.base.Function;
 import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableList;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -51,6 +59,20 @@ class CodigoDeBarras {
     return new CodigoDeBarras(codigoBarras);
   }
 
+  public List<MustacheBarra> getBarras() {
+    int[] digits = seqNum.toArray();
+    Barcode barcode = Barcode
+        .encode(digits)
+        .asInterleavedTwoFive();
+
+    List<Bar> bars = barcode.getBars();
+
+    List<MustacheBarra> barras;
+    barras = transform(bars, new ToMustacheBar());
+
+    return ImmutableList.copyOf(barras);
+  }
+
   public LinhaDigitavel toLinhaDigitavel() {
     return LinhaDigitavel.of(this);
   }
@@ -62,6 +84,15 @@ class CodigoDeBarras {
   @Override
   public String toString() {
     return seqNum.toString();
+  }
+
+  private class ToMustacheBar implements Function<Bar, MustacheBarra> {
+
+    @Override
+    public MustacheBarra apply(Bar input) {
+      return new MustacheBarra(input);
+    }
+
   }
 
 }
