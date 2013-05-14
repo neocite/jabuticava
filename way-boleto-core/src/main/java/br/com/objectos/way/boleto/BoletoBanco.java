@@ -32,7 +32,7 @@ public enum BoletoBanco {
 
     @Override
     String getNome() {
-      return "Banco Bradesco SA";
+      return "Bco. Bradesco SA";
     }
 
     @Override
@@ -195,6 +195,10 @@ public enum BoletoBanco {
 
   String getNumero() {
     return String.format("%d-%d", codigo, digito);
+  }
+
+  String getStyleClass() {
+    return String.format("banco-%s", name().toLowerCase());
   }
 
   abstract String getNome();
