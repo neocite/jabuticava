@@ -60,6 +60,8 @@ class ItauRemessaBuilder extends AbstractRemessaBuilder {
 
     lines.add(doTrailer());
 
+    lines.add(" ");
+
     return lines;
   }
 
