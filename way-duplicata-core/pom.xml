@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>br.com.objectos</groupId>
+		<artifactId>way-duplicata</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<artifactId>way-duplicata-core</artifactId>
+	<packaging>jar</packaging>
+	<name>objectos :: way :: duplicata :: core</name>
+	<description>Geração de duplicatas. Classes base.</description>
+	<url>https://github.com/objectos/way-duplicata</url>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<scm>
+		<connection>scm:git:git://objectos/way-duplicata.git</connection>
+		<developerConnection>scm:git:git@github.com:objectos/way-duplicata.git</developerConnection>
+		<url>https://github.com/objectos/way-duplicata</url>
+	</scm>
+	<developers>
+		<developer>
+			<id>moe</id>
+			<name>Marcio Endo</name>
+			<email>marcio.endo@objectos.com.br</email>
+		</developer>
+	</developers>
+	<dependencies>
+		<dependency>
+			<groupId>br.com.objectos</groupId>
+			<artifactId>way-base</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.spullara.mustache.java</groupId>
+			<artifactId>compiler</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.lesscss</groupId>
+			<artifactId>lesscss</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itextpdf</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.itextpdf.tool</groupId>
+			<artifactId>xmlworker</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>

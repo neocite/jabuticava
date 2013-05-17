@@ -1,0 +1,37 @@
+#font {
+	.size(@factor: 1) {
+		#font > .shorthand(@baseFontSize * @factor, normal, @baseLineHeight * @factor);
+	}
+}
+
+span.nowrap {
+	display: block;
+	white-space: nowrap;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+}
+
+.ta(@align) {
+    text-align: @align;
+}
+
+.tac {
+    .ta(center);
+}
+.tal {
+    .ta(left);
+}
+.tar {
+    .ta(right);
+}
+
+// bootstrap v2 compatibility
+table.table td.tac, table.table th.tac {
+	.tac();
+}
+table.table td.tal, table.table th.tal {
+	.tal();
+}
+table.table td.tar, table.table th.tar {
+	.tar();
+}

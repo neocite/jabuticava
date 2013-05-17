@@ -1,0 +1,175 @@
+.way-duplicata {
+	@padd: 20px;
+	@bottom: 20px;
+
+	border: 1px solid @black;
+	padding: @padd; 
+	
+	table.dup-table {
+		width: 100%;
+		.tac;
+		
+		td, th {
+			border-top: 1px solid @gray;
+			border-right: 1px solid @gray;
+		}
+		th {
+			border-top: 0;
+		}
+		td:last-child, th:last-child {
+			border-right: 0;
+		}
+	}
+
+	.cwrap {
+		border: 1px solid @black;
+	}
+
+	.dup {
+		.clearfix();
+		margin-bottom: @padd;
+	
+		.col {
+			float: left;
+		}
+	}
+
+	.dup-hd0 {
+		@col00: 350px;
+		@col01: 898px - @col00;
+		@height: 75px;
+
+		.col00 {
+			width: @col00;
+			.tac;
+			
+			h1 {
+			 	#font > .size(1.4);		
+			}
+
+			span.dup-field {
+				display: block;
+			}
+		}
+
+		.col01 {
+			position: relative;
+			width: @col01;
+
+			span.dup-field {
+				display: block;
+				margin-left: 120px;
+			} 
+	
+			span.dup-label {
+				display: block;
+				float: left;
+				width: 120px;
+				font-weight: bold;			
+			}
+			
+			.dup-cep {
+				position: absolute;
+				bottom: 0;
+				right: 0;
+			}
+		}
+		
+		.cwrap {
+			height: @height;
+		}
+	}
+
+	.dup-hd1 {
+		@col00: 350px;
+		@col01: @col00;
+		@col02: 898px - @col00 - @col01;
+		@height: 70px;
+
+		h4 {
+			.tac;
+			border-bottom: 1px solid @gray;
+			margin: 0;
+		}
+		
+		table {
+			bottom: 0;
+		}
+
+		.col00 {
+			width: @col00;
+		}
+
+		.col01 {
+			width: @col01;
+		}
+
+		.col02 {
+			width: @col02;
+		}
+
+		.cwrap {
+			height: @height;
+		}
+	}
+	
+	.dup-bd {
+		@col-lt: 234px;
+		@col-rt: 898px - @col-lt;
+		margin-bottom: 0;
+
+		.col-lt {
+			width: @col-lt;
+		}
+
+		.col-rt {
+			width: @col-rt;
+			
+			h4 {
+				margin: 4px 0;
+			}
+
+			span.dup-label {
+				font-weight: bold;			
+			}
+			
+			.dup {
+				padding: 0 @padd;
+			}
+			
+			.dup-bd00 {
+				span.dup-field {
+					display: block;
+					margin-left: 180px;
+				} 
+		
+				span.dup-label {
+					display: block;
+					float: left;
+					width: 180px;
+				}
+			}
+
+			.dup-bd01 {
+				span.dup-field {
+					display: block;
+					margin-left: 180px;
+				} 
+		
+				span.dup-label {
+					display: block;
+					float: left;
+					width: 180px;
+				}
+			}
+		}
+	}
+	
+	.dup-label-mini {
+		#font > .size(0.75);
+	}
+	
+	.mwrap {
+		margin-right: @padd;
+	}
+}
