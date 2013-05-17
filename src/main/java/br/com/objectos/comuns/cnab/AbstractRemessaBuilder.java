@@ -90,9 +90,6 @@ abstract class AbstractRemessaBuilder implements RemessaBuilder {
   @Override
   public String toString() {
     List<String> lines = build();
-
-    lines.add(" ");
-
     return Joiner.on("\r\n").join(lines);
   }
 
