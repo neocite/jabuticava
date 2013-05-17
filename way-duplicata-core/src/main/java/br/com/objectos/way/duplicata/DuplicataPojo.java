@@ -16,6 +16,7 @@ public class DuplicataPojo implements Duplicata {
   private final DuplicataCedente cedente;
   private final DuplicataSacado sacado;
   private final Fatura fatura;
+  private final DuplicataTitulo titulo;
   private final String valorPorExtenso;
   private final LocalDate dataDoAceite;
 
@@ -23,6 +24,7 @@ public class DuplicataPojo implements Duplicata {
     cedente = construtor.getCedente();
     sacado = construtor.getSacado();
     fatura = construtor.getFatura();
+    titulo = construtor.getTitulo();
     valorPorExtenso = construtor.getValorPorExtenso();
     dataDoAceite = construtor.getDataDoAceite();
   }
@@ -40,6 +42,11 @@ public class DuplicataPojo implements Duplicata {
   @Override
   public Fatura getFatura() {
     return fatura;
+  }
+
+  @Override
+  public DuplicataTitulo getTitulo() {
+    return titulo;
   }
 
   @Override

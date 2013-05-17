@@ -16,6 +16,7 @@ public class ConstrutorDeDuplicata implements Duplicata.Construtor {
   private DuplicataCedente cedente;
   private DuplicataSacado sacado;
   private Fatura fatura;
+  private DuplicataTitulo titulo;
   private String valorPorExtenso;
   private LocalDate dataDoAceite;
 
@@ -36,6 +37,11 @@ public class ConstrutorDeDuplicata implements Duplicata.Construtor {
 
   public ConstrutorDeDuplicata fatura(Fatura fatura) {
     this.fatura = fatura;
+    return this;
+  }
+
+  public ConstrutorDeDuplicata titulo(DuplicataTitulo titulo) {
+    this.titulo = titulo;
     return this;
   }
 
@@ -62,6 +68,11 @@ public class ConstrutorDeDuplicata implements Duplicata.Construtor {
   @Override
   public Fatura getFatura() {
     return fatura;
+  }
+
+  @Override
+  public DuplicataTitulo getTitulo() {
+    return titulo;
   }
 
   @Override

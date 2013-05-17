@@ -17,7 +17,7 @@ public class TituloFalso implements DuplicataTitulo {
 
   @Override
   public String getNumero() {
-    return "123 A";
+    return "122A";
   }
 
   @Override
@@ -27,7 +27,7 @@ public class TituloFalso implements DuplicataTitulo {
 
   @Override
   public LocalDate getVencimento() {
-    return new LocalDate(2013, 2, 4);
+    return new LocalDate(2012, 2, 1);
   }
 
 }

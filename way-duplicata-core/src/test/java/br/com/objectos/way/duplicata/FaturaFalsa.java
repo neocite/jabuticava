@@ -17,7 +17,7 @@ public class FaturaFalsa implements Fatura {
 
   @Override
   public String getNumero() {
-    return "123";
+    return "122";
   }
 
   @Override

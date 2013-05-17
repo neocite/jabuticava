@@ -18,17 +18,17 @@ public class CedenteFalso implements DuplicataCedente {
 
   @Override
   public String getNome() {
-    return "Cedente XYZ123";
+    return "Meu Nome Fantasia";
   }
 
   @Override
   public String getRazaoSocial() {
-    return "Razão Social LTDA.";
+    return "Minha razão social";
   }
 
   @Override
   public String getTelefone() {
-    return "11 1234-5821";
+    return "11 3333-3333";
   }
 
   @Override
@@ -43,7 +43,7 @@ public class CedenteFalso implements DuplicataCedente {
 
   @Override
   public String getEndereco() {
-    return "Rua S/N";
+    return "Rua x csdfdf";
   }
 
   @Override

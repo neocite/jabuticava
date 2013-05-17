@@ -21,6 +21,8 @@ public interface Duplicata {
 
     Fatura getFatura();
 
+    DuplicataTitulo getTitulo();
+
     String getValorPorExtenso();
 
     LocalDate getDataDoAceite();
@@ -32,6 +34,8 @@ public interface Duplicata {
   DuplicataSacado getSacado();
 
   Fatura getFatura();
+
+  DuplicataTitulo getTitulo();
 
   String getValorPorExtenso();
 
