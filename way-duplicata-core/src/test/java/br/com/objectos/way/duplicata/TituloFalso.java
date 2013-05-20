@@ -13,7 +13,7 @@ import br.com.objectos.comuns.matematica.financeira.ValorFinanceiro;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public class TituloFalso implements DuplicataTitulo {
+class TituloFalso implements DuplicataTitulo {
 
   @Override
   public String getNumero() {

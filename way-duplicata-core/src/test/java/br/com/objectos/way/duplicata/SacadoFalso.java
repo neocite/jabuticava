@@ -14,7 +14,7 @@ import br.com.objectos.comuns.base.br.Estado;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public class SacadoFalso implements DuplicataSacado {
+class SacadoFalso implements DuplicataSacado {
 
   @Override
   public String getNome() {

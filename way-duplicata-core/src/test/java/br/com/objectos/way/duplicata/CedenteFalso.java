@@ -14,7 +14,7 @@ import br.com.objectos.comuns.base.br.Estado;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public class CedenteFalso implements DuplicataCedente {
+class CedenteFalso implements DuplicataCedente {
 
   @Override
   public String getNome() {

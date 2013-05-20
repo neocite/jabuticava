@@ -6,6 +6,7 @@
  */
 package br.com.objectos.way.duplicata;
 
+import static br.com.objectos.way.duplicata.DuplicataTipo.MERCANTIL;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.testng.Assert.fail;
 
@@ -13,7 +14,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import org.joda.time.LocalDate;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
@@ -36,14 +36,16 @@ public class TesteDeWayDuplicata {
   private Duplicata duplicata;
 
   @BeforeClass
-  public void preparDuplicata() {
-    duplicata = Duplicatas.novaDuplicata()
+  public void prepararDuplicata() {
+    duplicata = Duplicatas.novaDuplicata(MERCANTIL)
         .cedente(new CedenteFalso())
         .sacado(new SacadoFalso())
-        .fatura(new FaturaFalsa())
-        .valorPorExtenso("Quinhentos reais.")
-        .dataDoAceite(new LocalDate(2013, 5, 7))
+        .fatura(new FaturaFalso())
+        .titulo(new TituloFalso())
         .novaInstancia();
+
+    String json = Json.toString(duplicata);
+    System.out.println(json);
   }
 
   public void html_string() throws Exception {

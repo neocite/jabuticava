@@ -13,7 +13,7 @@ import br.com.objectos.comuns.matematica.financeira.ValorFinanceiro;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public class FaturaFalsa implements Fatura {
+class FaturaFalso implements Fatura {
 
   @Override
   public String getNumero() {
@@ -28,11 +28,6 @@ public class FaturaFalsa implements Fatura {
   @Override
   public LocalDate getEmissao() {
     return new LocalDate(2012, 2, 1);
-  }
-
-  @Override
-  public DuplicataTitulo getDuplicataTitulo() {
-    return new TituloFalso();
   }
 
 }
