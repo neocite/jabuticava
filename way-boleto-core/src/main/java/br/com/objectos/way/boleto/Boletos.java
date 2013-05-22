@@ -43,14 +43,6 @@ public class Boletos {
     return new ConstrutorDeBoleto();
   }
 
-  public static MustacheFactory newMustacheFactoryAt(File dir) throws IOException {
-    copyMustache("boleto.mustache", dir);
-    copyMustache("boleto-inline-css.mustache", dir);
-    copyMustache("boleto-page.mustache", dir);
-
-    return new DefaultMustacheFactory(dir);
-  }
-
   static MustacheFactory resourcesMf() {
     try {
       File tempDir = Files.createTempDir();
@@ -74,6 +66,14 @@ public class Boletos {
     }
 
     return res;
+  }
+
+  private static MustacheFactory newMustacheFactoryAt(File dir) throws IOException {
+    copyMustache("boleto.mustache", dir);
+    copyMustache("boleto-inline-css.mustache", dir);
+    copyMustache("boleto-page.mustache", dir);
+
+    return new DefaultMustacheFactory(dir);
   }
 
   private static File copyMustache(String from, File to) throws IOException {
