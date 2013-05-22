@@ -34,7 +34,7 @@
 		<module>way-boleto-core</module>
 	</modules>
 	<properties>
-		<br.com.objectos.way-base.version>1.0</br.com.objectos.way-base.version>
+		<br.com.objectos.way-base.version>1.1-SNAPSHOT</br.com.objectos.way-base.version>
 		<org.lesscss.version>1.3.3</org.lesscss.version>
 	</properties>
 	<dependencyManagement>
