@@ -7,13 +7,15 @@
 package br.com.objectos.way.duplicata;
 
 import java.io.File;
-import java.net.URISyntaxException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 
 import org.joda.time.LocalDate;
 
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.MustacheFactory;
+import com.google.common.io.Files;
 import com.google.common.io.Resources;
 
 /**
@@ -31,16 +33,30 @@ public class Duplicatas {
 
   static MustacheFactory resourcesMf() {
     try {
-      URL url = Resources.getResource(Duplicatas.class, "/template");
-      File dir = new File(url.toURI());
-      return new DefaultMustacheFactory(dir);
-    } catch (URISyntaxException e) {
+      File tempDir = Files.createTempDir();
+      return newMustacheFactoryAt(tempDir);
+    } catch (IOException e) {
       return new DefaultMustacheFactory();
     }
   }
 
   static String toString(LocalDate data) {
     return data != null ? data.toString("dd/MM/yyyy") : null;
+  }
+
+  private static MustacheFactory newMustacheFactoryAt(File dir) throws IOException {
+    copyMustache("duplicata.mustache", dir);
+    copyMustache("duplicata-page.mustache", dir);
+
+    return new DefaultMustacheFactory(dir);
+  }
+
+  private static File copyMustache(String from, File to) throws IOException {
+    URL url = Resources.getResource(Styles.class, String.format("/template/%s", from));
+    File dest = new File(to, from);
+    FileOutputStream out = new FileOutputStream(dest);
+    Resources.copy(url, out);
+    return dest;
   }
 
 }
