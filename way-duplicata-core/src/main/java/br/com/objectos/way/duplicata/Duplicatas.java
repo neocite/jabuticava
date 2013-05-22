@@ -9,12 +9,8 @@ package br.com.objectos.way.duplicata;
 import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.text.NumberFormat;
 
 import org.joda.time.LocalDate;
-
-import br.com.objectos.comuns.base.text.DecimalFormats;
-import br.com.objectos.comuns.matematica.financeira.ValorFinanceiro;
 
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.MustacheFactory;
@@ -28,8 +24,9 @@ public class Duplicatas {
   private Duplicatas() {
   }
 
-  public static ConstrutorDeDuplicata novaDuplicata() {
-    return new ConstrutorDeDuplicata();
+  public static ConstrutorDeDuplicata novaDuplicata(DuplicataTipo tipo) {
+    return new ConstrutorDeDuplicata()
+        .tipo(tipo);
   }
 
   static MustacheFactory resourcesMf() {
@@ -44,18 +41,6 @@ public class Duplicatas {
 
   static String toString(LocalDate data) {
     return data != null ? data.toString("dd/MM/yyyy") : null;
-  }
-
-  static String toString(ValorFinanceiro val) {
-    String res = "";
-
-    if (val != null) {
-      double dbl = val.doubleValue();
-      NumberFormat nf = DecimalFormats.newCurrencyWithLocale("pt");
-      res = nf.format(dbl);
-    }
-
-    return res;
   }
 
 }

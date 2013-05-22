@@ -48,7 +48,7 @@
             <tbody>
               <tr>
                 <td>{{numero}}</td>
-                <td>{{valor}}</td>                  
+                <td>{{valor.text}}</td>                  
                 <td>{{emissao}}</td>                  
               </tr>
             </tbody>
@@ -73,7 +73,7 @@
             <tbody>
               <tr>
                 <td>{{numero}}</td>
-                <td>{{valor}}</td>                  
+                <td>{{valor.text}}</td>                  
                 <td>{{vencimento}}</td>                  
               </tr>
             </tbody>
@@ -131,34 +131,37 @@
         <div class="dup dup-bd01">
           <div class="cwrap">
             <span class="dup-label">Valor por extenso </span>             
-            <span class="dup-field">{{valor.extenso}}</span>              
+            <span class="dup-field">{{titulo.valor.extenso}}&nbsp;</span>              
           </div>
         </div>
         <div class="dup dup-bd02">
           <div class="cwrap">
-            <p>
-            Reconheço(emos) a exatidão desta DUPLICATA de
-            <span class="dup-field">Prestação de Serviços</span>
-            na importância acima que pagarei(emos) à 
-            <span class="dup-field">{{cedente.razaoSocial}}</span>
-            ou a sua ordem, na praça e vencimentos acima indicados.
-            </p>
-            <table class="dup-table-ft">
-              <tbody>
-                <tr>
-                  <td>Em</td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>{{dataDoAceite}}</td>
-                  <td>Data do aceite</td>
-                  <td>
-                    <span class="dup-field">{{sacado.nome}}</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="cpadd">
+              <p>
+              Reconheço(emos) a exatidão desta DUPLICATA de
+              <span class="dup-field">{{tipo}}</span>
+              na importância acima que pagarei(emos) à 
+              <span class="dup-field">{{cedente.razaoSocial}}</span>
+              ou a sua ordem, na praça e vencimentos acima indicados.
+              </p>
+              
+              <table class="dup-table-ft">
+                <tbody>
+                  <tr>
+                    <td class="td0">Em</td>
+                    <td class="td1">____/____/________</td>
+                    <td class="td2"></td>
+                  </tr>
+                  <tr>
+                    <td class="td0"></td>
+                    <td class="td1">Data do aceite</td>
+                    <td class="td2 ass">
+                      <span class="dup-field">{{sacado.nome}}</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>      

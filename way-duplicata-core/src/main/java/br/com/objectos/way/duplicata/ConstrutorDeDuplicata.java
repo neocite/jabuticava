@@ -6,23 +6,25 @@
  */
 package br.com.objectos.way.duplicata;
 
-import org.joda.time.LocalDate;
-
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
 public class ConstrutorDeDuplicata implements Duplicata.Construtor {
 
+  private DuplicataTipo tipo;
   private DuplicataCedente cedente;
   private DuplicataSacado sacado;
   private Fatura fatura;
   private DuplicataTitulo titulo;
-  private String valorPorExtenso;
-  private LocalDate dataDoAceite;
 
   @Override
   public Duplicata novaInstancia() {
     return new DuplicataPojo(this);
+  }
+
+  public ConstrutorDeDuplicata tipo(DuplicataTipo tipo) {
+    this.tipo = tipo;
+    return this;
   }
 
   public ConstrutorDeDuplicata cedente(DuplicataCedente cedente) {
@@ -45,14 +47,9 @@ public class ConstrutorDeDuplicata implements Duplicata.Construtor {
     return this;
   }
 
-  public ConstrutorDeDuplicata valorPorExtenso(String valorPorExtenso) {
-    this.valorPorExtenso = valorPorExtenso;
-    return this;
-  }
-
-  public ConstrutorDeDuplicata dataDoAceite(LocalDate dataDoAceite) {
-    this.dataDoAceite = dataDoAceite;
-    return this;
+  @Override
+  public DuplicataTipo getTipo() {
+    return tipo;
   }
 
   @Override
@@ -73,16 +70,6 @@ public class ConstrutorDeDuplicata implements Duplicata.Construtor {
   @Override
   public DuplicataTitulo getTitulo() {
     return titulo;
-  }
-
-  @Override
-  public String getValorPorExtenso() {
-    return valorPorExtenso;
-  }
-
-  @Override
-  public LocalDate getDataDoAceite() {
-    return dataDoAceite;
   }
 
 }

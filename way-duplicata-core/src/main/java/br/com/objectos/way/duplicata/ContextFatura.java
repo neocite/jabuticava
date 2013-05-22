@@ -13,11 +13,11 @@ import br.com.objectos.comuns.matematica.financeira.ValorFinanceiro;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-class MustacheFatura {
+class ContextFatura {
 
   private final Fatura fatura;
 
-  public MustacheFatura(Fatura fatura) {
+  public ContextFatura(Fatura fatura) {
     this.fatura = fatura;
   }
 
@@ -25,17 +25,14 @@ class MustacheFatura {
     return fatura.getNumero();
   }
 
-  public ValorFinanceiro getValor() {
-    return fatura.getValor();
+  public ContextValorFinanceiro getValor() {
+    ValorFinanceiro val = fatura.getValor();
+    return new ContextValorFinanceiro(val);
   }
 
   public String getEmissao() {
     LocalDate emissao = fatura.getEmissao();
     return Duplicatas.toString(emissao);
-  }
-
-  public DuplicataTitulo getDuplicataTitulo() {
-    return fatura.getDuplicataTitulo();
   }
 
 }

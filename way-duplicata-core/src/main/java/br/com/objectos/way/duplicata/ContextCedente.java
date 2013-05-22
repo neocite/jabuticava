@@ -13,11 +13,11 @@ import br.com.objectos.comuns.base.br.Estado;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-class MustacheCedente {
+class ContextCedente {
 
   private final DuplicataCedente cedente;
 
-  public MustacheCedente(DuplicataCedente cedente) {
+  public ContextCedente(DuplicataCedente cedente) {
     this.cedente = cedente;
   }
 

@@ -16,7 +16,7 @@ import com.google.common.io.Resources;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public class DuplicatasFalso {
+class DuplicatasFalso {
 
   private DuplicatasFalso() {
   }

@@ -21,6 +21,4 @@ public interface Fatura {
 
   LocalDate getEmissao();
 
-  DuplicataTitulo getDuplicataTitulo();
-
 }

@@ -45,25 +45,29 @@ class ContextsGuice implements Contexts {
       this.duplicata = duplicata;
     }
 
-    public MustacheCedente getCedente() {
+    public ContextDuplicataTipo getTipo() {
+      DuplicataTipo tipo = duplicata.getTipo();
+      return new ContextDuplicataTipo(tipo);
+    }
+
+    public ContextCedente getCedente() {
       DuplicataCedente val = duplicata.getCedente();
-      return new MustacheCedente(val);
+      return new ContextCedente(val);
     }
 
-    public MustacheFatura getFatura() {
+    public ContextFatura getFatura() {
       Fatura val = duplicata.getFatura();
-      return new MustacheFatura(val);
+      return new ContextFatura(val);
     }
 
-    public MustacheTitulo getTitulo() {
-      Fatura fatura = duplicata.getFatura();
-      DuplicataTitulo val = fatura.getDuplicataTitulo();
-      return new MustacheTitulo(val);
+    public ContextTitulo getTitulo() {
+      DuplicataTitulo titulo = duplicata.getTitulo();
+      return new ContextTitulo(titulo);
     }
 
-    public MustacheSacado getSacado() {
+    public ContextSacado getSacado() {
       DuplicataSacado val = duplicata.getSacado();
-      return new MustacheSacado(val);
+      return new ContextSacado(val);
     }
 
   }

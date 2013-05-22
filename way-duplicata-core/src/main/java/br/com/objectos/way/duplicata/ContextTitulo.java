@@ -13,11 +13,11 @@ import br.com.objectos.comuns.matematica.financeira.ValorFinanceiro;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-class MustacheTitulo {
+class ContextTitulo {
 
   private final DuplicataTitulo titulo;
 
-  public MustacheTitulo(DuplicataTitulo titulo) {
+  public ContextTitulo(DuplicataTitulo titulo) {
     this.titulo = titulo;
   }
 
@@ -25,8 +25,9 @@ class MustacheTitulo {
     return titulo.getNumero();
   }
 
-  public ValorFinanceiro getValor() {
-    return titulo.getValor();
+  public ContextValorFinanceiro getValor() {
+    ValorFinanceiro valor = titulo.getValor();
+    return new ContextValorFinanceiro(valor);
   }
 
   public String getVencimento() {

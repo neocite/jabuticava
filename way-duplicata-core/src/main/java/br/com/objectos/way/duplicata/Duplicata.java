@@ -6,14 +6,14 @@
  */
 package br.com.objectos.way.duplicata;
 
-import org.joda.time.LocalDate;
-
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
 public interface Duplicata {
 
   interface Construtor extends br.com.objectos.comuns.base.Construtor<Duplicata> {
+
+    DuplicataTipo getTipo();
 
     DuplicataCedente getCedente();
 
@@ -23,11 +23,9 @@ public interface Duplicata {
 
     DuplicataTitulo getTitulo();
 
-    String getValorPorExtenso();
-
-    LocalDate getDataDoAceite();
-
   }
+
+  DuplicataTipo getTipo();
 
   DuplicataCedente getCedente();
 
@@ -36,9 +34,5 @@ public interface Duplicata {
   Fatura getFatura();
 
   DuplicataTitulo getTitulo();
-
-  String getValorPorExtenso();
-
-  LocalDate getDataDoAceite();
 
 }

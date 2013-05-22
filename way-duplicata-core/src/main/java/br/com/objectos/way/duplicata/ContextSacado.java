@@ -13,11 +13,11 @@ import br.com.objectos.comuns.base.br.Estado;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-class MustacheSacado {
+class ContextSacado {
 
   private final DuplicataSacado sacado;
 
-  public MustacheSacado(DuplicataSacado sacado) {
+  public ContextSacado(DuplicataSacado sacado) {
     this.sacado = sacado;
   }
 
