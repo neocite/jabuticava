@@ -19,7 +19,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import br.com.objectos.comuns.io.ColumnConversionException;
 import br.com.objectos.comuns.io.FixedLine;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
+import com.google.common.base.Supplier;
+import com.google.common.base.Suppliers;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -30,7 +33,7 @@ public class CnabKey<K extends BancoKey, V> {
 
   private final String id;
 
-  final Class<?> type;
+  final Class<V> type;
 
   final int pos0;
 
@@ -38,13 +41,26 @@ public class CnabKey<K extends BancoKey, V> {
 
   final boolean optional;
 
-  CnabKey(Class<K> keyClass, String id, Class<?> type, int pos0, int pos1, boolean optional) {
+  final Supplier<V> defaultSupplier;
+
+  CnabKey(Class<K> keyClass, String id, Class<V> type, int pos0, int pos1, boolean optional) {
+    this(keyClass, id, type, pos0, pos1, optional, Suppliers.<V> ofInstance(null));
+  }
+
+  CnabKey(Class<K> keyClass,
+          String id,
+          Class<V> type,
+          int pos0,
+          int pos1,
+          boolean optional,
+          Supplier<V> defaultSupplier) {
     this.keyClass = checkNotNull(keyClass, "keyClass");
     this.id = checkNotNull(id, "id");
     this.type = checkNotNull(type, "type");
     this.pos0 = pos0;
     this.pos1 = pos1;
     this.optional = optional;
+    this.defaultSupplier = defaultSupplier;
 
     Preconditions.checkArgument(pos0 >= 0, "pos0 deve ser >= 0");
     Preconditions.checkArgument(pos1 > 0, "pos1 deve ser > 0");
@@ -62,6 +78,11 @@ public class CnabKey<K extends BancoKey, V> {
     return new CnabKey<K, V>(keyClass, id, type, pos0, pos1, true);
   }
 
+  public CnabKey<K, V> withDefaultValue(V value) {
+    Supplier<V> supplier = Suppliers.ofInstance(value);
+    return new CnabKey<K, V>(keyClass, id, type, pos0, pos1, true, supplier);
+  }
+
   public String getId() {
     return id.toString();
   }
@@ -75,7 +96,7 @@ public class CnabKey<K extends BancoKey, V> {
 
     try {
       if (optional) {
-        value = line.column(pos0, pos1).orNull(type);
+        value = line.column(pos0, pos1).or(type, defaultSupplier);
       } else {
         value = line.column(pos0, pos1).get(type);
       }
@@ -122,6 +143,12 @@ public class CnabKey<K extends BancoKey, V> {
       return new CnabKey<K, V>(keyClass, id, type, pos0, pos1, optional);
     }
 
+    public <V> CnabKey<K, V> getWithDefaultValue(Class<V> type, V value) {
+      this.optional = true;
+      Supplier<V> supplier = Suppliers.ofInstance(value);
+      return new CnabKey<K, V>(keyClass, id, type, pos0, pos1, optional, supplier);
+    }
+
   }
 
   @Override
@@ -131,41 +158,24 @@ public class CnabKey<K extends BancoKey, V> {
 
   @Override
   public final int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((id == null) ? 0 : id.hashCode());
-    result = prime * result + ((keyClass == null) ? 0 : keyClass.hashCode());
-    return result;
+    return Objects.hashCode(id, keyClass);
   }
 
   @Override
-  public final boolean equals(Object obj) {
-    if (this == obj) {
+  public final boolean equals(final Object obj) {
+    if (obj == this) {
       return true;
     }
     if (obj == null) {
       return false;
     }
-    if (!(obj instanceof CnabKey)) {
+    if (obj instanceof CnabKey) {
+      final CnabKey<?, ?> that = (CnabKey<?, ?>) obj;
+      return Objects.equal(this.id, that.id)
+          && Objects.equal(this.keyClass, that.keyClass);
+    } else {
       return false;
     }
-    @SuppressWarnings("rawtypes")
-    CnabKey other = (CnabKey) obj;
-    if (id == null) {
-      if (other.id != null) {
-        return false;
-      }
-    } else if (!id.equals(other.id)) {
-      return false;
-    }
-    if (keyClass == null) {
-      if (other.keyClass != null) {
-        return false;
-      }
-    } else if (!keyClass.equals(other.keyClass)) {
-      return false;
-    }
-    return true;
   }
 
 }

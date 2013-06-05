@@ -66,8 +66,8 @@ class ItauHeaderSpec extends CnabHeaderSpec implements ItauHeader {
   private final CnabKey<ItauHeader, Integer> NUMERO_ARQUIVO_RETORNO = key()
       .id("No. do Arquivo Retorno").at(108, 113).get(Integer.class);
 
-  private final CnabKey<CnabHeader, LocalDate> DATA_CREDITO = move(super.dataDeCredito())
-      .to(113, 119);
+  private final CnabKey<CnabHeader, LocalDate> DATA_CREDITO = reconf(super.dataDeCredito())
+      .moveTo(113, 119);
 
   //
   // private final CnabKey<ItauHeader, Integer> NUMERO_REGISTRO = key()

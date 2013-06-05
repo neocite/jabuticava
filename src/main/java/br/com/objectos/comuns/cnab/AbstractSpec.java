@@ -33,21 +33,34 @@ abstract class AbstractSpec implements Spec {
     return keySet;
   }
 
-  <K extends BancoKey, V> Mover<K, V> move(CnabKey<K, V> key) {
-    return new Mover<K, V>(key);
+  <K extends BancoKey, V> Reconf<K, V> reconf(CnabKey<K, V> key) {
+    return new Reconf<K, V>(key);
   }
 
-  class Mover<K extends BancoKey, V> {
+  class Reconf<K extends BancoKey, V> {
 
     private final CnabKey<K, V> key;
 
-    public Mover(CnabKey<K, V> key) {
+    public Reconf(CnabKey<K, V> key) {
       this.key = key;
     }
 
-    public CnabKey<K, V> to(int pos0, int pos1) {
+    public CnabKey<K, V> moveTo(int pos0, int pos1) {
       CnabKey<K, V> newKey = key.moveTo(pos0, pos1);
+      return reconf(newKey);
+    }
 
+    public CnabKey<K, V> optional() {
+      CnabKey<K, V> newKey = key.optional();
+      return reconf(newKey);
+    }
+
+    public CnabKey<K, V> withDefaultValue(V value) {
+      CnabKey<K, V> newKey = key.withDefaultValue(value);
+      return reconf(newKey);
+    }
+
+    private CnabKey<K, V> reconf(CnabKey<K, V> newKey) {
       if (keySet.contains(newKey)) {
         keySet.remove(newKey);
       }
@@ -84,6 +97,12 @@ abstract class AbstractSpec implements Spec {
 
     public <V> CnabKey<K, V> get(Class<V> type) {
       CnabKey<K, V> key = construtor.get(type);
+      keySet.add(key);
+      return key;
+    }
+
+    public <V> CnabKey<K, V> getWithDefaultValue(Class<V> type, V value) {
+      CnabKey<K, V> key = construtor.getWithDefaultValue(type, value);
       keySet.add(key);
       return key;
     }
