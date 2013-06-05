@@ -15,6 +15,8 @@
  */
 package br.com.objectos.comuns.cnab;
 
+import org.joda.time.LocalDate;
+
 import br.com.objectos.comuns.cnab.CnabKey.Construtor;
 
 /**
@@ -37,11 +39,14 @@ class ItauLoteSpec extends CnabLoteSpec implements ItauLote {
   private final CnabKey<ItauLote, Integer> DAC_CONTA = key()
       .id("DAC Conta").at(28, 29).get(Integer.class);
 
-  private final CnabKey<CnabLote, String> NOSSO_NUMERO = move(super.nossoNumero())
-      .to(62, 70);
+  private final CnabKey<CnabLote, String> USO_EMPRESA = reconf(super.usoDaEmpresa())
+      .withDefaultValue("");
 
-  private final CnabKey<CnabLote, Integer> NUMERO_CARTEIRA = move(super.carteiraNumero())
-      .to(82, 85);
+  private final CnabKey<CnabLote, String> NOSSO_NUMERO = reconf(super.nossoNumero())
+      .moveTo(62, 70);
+
+  private final CnabKey<CnabLote, Integer> NUMERO_CARTEIRA = reconf(super.carteiraNumero())
+      .moveTo(82, 85);
   //
   // private final CnabKey<ItauLote, String> NOSSO_NUMERO_2 = key()
   // .id("Nosso número 2").at(85, 93).get(String.class);
@@ -64,8 +69,8 @@ class ItauLoteSpec extends CnabLoteSpec implements ItauLote {
   private final CnabKey<ItauLote, Integer> NOSSO_NUMERO_3 = key()
       .id("Nosso número 3").at(126, 134).get(Integer.class);
 
-  // private final CnabKey<ItauLote, LocalDate> DATA_VENCIMENTO = key()
-  // .id("Data Vencimento do Título").at(146, 152).get(LocalDate.class);
+  private final CnabKey<CnabLote, LocalDate> DATA_VENCIMENTO = reconf(super.dataDeVencimento())
+      .optional();
   //
   // private final CnabKey<ItauLote, Double> VALOR_TITULO = key()
   // .id("Valor do Título").at(152, 165).get(Double.class);
@@ -80,7 +85,7 @@ class ItauLoteSpec extends CnabLoteSpec implements ItauLote {
       .id("DAC Agência Cobradora").at(172, 173).get(Integer.class);
 
   private final CnabKey<ItauLote, Integer> ESPECIE = key()
-      .id("Espécie").at(173, 175).get(Integer.class);
+      .id("Espécie").at(173, 175).getWithDefaultValue(Integer.class, Integer.valueOf(0));
 
   // private final CnabKey<ItauLote, Double> VALOR_DESPESA_COBRANCA = key()
   // .id("Despesas de cobrança para os Códigos de Ocorrência").at(175,
@@ -143,6 +148,11 @@ class ItauLoteSpec extends CnabLoteSpec implements ItauLote {
   }
 
   @Override
+  public CnabKey<CnabLote, String> usoDaEmpresa() {
+    return USO_EMPRESA;
+  }
+
+  @Override
   public CnabKey<CnabLote, String> nossoNumero() {
     return NOSSO_NUMERO;
   }
@@ -170,6 +180,11 @@ class ItauLoteSpec extends CnabLoteSpec implements ItauLote {
   @Override
   public CnabKey<ItauLote, Integer> nossoNumero3() {
     return NOSSO_NUMERO_3;
+  }
+
+  @Override
+  public CnabKey<CnabLote, LocalDate> dataDeVencimento() {
+    return DATA_VENCIMENTO;
   }
 
   @Override

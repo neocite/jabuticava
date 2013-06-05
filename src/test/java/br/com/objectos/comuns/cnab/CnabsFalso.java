@@ -33,6 +33,11 @@ public class CnabsFalso {
 
   public static final MiniCnab RETORNO_341_01 = cnabAt("/341-01.txt");
 
+  public static final MiniCnab RETORNO_341_02 = cnabAt("/341-02.txt");
+
+  private CnabsFalso() {
+  }
+
   private static MiniCnab cnabAt(String filename) {
     try {
       URL url = Resources.getResource(CnabsFalso.class, filename);
