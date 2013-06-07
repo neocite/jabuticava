@@ -30,4 +30,6 @@ public interface Ocorrencia {
 
   List<Motivo> getMotivos();
 
+  List<OcorrenciaEvento> asEventos();
+
 }

@@ -15,10 +15,12 @@
  */
 package br.com.objectos.comuns.cnab;
 
+import java.util.Map;
 import java.util.Set;
 
 import br.com.objectos.comuns.io.FixedLine;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 
 /**
@@ -26,9 +28,29 @@ import com.google.common.collect.ImmutableSet;
  */
 class MotivoParserVazio implements MotivoParser {
 
+  private final Motivo vazio;
+
+  public MotivoParserVazio() {
+    this(MotivoVazio.INSTANCE);
+  }
+
+  public MotivoParserVazio(Motivo vazio) {
+    this.vazio = vazio;
+  }
+
   @Override
   public Set<Motivo> parse(FixedLine line) {
     return ImmutableSet.of();
+  }
+
+  @Override
+  public Motivo vazio() {
+    return vazio;
+  }
+
+  @Override
+  public Map<String, Motivo> toMap() {
+    return ImmutableMap.of();
   }
 
 }

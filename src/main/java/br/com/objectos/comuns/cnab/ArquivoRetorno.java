@@ -28,4 +28,6 @@ public interface ArquivoRetorno {
 
   List<Lote> getLotes();
 
+  List<LoteExt> getLotesExt();
+
 }

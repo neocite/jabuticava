@@ -51,14 +51,22 @@ abstract class OcorrenciaCodigoPadrao implements OcorrenciaCodigo {
     return new OcorrenciaPadrao(this, motivos);
   }
 
+  final Motivo motivoVazio() {
+    return motivoParser.vazio();
+  }
+
   final List<Motivo> parseMotivos(FixedLine line) {
     Set<Motivo> motivos = motivoParser.parse(line);
     return ImmutableList.copyOf(motivos);
   }
 
-  abstract OcorrenciaTipo getTipo();
+  abstract Banco getBanco();
 
-  final String getDescricao() {
+  @Override
+  public abstract OcorrenciaTipo getTipo();
+
+  @Override
+  public final String getDescricao() {
     return descricao;
   }
 
@@ -75,19 +83,6 @@ abstract class OcorrenciaCodigoPadrao implements OcorrenciaCodigo {
   @Override
   public final String toString() {
     return key;
-  }
-
-  static class Vazio extends OcorrenciaCodigoPadrao {
-
-    public Vazio(int codigo, String descricao, MotivoParser motivoParser) {
-      super(codigo, descricao, motivoParser);
-    }
-
-    @Override
-    OcorrenciaTipo getTipo() {
-      return null;
-    }
-
   }
 
 }

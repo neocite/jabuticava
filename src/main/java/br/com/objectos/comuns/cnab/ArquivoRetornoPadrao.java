@@ -20,6 +20,7 @@ import static com.google.common.collect.Lists.newArrayList;
 import java.util.List;
 
 import com.google.common.base.Predicates;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 
 /**
@@ -31,7 +32,9 @@ class ArquivoRetornoPadrao implements ArquivoRetorno {
 
   private final Header header;
 
-  private final List<Lote> lotes = newArrayList();
+  private final List<Lote> lotes;
+
+  private final List<LoteExt> lotesExt;
 
   public ArquivoRetornoPadrao(Header header, Iterable<Registro> registros) {
     this.banco = header.getBanco();
@@ -39,21 +42,23 @@ class ArquivoRetornoPadrao implements ArquivoRetorno {
 
     registros = Iterables.filter(registros, Predicates.notNull());
 
+    List<Lote> lotes = newArrayList();
     for (Registro registro : registros) {
       RegistroTipo tipo = registro.getTipo();
       switch (tipo) {
-      case HEADER:
+
+      default:
         break;
 
       case LOTE:
         Lote lote = Lote.class.cast(registro);
-        this.lotes.add(lote);
+        lotes.add(lote);
         break;
 
-      case TRAILER:
-        break;
       }
     }
+    this.lotes = ImmutableList.copyOf(lotes);
+    this.lotesExt = LoteExtPadrao.transform(lotes);
   }
 
   @Override
@@ -69,6 +74,11 @@ class ArquivoRetornoPadrao implements ArquivoRetorno {
   @Override
   public List<Lote> getLotes() {
     return lotes;
+  }
+
+  @Override
+  public List<LoteExt> getLotesExt() {
+    return lotesExt;
   }
 
 }

@@ -22,6 +22,10 @@ public interface OcorrenciaCodigo {
 
   String get();
 
+  OcorrenciaTipo getTipo();
+
+  String getDescricao();
+
   int intValue();
 
   @Override

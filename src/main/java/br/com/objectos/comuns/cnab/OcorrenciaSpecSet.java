@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Objectos, Fábrica de Software LTDA.
+ * Copyright 2013 Objectos, Fábrica de Software LTDA.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -15,28 +15,19 @@
  */
 package br.com.objectos.comuns.cnab;
 
+import java.util.List;
+
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class CnabOcorrencia extends OcorrenciaCodigoPadrao {
+public interface OcorrenciaSpecSet {
 
-  public CnabOcorrencia(int codigo, String descricao, MotivoParser motivoParser) {
-    super(codigo, descricao, motivoParser);
-  }
+  List<OcorrenciaSpec> getOcorrenciaSpecs();
 
-  @Override
-  Banco getBanco() {
-    return Banco.OUTROS;
-  }
+  OcorrenciaSpec getOcorrenciaSpec(String codigo);
 
-  @Override
-  public final OcorrenciaTipo getTipo() {
-    switch (codigo) {
-    case 2:
-      return OcorrenciaTipo.ENTRADA_CONFIRMADA;
-    default:
-      return OcorrenciaTipo.DESCONHECIDA;
-    }
-  }
+  List<OcorrenciaEvento> getOcorrenciaEventos();
+
+  OcorrenciaEvento getOcorrenciaEvento(String codigo, String motivo);
 
 }

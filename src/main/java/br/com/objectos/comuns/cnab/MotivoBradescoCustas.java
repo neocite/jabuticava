@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Objectos, Fábrica de Software LTDA.
+ * Copyright 2013 Objectos, Fábrica de Software LTDA.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -18,25 +18,19 @@ package br.com.objectos.comuns.cnab;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class CnabOcorrencia extends OcorrenciaCodigoPadrao {
+class MotivoBradescoCustas extends MotivoPadrao {
 
-  public CnabOcorrencia(int codigo, String descricao, MotivoParser motivoParser) {
-    super(codigo, descricao, motivoParser);
+  private MotivoBradescoCustas(String codigo, String descricao) {
+    super(codigo, descricao);
+  }
+
+  public static Motivo of(String codigo, String descricao) {
+    return new MotivoBradescoCustas(codigo, descricao);
   }
 
   @Override
-  Banco getBanco() {
-    return Banco.OUTROS;
-  }
-
-  @Override
-  public final OcorrenciaTipo getTipo() {
-    switch (codigo) {
-    case 2:
-      return OcorrenciaTipo.ENTRADA_CONFIRMADA;
-    default:
-      return OcorrenciaTipo.DESCONHECIDA;
-    }
+  public double tarifaDe(Lote lote) {
+    return lote.get(Bradesco.lote().valorOutrasDespesas());
   }
 
 }

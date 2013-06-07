@@ -50,11 +50,26 @@ class OcorrenciaDesconhecida implements Ocorrencia {
     return ImmutableList.of();
   }
 
+  @Override
+  public List<OcorrenciaEvento> asEventos() {
+    return ImmutableList.of();
+  }
+
   private class OcorrenciaCodigoImpl implements OcorrenciaCodigo {
 
     @Override
     public String get() {
       return key;
+    }
+
+    @Override
+    public OcorrenciaTipo getTipo() {
+      return OcorrenciaTipo.DESCONHECIDA;
+    }
+
+    @Override
+    public String getDescricao() {
+      return "Não identificada";
     }
 
     @Override

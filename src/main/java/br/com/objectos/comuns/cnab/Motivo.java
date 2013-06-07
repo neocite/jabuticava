@@ -24,4 +24,10 @@ public interface Motivo {
 
   String getDescricao();
 
+  boolean isVazio();
+
+  double recebidoDe(Lote lote);
+  double jurosDe(Lote lote);
+  double tarifaDe(Lote lote);
+
 }

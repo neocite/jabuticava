@@ -15,6 +15,10 @@
  */
 package br.com.objectos.comuns.cnab;
 
+import static br.com.objectos.comuns.cnab.Cnab.lote;
+
+import com.google.common.base.Objects;
+
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
@@ -40,33 +44,47 @@ class MotivoPadrao implements Motivo {
   }
 
   @Override
-  public final int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
-    return result;
+  public boolean isVazio() {
+    return false;
   }
 
   @Override
-  public final boolean equals(Object obj) {
-    if (this == obj) {
+  public double recebidoDe(Lote lote) {
+    Double val = lote.get(lote().valorPago());
+    return val.doubleValue();
+  }
+
+  @Override
+  public double jurosDe(Lote lote) {
+    Double val = lote.get(Cnab.lote().valorMora());
+    return val.doubleValue();
+  }
+
+  @Override
+  public double tarifaDe(Lote lote) {
+    Double val = lote.get(Cnab.lote().despesaDeCobranca());
+    return val.doubleValue();
+  }
+
+  @Override
+  public final int hashCode() {
+    return Objects.hashCode(codigo);
+  }
+
+  @Override
+  public final boolean equals(final Object obj) {
+    if (obj == this) {
       return true;
     }
     if (obj == null) {
       return false;
     }
-    if (!(obj instanceof MotivoPadrao)) {
+    if (obj instanceof MotivoPadrao) {
+      final MotivoPadrao that = (MotivoPadrao) obj;
+      return Objects.equal(this.codigo, that.codigo);
+    } else {
       return false;
     }
-    MotivoPadrao other = (MotivoPadrao) obj;
-    if (codigo == null) {
-      if (other.codigo != null) {
-        return false;
-      }
-    } else if (!codigo.equals(other.codigo)) {
-      return false;
-    }
-    return true;
   }
 
 }

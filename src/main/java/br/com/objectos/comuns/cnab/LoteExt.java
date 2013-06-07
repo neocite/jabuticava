@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Objectos, Fábrica de Software LTDA.
+ * Copyright 2013 Objectos, Fábrica de Software LTDA.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -15,28 +15,37 @@
  */
 package br.com.objectos.comuns.cnab;
 
+import org.joda.time.LocalDate;
+
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class CnabOcorrencia extends OcorrenciaCodigoPadrao {
+public interface LoteExt extends Lote {
 
-  public CnabOcorrencia(int codigo, String descricao, MotivoParser motivoParser) {
-    super(codigo, descricao, motivoParser);
-  }
+  OcorrenciaCodigo getOcorrencia();
 
-  @Override
-  Banco getBanco() {
-    return Banco.OUTROS;
-  }
+  Motivo getMotivo();
 
-  @Override
-  public final OcorrenciaTipo getTipo() {
-    switch (codigo) {
-    case 2:
-      return OcorrenciaTipo.ENTRADA_CONFIRMADA;
-    default:
-      return OcorrenciaTipo.DESCONHECIDA;
-    }
-  }
+  String getUsoDaEmpresa();
+
+  String getNumeroCobranca();
+
+  String getNumeroTitulo();
+
+  LocalDate getDataVencimento();
+
+  LocalDate getDataOcorrencia();
+
+  double getValorNominal();
+
+  double getValorRecebido();
+
+  double getValorJuros();
+
+  double getValorDesconto();
+
+  double getValorTarifa();
+
+  int getSeq();
 
 }

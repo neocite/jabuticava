@@ -185,7 +185,7 @@ class BradescoOcorrenciaParser extends OcorrenciaParser {
       .add("04", "Tarifa de protesto")
       .add("05", "Tarifa de outras instruções")
       .add("06", "Tarifa de outras ocorrências")
-      .add("08", "Custas de protesto")
+      .add(MotivoBradescoCustas.of("08", "Custas de protesto"))
       .add("12", "Tarifa de registro")
       .add("13", "Tarifa título pago no Bradesco")
       .add("14", "Tarifa título pago compensação")
@@ -401,6 +401,11 @@ class BradescoOcorrenciaParser extends OcorrenciaParser {
       .semMotivo()
 
       .build();
+
+  @Override
+  Banco getBanco() {
+    return Banco.BRADESCO;
+  }
 
   @Override
   Map<String, OcorrenciaCodigoPadrao> getCodigoMap() {
