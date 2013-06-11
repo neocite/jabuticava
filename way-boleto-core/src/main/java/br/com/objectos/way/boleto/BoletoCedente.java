@@ -15,6 +15,8 @@
  */
 package br.com.objectos.way.boleto;
 
+import br.com.objectos.comuns.base.br.Cnpj;
+
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
@@ -23,5 +25,7 @@ public interface BoletoCedente {
   String getNome();
 
   long getNumeroConvenio();
+
+  Cnpj getCnpj();
 
 }

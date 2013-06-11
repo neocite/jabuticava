@@ -28,6 +28,8 @@ public interface Boleto {
 
     BoletoSacado getSacado();
 
+    BoletoSacadorAvalista getSacadorAvalista();
+
     BoletoTitulo getTitulo();
 
     BoletoCobranca getCobranca();
@@ -39,6 +41,8 @@ public interface Boleto {
   BoletoCedente getCedente();
 
   BoletoSacado getSacado();
+
+  BoletoSacadorAvalista getSacadorAvalista();
 
   BoletoTitulo getTitulo();
 

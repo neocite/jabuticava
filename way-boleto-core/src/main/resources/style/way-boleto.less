@@ -82,9 +82,25 @@
 			.bd-lt {
 				width: @bdlt;
 
-				.bol00, .bol01, .bol04 {
+				.bol00, .bol04 {
 					.col {
 						float: none;
+					}
+				}
+				
+				.bol01 {
+					@col00: 75%;
+					@col01: 25%;
+					
+					.col00 {
+						width: @col00;
+						float: left;
+						> .cwrap { 
+							.border-r(0px);
+						}
+					}
+					.col01 {
+						width: @col01;
 					}
 				}
 				
@@ -155,9 +171,16 @@
 			.bol {
 				&.bol-large {
 					span.bol-field {
-						font-size: 18px;
+						font-size: 17px;
 						line-height: 30px;
 					}
+					
+					p.bol-field {
+						font-size: 17px;
+						line-height: 30px;
+						padding: 0 0 0 7px
+					}
+					
 					
 					.col {
 						.col-height(@bolLarge);
@@ -179,12 +202,19 @@
 		&.bol-ft00 {
 			@height: 62px;
 			height: @height;
+			@col00: 69%;
+			@col01: 31%;
 
-			.col {
+			.col00 {
 				.col-height(@height, 0px);
-				float: none;
+				float: left;
+				width: @col00;
 			}
-
+			
+			.col01 {
+				.col-height(@height, 0px);
+			}
+			
 			span.bol-field {
 				font-size: 12px;
 				line-height: 16px;
@@ -206,6 +236,25 @@
 			.col01 {
 				width: 100% - @col00;
 			}
+			
+			span {
+				display: inline;
+	
+				&.bol-field {
+					font-size: 13px;
+					line-height: 18px;
+				}
+	
+				&.bol-label {
+					font-size: 10px;
+					line-height: 10px;
+					color: darken(@blue, 20%);
+					padding: 1px 0 0 6px;
+				}
+			}
+			
+			
+			
 		}
 
 		&.bol-ft02 {
@@ -259,14 +308,14 @@
 				line-height: 18px;
 				padding: 0 0 0 6px;
 			}
-			
+
 			&.bol-label {
 				font-size: 10px;
 				line-height: 10px;
 				color: darken(@blue, 20%);
 				padding: 1px 0 0 6px;
 			}
-		}
+		}		
 	}
 
 	.col-height(@px, @brd: 1px) {

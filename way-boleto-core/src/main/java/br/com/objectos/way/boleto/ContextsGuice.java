@@ -78,6 +78,11 @@ class ContextsGuice implements Contexts {
       return new MustacheSacado(val);
     }
 
+    public MustacheSacadorAvalista getSacadorAvalista() {
+      BoletoSacadorAvalista val = boleto.getSacadorAvalista();
+      return val != null ? new MustacheSacadorAvalista(val) : null;
+    }
+
     public MustacheTitulo getTitulo() {
       BoletoTitulo val = boleto.getTitulo();
       return new MustacheTitulo(val);

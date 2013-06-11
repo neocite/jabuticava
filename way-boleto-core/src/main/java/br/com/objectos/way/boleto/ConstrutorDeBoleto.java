@@ -26,6 +26,8 @@ public class ConstrutorDeBoleto implements Boleto.Construtor {
 
   private BoletoSacado sacado;
 
+  private BoletoSacadorAvalista sacadorAvalista;
+
   private BoletoTitulo titulo;
 
   private BoletoCobranca cobranca;
@@ -47,6 +49,11 @@ public class ConstrutorDeBoleto implements Boleto.Construtor {
 
   public ConstrutorDeBoleto sacado(BoletoSacado sacado) {
     this.sacado = sacado;
+    return this;
+  }
+
+  public ConstrutorDeBoleto sacadorAvalista(BoletoSacadorAvalista sacadorAvalista) {
+    this.sacadorAvalista = sacadorAvalista;
     return this;
   }
 
@@ -73,6 +80,11 @@ public class ConstrutorDeBoleto implements Boleto.Construtor {
   @Override
   public BoletoSacado getSacado() {
     return sacado;
+  }
+
+  @Override
+  public BoletoSacadorAvalista getSacadorAvalista() {
+    return sacadorAvalista;
   }
 
   @Override

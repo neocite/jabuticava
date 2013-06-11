@@ -25,11 +25,13 @@ public class BoletoPojo implements Boleto {
   private final BoletoSacado sacado;
   private final BoletoTitulo titulo;
   private final BoletoCobranca cobranca;
+  private final BoletoSacadorAvalista sacadorAvalista;
 
   public BoletoPojo(Construtor construtor) {
     contaBancaria = construtor.getContaBancaria();
     cedente = construtor.getCedente();
     sacado = construtor.getSacado();
+    sacadorAvalista = construtor.getSacadorAvalista();
     titulo = construtor.getTitulo();
     cobranca = construtor.getCobranca();
   }
@@ -47,6 +49,11 @@ public class BoletoPojo implements Boleto {
   @Override
   public BoletoSacado getSacado() {
     return sacado;
+  }
+
+  @Override
+  public BoletoSacadorAvalista getSacadorAvalista() {
+    return sacadorAvalista;
   }
 
   @Override

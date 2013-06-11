@@ -51,6 +51,7 @@ public class TesteDeWayBoleto {
         .contaBancaria(new ContaBancariaFalso())
         .cedente(new CedenteFalso())
         .sacado(new SacadoFalso())
+        .sacadorAvalista(new SacadorAvalistaFalso())
         .titulo(new TituloFalso())
         .cobranca(new CobrancaFalso())
         .novaInstancia();

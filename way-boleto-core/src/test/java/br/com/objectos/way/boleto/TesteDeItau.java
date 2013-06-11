@@ -142,6 +142,11 @@ public class TesteDeItau {
     }
 
     @Override
+    public String getInformacaoAdicional() {
+      return null;
+    }
+
+    @Override
     public String getLocalPagamento() {
       return null;
     }

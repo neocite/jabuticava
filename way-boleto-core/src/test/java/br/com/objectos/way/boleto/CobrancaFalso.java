@@ -40,13 +40,18 @@ class CobrancaFalso implements BoletoCobranca {
   @Override
   public List<String> getInstrucoes() {
     return ImmutableList.of(
-        "Juros/Mora ao Dia : R$ 0,35 apos 03/05/2013.",
-        "Multa de 2,00% apos 1 dia(s) do vencimento.");
+        "Após o vencimento cobrar mora de................................R$ 0,35 ao dia.",
+        "Efetuar pagamento somente através deste bloqueto e na rede bancária escritural.");
+  }
+
+  @Override
+  public String getInformacaoAdicional() {
+    return "Após o vencimento acesse www.itau.com.br/boletos para atualizar seu boleto.";
   }
 
   @Override
   public String getLocalPagamento() {
-    return "Pagável em qualquer banco até a data de vencimento";
+    return "Pagável em qualquer banco até a data de vencimento, após o vencimento somente no Itaú.";
   }
 
   @Override
