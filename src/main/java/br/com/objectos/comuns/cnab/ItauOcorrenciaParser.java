@@ -25,7 +25,7 @@ class ItauOcorrenciaParser extends OcorrenciaParser {
   private static final Map<String, OcorrenciaCodigoPadrao> codigoMap = new Wrapper()
       .codigo(2, "ENTRADA CONFIRMADA")
       // verificar motivos
-      .semMotivo()
+      .semMotivo(MotivoItauEntradaConfirmada.INSTANCE)
 
       .codigo(3, "ENTRADA REJEITADA (NOTA 20 - TABELA 1)")
       // verificar motivos
@@ -53,7 +53,7 @@ class ItauOcorrenciaParser extends OcorrenciaParser {
 
       .codigo(9, "BAIXA SIMPLES")
       // verificar motivos
-      .semMotivo()
+      .semMotivo(MotivoItauBaixaSimples.INSTANCE)
 
       .codigo(10, "BAIXA POR TER SIDO LIQUIDADO")
       // verificar motivos
@@ -278,6 +278,11 @@ class ItauOcorrenciaParser extends OcorrenciaParser {
       .semMotivo()
 
       .build();
+
+  @Override
+  Banco getBanco() {
+    return Banco.ITAU;
+  }
 
   @Override
   Map<String, OcorrenciaCodigoPadrao> getCodigoMap() {

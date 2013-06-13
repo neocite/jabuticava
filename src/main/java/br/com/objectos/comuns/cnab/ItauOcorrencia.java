@@ -25,7 +25,12 @@ class ItauOcorrencia extends OcorrenciaCodigoPadrao {
   }
 
   @Override
-  final OcorrenciaTipo getTipo() {
+  Banco getBanco() {
+    return Banco.ITAU;
+  }
+
+  @Override
+  public final OcorrenciaTipo getTipo() {
     // 02 ENTRADA CONFIRMADA
     // 03 ENTRADA REJEITADA (NOTA 20 - TABELA 1)
     // 04 ALTERAÇÃO DE DADOS - NOVA ENTRADA

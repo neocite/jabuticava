@@ -25,7 +25,12 @@ class BradescoOcorrencia extends OcorrenciaCodigoPadrao {
   }
 
   @Override
-  final OcorrenciaTipo getTipo() {
+  Banco getBanco() {
+    return Banco.BRADESCO;
+  }
+
+  @Override
+  public final OcorrenciaTipo getTipo() {
     // 02..Entrada Confirmada
     // 03..Entrada Rejeitada
     // 06..Liquidação normal

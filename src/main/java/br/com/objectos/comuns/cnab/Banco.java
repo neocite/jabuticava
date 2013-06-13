@@ -15,8 +15,10 @@
  */
 package br.com.objectos.comuns.cnab;
 
+import static com.google.common.collect.Lists.transform;
 import static com.google.common.collect.Maps.newHashMap;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -25,12 +27,14 @@ import br.com.objectos.comuns.cnab.obj.InstrucaoTipo;
 import br.com.objectos.comuns.cnab.obj.InstrucaoTipoVazio;
 import br.com.objectos.comuns.io.FixedLine;
 
+import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public enum Banco implements InstrucaoSet {
+public enum Banco implements InstrucaoSet, OcorrenciaSpecSet {
 
   BRADESCO(237, Bradesco.banco, Bradesco.ocorrenciaParser) {
     @Override
@@ -98,10 +102,24 @@ public enum Banco implements InstrucaoSet {
 
   private final OcorrenciaParser ocorrenciaParser;
 
+  private final Map<String, OcorrenciaSpec> ocorrenciaSpecMap;
+
+  private final List<OcorrenciaSpec> ocorrenciaSpecs;
+
+  private final List<OcorrenciaEvento> ocorrenciaEventos;
+
   private Banco(int codigo, Modelo modelo, OcorrenciaParser ocorrenciaParser) {
     this.codigo = codigo;
     this.modelo = modelo;
     this.ocorrenciaParser = ocorrenciaParser;
+    this.ocorrenciaSpecMap = ocorrenciaParser.toSpecMap();
+
+    Collection<OcorrenciaSpec> values = ocorrenciaSpecMap.values();
+    this.ocorrenciaSpecs = ImmutableList.copyOf(values);
+
+    List<List<OcorrenciaEvento>> eventos = transform(ocorrenciaSpecs, new ToOcorrenciaEvento());
+    Iterable<OcorrenciaEvento> eventosIter = Iterables.concat(eventos);
+    this.ocorrenciaEventos = ImmutableList.copyOf(eventosIter);
   }
 
   public static Banco valueOf(int codigo) {
@@ -122,10 +140,45 @@ public enum Banco implements InstrucaoSet {
     return modelo;
   }
 
+  @Override
+  public List<OcorrenciaSpec> getOcorrenciaSpecs() {
+    return ocorrenciaSpecs;
+  }
+
+  @Override
+  public OcorrenciaSpec getOcorrenciaSpec(String codigo) {
+    return ocorrenciaSpecMap.get(codigo);
+  }
+
+  @Override
+  public List<OcorrenciaEvento> getOcorrenciaEventos() {
+    return ocorrenciaEventos;
+  }
+
+  @Override
+  public OcorrenciaEvento getOcorrenciaEvento(String codigo, String motivo) {
+    OcorrenciaEvento evento = null;
+
+    OcorrenciaSpec spec = getOcorrenciaSpec(codigo);
+    if (spec != null) {
+      evento = spec.getEvento(motivo);
+    }
+
+    return evento;
+  }
+
   abstract RemessaBuilder newRemessaBuilder();
 
   Object parseOcorrencia(FixedLine line) {
     return ocorrenciaParser.apply(line);
+  }
+
+  private static class ToOcorrenciaEvento implements
+      Function<OcorrenciaSpec, List<OcorrenciaEvento>> {
+    @Override
+    public List<OcorrenciaEvento> apply(OcorrenciaSpec input) {
+      return input.getEventos();
+    }
   }
 
 }

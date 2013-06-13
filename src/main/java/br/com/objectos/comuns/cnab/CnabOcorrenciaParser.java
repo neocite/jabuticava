@@ -21,6 +21,7 @@ import java.util.Map;
 import br.com.objectos.comuns.io.FixedLine;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -41,6 +42,11 @@ class CnabOcorrenciaParser extends OcorrenciaParser {
       }
 
       @Override
+      public List<OcorrenciaEvento> asEventos() {
+        return ImmutableList.of();
+      }
+
+      @Override
       public String getDescricao() {
         return "";
       }
@@ -49,7 +55,12 @@ class CnabOcorrenciaParser extends OcorrenciaParser {
       public OcorrenciaCodigo getCodigo() {
         return new OcorrenciaCodigoPadrao(0, null, null) {
           @Override
-          OcorrenciaTipo getTipo() {
+          Banco getBanco() {
+            return Banco.OUTROS;
+          }
+
+          @Override
+          public OcorrenciaTipo getTipo() {
             return OcorrenciaTipo.DESCONHECIDA;
           }
         };
@@ -58,8 +69,13 @@ class CnabOcorrenciaParser extends OcorrenciaParser {
   }
 
   @Override
+  Banco getBanco() {
+    return Banco.OUTROS;
+  }
+
+  @Override
   Map<String, OcorrenciaCodigoPadrao> getCodigoMap() {
-    return null;
+    return ImmutableMap.of();
   }
 
 }

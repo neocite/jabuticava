@@ -27,7 +27,7 @@ import br.com.objectos.comuns.io.FixedLine;
 import com.google.common.base.Function;
 import com.google.common.base.Predicates;
 import com.google.common.base.Splitter;
-import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSortedMap;
 import com.google.common.collect.Iterables;
 
 /**
@@ -53,7 +53,7 @@ class MotivoParserPadrao implements MotivoParser {
       codigoMap.put(codigo, motivo);
     }
 
-    this.codigoMap = ImmutableMap.copyOf(codigoMap);
+    this.codigoMap = ImmutableSortedMap.copyOf(codigoMap);
   }
 
   @Override
@@ -67,6 +67,16 @@ class MotivoParserPadrao implements MotivoParser {
     Iterable<Motivo> res = Iterables.filter(motivos, Predicates.notNull());
 
     return newLinkedHashSet(res);
+  }
+
+  @Override
+  public Motivo vazio() {
+    return MotivoVazio.INSTANCE;
+  }
+
+  @Override
+  public Map<String, Motivo> toMap() {
+    return codigoMap;
   }
 
   private class ToMotivo implements Function<String, Motivo> {

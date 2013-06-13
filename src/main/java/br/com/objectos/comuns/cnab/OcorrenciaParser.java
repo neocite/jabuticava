@@ -24,6 +24,7 @@ import br.com.objectos.comuns.io.FixedLine;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
+import com.google.common.collect.ImmutableSortedMap;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -43,6 +44,14 @@ abstract class OcorrenciaParser {
     return ocorrencia;
   }
 
+  public Map<String, OcorrenciaSpec> toSpecMap() {
+    Banco banco = getBanco();
+    Map<String, OcorrenciaCodigoPadrao> map = getCodigoMap();
+    return OcorrenciaSpecCnab.transform(banco, map);
+  }
+
+  abstract Banco getBanco();
+
   abstract Map<String, OcorrenciaCodigoPadrao> getCodigoMap();
 
   abstract static class BuilderWrapper {
@@ -50,7 +59,7 @@ abstract class OcorrenciaParser {
     private final Builder<String, OcorrenciaCodigoPadrao> map;
 
     public BuilderWrapper() {
-      map = ImmutableMap.<String, OcorrenciaCodigoPadrao> builder();
+      map = ImmutableSortedMap.<String, OcorrenciaCodigoPadrao> naturalOrder();
     }
 
     public OcorrenciaBuilder codigo(int codigo, String descricao) {
@@ -79,7 +88,11 @@ abstract class OcorrenciaParser {
       }
 
       public BuilderWrapper semMotivo() {
-        MotivoParser motivoParser = new MotivoParserVazio();
+        Motivo motivo = MotivoVazio.INSTANCE;
+        return semMotivo(motivo);
+      }
+      public BuilderWrapper semMotivo(Motivo motivo) {
+        MotivoParser motivoParser = new MotivoParserVazio(motivo);
 
         OcorrenciaCodigoPadrao value = newInstance(codigo, descricao, motivoParser);
         String key = value.get();
@@ -109,6 +122,10 @@ abstract class OcorrenciaParser {
 
       public MotivoBuilder add(String codigo, String descricao) {
         motivos.add(new MotivoPadrao(codigo, descricao));
+        return this;
+      }
+      public MotivoBuilder add(Motivo motivo) {
+        motivos.add(motivo);
         return this;
       }
 

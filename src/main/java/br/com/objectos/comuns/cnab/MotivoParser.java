@@ -15,6 +15,7 @@
  */
 package br.com.objectos.comuns.cnab;
 
+import java.util.Map;
 import java.util.Set;
 
 import br.com.objectos.comuns.io.FixedLine;
@@ -25,5 +26,9 @@ import br.com.objectos.comuns.io.FixedLine;
 interface MotivoParser {
 
   Set<Motivo> parse(FixedLine line);
+
+  Motivo vazio();
+
+  Map<String, Motivo> toMap();
 
 }
