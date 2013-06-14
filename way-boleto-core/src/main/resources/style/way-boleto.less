@@ -150,6 +150,17 @@
 					}
 				}
 				
+				.bol04 {
+					.bol-info-ad {
+						position: absolute;
+						bottom: 0;
+					}
+				
+					.cwrap {
+						position: relative;
+					}
+				}
+				
 				.cwrap {
 					.border-r(1px);
 				}
@@ -232,29 +243,22 @@
 			
 			.col00 {
 				width: @col00;
+
+				.cwrap {
+					position: relative;
+				}
+				
+				span.bol-field {
+					position: absolute;
+					left: 86px;
+					
+					font-size: 11px;
+					line-height: 11px;
+				}
 			}
 			.col01 {
 				width: 100% - @col00;
 			}
-			
-			span {
-				display: inline;
-	
-				&.bol-field {
-					font-size: 13px;
-					line-height: 18px;
-				}
-	
-				&.bol-label {
-					font-size: 10px;
-					line-height: 10px;
-					color: darken(@blue, 20%);
-					padding: 1px 0 0 6px;
-				}
-			}
-			
-			
-			
 		}
 
 		&.bol-ft02 {
