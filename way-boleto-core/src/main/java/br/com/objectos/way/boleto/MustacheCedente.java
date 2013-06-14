@@ -15,6 +15,8 @@
  */
 package br.com.objectos.way.boleto;
 
+import br.com.objectos.comuns.base.br.Cnpj;
+
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
@@ -32,6 +34,10 @@ class MustacheCedente {
 
   public long getNumeroConvenio() {
     return cedente.getNumeroConvenio();
+  }
+
+  public Cnpj getCnpj() {
+    return cedente.getCnpj();
   }
 
 }

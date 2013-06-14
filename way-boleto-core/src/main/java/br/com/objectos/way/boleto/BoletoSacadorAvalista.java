@@ -15,26 +15,15 @@
  */
 package br.com.objectos.way.boleto;
 
-import java.util.List;
-
-import org.joda.time.LocalDate;
+import br.com.objectos.comuns.base.br.CadastroRFB;
 
 /**
- * @author marcio.endo@objectos.com.br (Marcio Endo)
+ * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public interface BoletoCobranca {
+public interface BoletoSacadorAvalista {
 
-  String getDescricao();
+  String getNome();
 
-  LocalDate getDataProcessamento();
-
-  String getNossoNumero();
-
-  boolean isAceite();
-
-  List<String> getInstrucoes();
-  String getInformacaoAdicional();
-  String getLocalPagamento();
-  String getNumeroDocumento();
+  CadastroRFB getCadastroRFB();
 
 }

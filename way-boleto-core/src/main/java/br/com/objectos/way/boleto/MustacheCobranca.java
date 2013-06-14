@@ -51,6 +51,10 @@ class MustacheCobranca {
     return cobranca.getInstrucoes();
   }
 
+  public String getInformacaoAdicional() {
+    return cobranca.getInformacaoAdicional();
+  }
+
   public String getLocalPagamento() {
     return cobranca.getLocalPagamento();
   }

@@ -15,26 +15,22 @@
  */
 package br.com.objectos.way.boleto;
 
-import java.util.List;
-
-import org.joda.time.LocalDate;
+import br.com.objectos.comuns.base.br.CadastroRFB;
+import br.com.objectos.comuns.base.br.Cnpj;
 
 /**
- * @author marcio.endo@objectos.com.br (Marcio Endo)
+ * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public interface BoletoCobranca {
+public class SacadorAvalistaFalso implements BoletoSacadorAvalista {
 
-  String getDescricao();
+  @Override
+  public String getNome() {
+    return "Avalista XYZ";
+  }
 
-  LocalDate getDataProcessamento();
-
-  String getNossoNumero();
-
-  boolean isAceite();
-
-  List<String> getInstrucoes();
-  String getInformacaoAdicional();
-  String getLocalPagamento();
-  String getNumeroDocumento();
+  @Override
+  public CadastroRFB getCadastroRFB() {
+    return Cnpj.valueOf("45.291.381/0001-43");
+  }
 
 }

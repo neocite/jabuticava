@@ -142,6 +142,11 @@ public class TesteDeBradesco {
     }
 
     @Override
+    public String getInformacaoAdicional() {
+      return null;
+    }
+
+    @Override
     public String getLocalPagamento() {
       return null;
     }
