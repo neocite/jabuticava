@@ -20,26 +20,32 @@ package br.com.objectos.way.boleto;
  */
 class MustacheContaBancaria {
 
-  private final BoletoContaBancaria contaBancaria;
+  private final BoletoBanco banco;
+  private final MustacheCarteira carteira;
+  private final String agencia;
+  private final String numero;
 
   public MustacheContaBancaria(BoletoContaBancaria contaBancaria) {
-    this.contaBancaria = contaBancaria;
+    banco = contaBancaria.getBanco();
+    carteira = new MustacheCarteira(contaBancaria);
+    agencia = contaBancaria.getAgencia();
+    numero = contaBancaria.getNumero();
   }
 
   public BoletoBanco getBanco() {
-    return contaBancaria.getBanco();
+    return banco;
   }
 
   public MustacheCarteira getCarteira() {
-    return new MustacheCarteira(contaBancaria);
+    return carteira;
   }
 
   public String getAgencia() {
-    return contaBancaria.getAgencia();
+    return agencia;
   }
 
   public String getNumero() {
-    return contaBancaria.getNumero();
+    return numero;
   }
 
 }

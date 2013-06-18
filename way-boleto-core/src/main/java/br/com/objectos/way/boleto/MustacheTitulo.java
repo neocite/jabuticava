@@ -24,30 +24,36 @@ import br.com.objectos.comuns.matematica.financeira.ValorFinanceiro;
  */
 class MustacheTitulo {
 
-  private final BoletoTitulo titulo;
+  private final String especie;
+  private final String valor;
+  private final String emissao;
+  private final String vencimento;
 
   public MustacheTitulo(BoletoTitulo titulo) {
-    this.titulo = titulo;
-  }
-
-  public String getEspecie() {
     BoletoEspecie especie = titulo.getEspecie();
-    return especie.getSigla();
-  }
-
-  public String getValor() {
+    this.especie = especie.getSigla();
     ValorFinanceiro valor = titulo.getValor();
-    return Boletos.toString(valor);
-  }
-
-  public String getEmissao() {
+    this.valor = Boletos.toString(valor);
     LocalDate data = titulo.getEmissao();
-    return Boletos.toString(data);
+    this.emissao = Boletos.toString(data);
+    data = titulo.getVencimento();
+    this.vencimento = Boletos.toString(data);
   }
 
-  public String getVencimento() {
-    LocalDate data = titulo.getVencimento();
-    return Boletos.toString(data);
+  public final String getEspecie() {
+    return especie;
+  }
+
+  public final String getValor() {
+    return valor;
+  }
+
+  public final String getEmissao() {
+    return emissao;
+  }
+
+  public final String getVencimento() {
+    return vencimento;
   }
 
 }

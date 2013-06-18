@@ -24,38 +24,50 @@ import br.com.objectos.comuns.base.br.Estado;
  */
 class MustacheSacado {
 
-  private final BoletoSacado sacado;
+  private final String nome;
+  private final CadastroRFB cadastroRFB;
+  private final String endereco;
+  private final String bairro;
+  private final Cep cep;
+  private final String cidade;
+  private final Estado estado;
 
   public MustacheSacado(BoletoSacado sacado) {
-    this.sacado = sacado;
+    nome = sacado.getNome();
+    cadastroRFB = sacado.getCadastroRFB();
+    endereco = sacado.getEndereco();
+    bairro = sacado.getBairro();
+    cep = sacado.getCep();
+    cidade = sacado.getCidade();
+    estado = sacado.getEstado();
   }
 
   public String getNome() {
-    return sacado.getNome();
+    return nome;
   }
 
   public CadastroRFB getCadastroRFB() {
-    return sacado.getCadastroRFB();
+    return cadastroRFB;
   }
 
   public String getEndereco() {
-    return sacado.getEndereco();
+    return endereco;
   }
 
   public String getBairro() {
-    return sacado.getBairro();
+    return bairro;
   }
 
   public Cep getCep() {
-    return sacado.getCep();
+    return cep;
   }
 
   public String getCidade() {
-    return sacado.getCidade();
+    return cidade;
   }
 
   public Estado getEstado() {
-    return sacado.getEstado();
+    return estado;
   }
 
 }
