@@ -22,18 +22,20 @@ import br.com.objectos.comuns.base.br.CadastroRFB;
  */
 class MustacheSacadorAvalista {
 
-  private final BoletoSacadorAvalista sacadorAvalista;
+  private final String nome;
+  private final CadastroRFB cadastroRFB;
 
-  public MustacheSacadorAvalista(BoletoSacadorAvalista sacadorAvalista) {
-    this.sacadorAvalista = sacadorAvalista;
+  public MustacheSacadorAvalista(BoletoSacadorAvalista sacador) {
+    nome = sacador.getNome();
+    cadastroRFB = sacador.getCadastroRFB();
   }
 
-  public String getNome() {
-    return sacadorAvalista.getNome();
+  public final String getNome() {
+    return nome;
   }
 
-  public CadastroRFB getCadastroRFB() {
-    return sacadorAvalista.getCadastroRFB();
+  public final CadastroRFB getCadastroRFB() {
+    return cadastroRFB;
   }
 
 }

@@ -22,22 +22,26 @@ import br.com.objectos.comuns.base.br.Cnpj;
  */
 class MustacheCedente {
 
-  private final BoletoCedente cedente;
+  private final String nome;
+  private final long numeroConvenio;
+  private final Cnpj cnpj;
 
   public MustacheCedente(BoletoCedente cedente) {
-    this.cedente = cedente;
+    nome = cedente.getNome();
+    numeroConvenio = cedente.getNumeroConvenio();
+    cnpj = cedente.getCnpj();
   }
 
   public String getNome() {
-    return cedente.getNome();
+    return nome;
   }
 
   public long getNumeroConvenio() {
-    return cedente.getNumeroConvenio();
+    return numeroConvenio;
   }
 
   public Cnpj getCnpj() {
-    return cedente.getCnpj();
+    return cnpj;
   }
 
 }

@@ -24,43 +24,58 @@ import org.joda.time.LocalDate;
  */
 class MustacheCobranca {
 
-  private final BoletoCobranca cobranca;
+  private final String descricao;
+  private final String dataProcessamento;
+  private final String nossoNumero;
+  private final boolean aceite;
+  private final List<String> instrucoes;
+  private final String informacaoAdicional;
+  private final String localPagamento;
+  private final String numeroDocumento;
 
   public MustacheCobranca(BoletoCobranca cobranca) {
-    this.cobranca = cobranca;
+    descricao = cobranca.getDescricao();
+    LocalDate data = cobranca.getDataProcessamento();
+    dataProcessamento = Boletos.toString(data);
+    nossoNumero = cobranca.getNossoNumero();
+    aceite = cobranca.isAceite();
+    instrucoes = cobranca.getInstrucoes();
+    informacaoAdicional = cobranca.getInformacaoAdicional();
+    localPagamento = cobranca.getLocalPagamento();
+    numeroDocumento = cobranca.getNumeroDocumento();
+
   }
 
   public String getDescricao() {
-    return cobranca.getDescricao();
+    return descricao;
   }
 
   public String getDataProcessamento() {
-    LocalDate data = cobranca.getDataProcessamento();
-    return Boletos.toString(data);
+    return dataProcessamento;
   }
 
   public String getNossoNumero() {
-    return cobranca.getNossoNumero();
+    return nossoNumero;
   }
 
   public String isAceite() {
-    return cobranca.isAceite() ? "S" : "N";
+    return aceite ? "S" : "N";
   }
 
   public List<String> getInstrucoes() {
-    return cobranca.getInstrucoes();
+    return instrucoes;
   }
 
   public String getInformacaoAdicional() {
-    return cobranca.getInformacaoAdicional();
+    return informacaoAdicional;
   }
 
   public String getLocalPagamento() {
-    return cobranca.getLocalPagamento();
+    return localPagamento;
   }
 
   public String getNumeroDocumento() {
-    return cobranca.getNumeroDocumento();
+    return numeroDocumento;
   }
 
 }

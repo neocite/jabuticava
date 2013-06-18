@@ -1,4 +1,5 @@
 /*
+
  * Copyright 2013 Objectos, Fábrica de Software LTDA.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -20,17 +21,16 @@ package br.com.objectos.way.boleto;
  */
 class MustacheCarteira {
 
-  private final BoletoBanco banco;
-
-  private final BoletoCarteira carteira;
+  private final int codigo;
 
   public MustacheCarteira(BoletoContaBancaria conta) {
-    this.banco = conta.getBanco();
-    this.carteira = conta.getCarteira();
+    BoletoCarteira carteira = conta.getCarteira();
+    BoletoBanco banco = conta.getBanco();
+    codigo = carteira.getCodigo(banco);
   }
 
   public int getCodigo() {
-    return carteira.getCodigo(banco);
+    return codigo;
   }
 
 }
