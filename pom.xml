@@ -7,9 +7,9 @@
 		<version>1.0</version>
 	</parent>
 	<artifactId>way-bvmf-cri</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0-SNAPSHOT</version>
 	<name>objectos :: way :: bm&amp;f bovespa :: cri</name>
-	<description>Coleta de dados sobre CRIs / na BM&amp;F Bovespa</description>
+	<description>Coleta de dados sobre CRIs na BM&amp;F Bovespa</description>
 	<url>https://github.com/objectos/way-bvmf-cri</url>
 	<licenses>
 		<license>
@@ -24,16 +24,25 @@
 	</scm>
 	<developers>
 		<developer>
+			<id>asilva</id>
+			<name>Anderson Silva</name>
+			<email>anderson.silva@objectos.com.br</email>
+		</developer>
+		<developer>
+			<id>cbertoldi</id>
+			<name>Carolene Bertoldi</name>
+			<email>carolene.bertoldi@objectos.com.br</email>
+		</developer>
+		<developer>
 			<id>moe</id>
 			<name>Marcio Endo</name>
 			<email>marcio.endo@objectos.com.br</email>
 		</developer>
 	</developers>
 	<properties>
-		<codehaus.jackson.version>1.9.0</codehaus.jackson.version>
 		<org.jsoup.version>1.7.2</org.jsoup.version>
 		<way.base.version>1.0</way.base.version>
-	</properties>	
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>br.com.objectos</groupId>
@@ -41,20 +50,9 @@
 			<version>${way.base.version}</version>
 		</dependency>
 		<dependency>
-			<!-- jsoup HTML parser library @ http://jsoup.org/ -->
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
-			<version>1.7.2</version>
+			<version>${org.jsoup.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-core-asl</artifactId>
-			<version>${codehaus.jackson.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>${codehaus.jackson.version}</version>
-		</dependency>		
 	</dependencies>
 </project>
