@@ -15,7 +15,9 @@
  */
 package br.com.objectos.way.boleto;
 
+import br.com.objectos.comuns.base.br.Cep;
 import br.com.objectos.comuns.base.br.Cnpj;
+import br.com.objectos.comuns.base.br.Estado;
 
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
@@ -27,5 +29,11 @@ public interface BoletoCedente {
   long getNumeroConvenio();
 
   Cnpj getCnpj();
+
+  String getEndereco();
+  String getBairro();
+  Cep getCep();
+  String getCidade();
+  Estado getEstado();
 
 }
