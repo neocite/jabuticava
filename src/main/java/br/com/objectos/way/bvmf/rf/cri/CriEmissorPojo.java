@@ -16,28 +16,26 @@
 package br.com.objectos.way.bvmf.rf.cri;
 
 /**
- * @author anderson.silva@objectos.com.br (Anderson Silva)
+ * @author carolene.bertoldi@objectos.com.br (Carolene Bertoldi)
  */
-public interface CaracteristicaEmissao {
+class CriEmissorPojo implements CriEmissor {
 
-  interface Construtor extends br.com.objectos.comuns.base.Construtor<CaracteristicaEmissao> {
+  private final String status;
+  private final String localNegociacao;
 
-    int getNumero();
-
-    double getVolumeTotalEmissao();
-
-    int getQuantidadeCri();
-
-    int getQuantidadeSeriesEmitidas();
-
+  public CriEmissorPojo(Construtor construtor) {
+    status = construtor.getStatus();
+    localNegociacao = construtor.getLocalNegociacao();
   }
 
-  int getNumero();
+  @Override
+  public String getStatus() {
+    return status;
+  }
 
-  double getVolumeTotalEmissao();
-
-  int getQuantidadeCri();
-
-  int getQuantidadeSeriesEmitidas();
+  @Override
+  public String getLocalNegociacao() {
+    return localNegociacao;
+  }
 
 }

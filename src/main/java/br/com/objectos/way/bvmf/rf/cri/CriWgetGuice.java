@@ -109,7 +109,7 @@ class CriWgetGuice implements CriWget {
       String href = link.getHref();
       Document doc = Jsoup.connect(href).get();
       Cri cri = new CriParser(doc).get();
-      CaracteristicaSerie serie = cri.getCaracteristicaSerie();
+      CriSerie serie = cri.getSerie();
       logger.info("got :<< {}", serie != null ? serie.getCodigoTitulo() : "");
       return cri;
     }

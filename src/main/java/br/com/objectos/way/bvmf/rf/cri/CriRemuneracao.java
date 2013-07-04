@@ -18,18 +18,26 @@ package br.com.objectos.way.bvmf.rf.cri;
 /**
  * @author anderson.silva@objectos.com.br (Anderson Silva)
  */
-public interface Emissor {
+public interface CriRemuneracao {
 
-  interface Construtor extends br.com.objectos.comuns.base.Construtor<Emissor> {
+  interface Construtor extends br.com.objectos.comuns.base.Construtor<CriRemuneracao> {
 
-    String getStatus();
+    boolean isParticipacaoLucro();
 
-    String getLocalNegociacao();
+    String getTaxaJuros();
+
+    String getPagamento();
+
+    double getPremio();
 
   }
 
-  String getStatus();
+  boolean isParticipacaoLucro();
 
-  String getLocalNegociacao();
+  String getTaxaJuros();
+
+  String getPagamento();
+
+  double getPremio();
 
 }

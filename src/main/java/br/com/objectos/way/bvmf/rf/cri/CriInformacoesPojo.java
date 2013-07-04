@@ -16,29 +16,26 @@
 package br.com.objectos.way.bvmf.rf.cri;
 
 /**
- * @author carolene.bertoldi@objectos.com.br (Carolene Bertoldi)
+ * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class EmissorParser implements Emissor.Construtor {
+class CriInformacoesPojo implements CriInformacoes {
 
-  private final CriMap map;
+  private final String adicionais;
+  private final String parametroSecuritizacao;
 
-  public EmissorParser(CriMap map) {
-    this.map = map;
+  public CriInformacoesPojo(Construtor construtor) {
+    adicionais = construtor.getAdicionais();
+    parametroSecuritizacao = construtor.getParametroSecuritizacao();
   }
 
   @Override
-  public Emissor novaInstancia() {
-    return new EmissorPojo(this);
+  public String getAdicionais() {
+    return adicionais;
   }
 
   @Override
-  public String getStatus() {
-    return map.getString("Status atual da emissão:");
-  }
-
-  @Override
-  public String getLocalNegociacao() {
-    return map.getString("Local de negociação:");
+  public String getParametroSecuritizacao() {
+    return parametroSecuritizacao;
   }
 
 }

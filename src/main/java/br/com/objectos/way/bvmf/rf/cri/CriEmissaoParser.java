@@ -16,33 +16,39 @@
 package br.com.objectos.way.bvmf.rf.cri;
 
 /**
- * @author marcio.endo@objectos.com.br (Marcio Endo)
+ * @author carolene.bertoldi@objectos.com.br (Carolene Bertoldi)
  */
-class CriErro implements Cri {
+class CriEmissaoParser implements CriEmissao.Construtor {
 
-  @Override
-  public CriEmissor getEmissor() {
-    return null;
+  private final CriMap map;
+
+  public CriEmissaoParser(CriMap map) {
+    this.map = map;
   }
 
   @Override
-  public CriEmissao getEmissao() {
-    return null;
+  public CriEmissao novaInstancia() {
+    return new CriEmissaoPojo(this);
   }
 
   @Override
-  public CriSerie getSerie() {
-    return null;
+  public int getNumero() {
+    return map.getInt("Número da emissão:");
   }
 
   @Override
-  public CriRemuneracao getRemuneracao() {
-    return null;
+  public double getVolumeTotalEmissao() {
+    return map.getDouble("Volume Total da Emissão (R$):");
   }
 
   @Override
-  public CriInformacoes getInformacoes() {
-    return null;
+  public int getQuantidadeCri() {
+    return map.getInt("Quantidade de CRIs:");
+  }
+
+  @Override
+  public int getQuantidadeSeriesEmitidas() {
+    return map.getInt("Quantidade de Séries Emitidas:");
   }
 
 }

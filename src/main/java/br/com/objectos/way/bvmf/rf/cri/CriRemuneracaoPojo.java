@@ -18,38 +18,37 @@ package br.com.objectos.way.bvmf.rf.cri;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class CaracteristicaEmissaoPojo implements CaracteristicaEmissao {
+class CriRemuneracaoPojo implements CriRemuneracao {
 
-  private final int numero;
-  private final double volumeTotalEmissao;
-  private final int quantidadeCri;
-  private final int quantidadeSeriesEmitidas;
+  private final boolean participacaoLucro;
+  private final String taxaJuros;
+  private final String pagamento;
+  private final double premio;
 
-  public CaracteristicaEmissaoPojo(Construtor construtor) {
-    numero = construtor.getNumero();
-    volumeTotalEmissao = construtor.getVolumeTotalEmissao();
-    quantidadeCri = construtor.getQuantidadeCri();
-    quantidadeSeriesEmitidas = construtor.getQuantidadeSeriesEmitidas();
+  public CriRemuneracaoPojo(Construtor construtor) {
+    participacaoLucro = construtor.isParticipacaoLucro();
+    taxaJuros = construtor.getTaxaJuros();
+    pagamento = construtor.getPagamento();
+    premio = construtor.getPremio();
+  }
+
+  public boolean isParticipacaoLucro() {
+    return participacaoLucro;
   }
 
   @Override
-  public int getNumero() {
-    return numero;
+  public String getTaxaJuros() {
+    return taxaJuros;
   }
 
   @Override
-  public double getVolumeTotalEmissao() {
-    return volumeTotalEmissao;
+  public String getPagamento() {
+    return pagamento;
   }
 
   @Override
-  public int getQuantidadeCri() {
-    return quantidadeCri;
-  }
-
-  @Override
-  public int getQuantidadeSeriesEmitidas() {
-    return quantidadeSeriesEmitidas;
+  public double getPremio() {
+    return premio;
   }
 
 }

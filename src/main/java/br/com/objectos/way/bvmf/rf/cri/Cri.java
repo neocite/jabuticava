@@ -24,25 +24,26 @@ public interface Cri {
 
   interface Contrutor extends Construtor<Cri> {
 
-    Emissor getEmissor();
+    CriEmissor getEmissor();
 
-    CaracteristicaEmissao getCaracteristicaEmissao();
+    CriEmissao getEmissao();
 
-    CaracteristicaSerie getCaracteristicaSerie();
+    CriSerie getSerie();
 
-    Remuneracao getRemuneracao();
+    CriRemuneracao getRemuneracao();
 
-    InformacoesRelacionadas getInformacoesRelacionadas();
+    CriInformacoes getInformacoes();
+
   }
 
-  Emissor getEmissor();
+  CriEmissor getEmissor();
 
-  CaracteristicaEmissao getCaracteristicaEmissao();
+  CriEmissao getEmissao();
 
-  CaracteristicaSerie getCaracteristicaSerie();
+  CriSerie getSerie();
 
-  Remuneracao getRemuneracao();
+  CriRemuneracao getRemuneracao();
 
-  InformacoesRelacionadas getInformacoesRelacionadas();
+  CriInformacoes getInformacoes();
 
 }

@@ -18,18 +18,26 @@ package br.com.objectos.way.bvmf.rf.cri;
 /**
  * @author anderson.silva@objectos.com.br (Anderson Silva)
  */
-public interface InformacoesRelacionadas {
+public interface CriEmissao {
 
-  interface Construtor extends br.com.objectos.comuns.base.Construtor<InformacoesRelacionadas> {
+  interface Construtor extends br.com.objectos.comuns.base.Construtor<CriEmissao> {
 
-    String getAdicionais();
+    int getNumero();
 
-    String getParametroSecuritizacao();
+    double getVolumeTotalEmissao();
+
+    int getQuantidadeCri();
+
+    int getQuantidadeSeriesEmitidas();
 
   }
 
-  String getAdicionais();
+  int getNumero();
 
-  String getParametroSecuritizacao();
+  double getVolumeTotalEmissao();
+
+  int getQuantidadeCri();
+
+  int getQuantidadeSeriesEmitidas();
 
 }

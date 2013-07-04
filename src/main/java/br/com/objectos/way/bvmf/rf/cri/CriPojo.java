@@ -20,46 +20,46 @@ package br.com.objectos.way.bvmf.rf.cri;
  */
 class CriPojo implements Cri {
 
-  private final Emissor emissor;
+  private final CriEmissor emissor;
 
-  private final CaracteristicaEmissao caracteristicaEmissao;
+  private final CriEmissao emissao;
 
-  private final CaracteristicaSerie caracteristicaSerie;
+  private final CriSerie serie;
 
-  private final Remuneracao remuneracao;
+  private final CriRemuneracao remuneracao;
 
-  private final InformacoesRelacionadas informacoesRelacionadas;
+  private final CriInformacoes informacoesRelacionadas;
 
   public CriPojo(Contrutor construtor) {
     this.emissor = construtor.getEmissor();
-    this.caracteristicaEmissao = construtor.getCaracteristicaEmissao();
-    this.caracteristicaSerie = construtor.getCaracteristicaSerie();
+    this.emissao = construtor.getEmissao();
+    this.serie = construtor.getSerie();
     this.remuneracao = construtor.getRemuneracao();
-    this.informacoesRelacionadas = construtor.getInformacoesRelacionadas();
+    this.informacoesRelacionadas = construtor.getInformacoes();
   }
 
   @Override
-  public Emissor getEmissor() {
+  public CriEmissor getEmissor() {
     return emissor;
   }
 
   @Override
-  public CaracteristicaEmissao getCaracteristicaEmissao() {
-    return caracteristicaEmissao;
+  public CriEmissao getEmissao() {
+    return emissao;
   }
 
   @Override
-  public CaracteristicaSerie getCaracteristicaSerie() {
-    return caracteristicaSerie;
+  public CriSerie getSerie() {
+    return serie;
   }
 
   @Override
-  public Remuneracao getRemuneracao() {
+  public CriRemuneracao getRemuneracao() {
     return remuneracao;
   }
 
   @Override
-  public InformacoesRelacionadas getInformacoesRelacionadas() {
+  public CriInformacoes getInformacoes() {
     return informacoesRelacionadas;
   }
 

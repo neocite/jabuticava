@@ -22,7 +22,7 @@ import com.google.common.base.Optional;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class CaracteristicaSeriePojo implements CaracteristicaSerie {
+class CriSeriePojo implements CriSerie {
 
   private final String codigoTitulo;
   private final String codigoIsin;
@@ -40,7 +40,7 @@ class CaracteristicaSeriePojo implements CaracteristicaSerie {
   private final boolean enquadraArtUm;
   private final boolean enquadraArtDois;
 
-  public CaracteristicaSeriePojo(Construtor construtor) {
+  public CriSeriePojo(Construtor construtor) {
     codigoTitulo = construtor.getCodigoTitulo();
     codigoIsin = construtor.getCodigoIsin();
     quantidadeCri = construtor.getQuantidadeCri();
