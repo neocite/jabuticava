@@ -16,26 +16,20 @@
 package br.com.objectos.way.bvmf.rf.cri;
 
 /**
- * @author marcio.endo@objectos.com.br (Marcio Endo)
+ * @author anderson.silva@objectos.com.br (Anderson Silva)
  */
-class InformacoesRelacionadasPojo implements InformacoesRelacionadas {
+public interface CriInformacoes {
 
-  private final String adicionais;
-  private final String parametroSecuritizacao;
+  interface Construtor extends br.com.objectos.comuns.base.Construtor<CriInformacoes> {
 
-  public InformacoesRelacionadasPojo(Construtor construtor) {
-    adicionais = construtor.getAdicionais();
-    parametroSecuritizacao = construtor.getParametroSecuritizacao();
+    String getAdicionais();
+
+    String getParametroSecuritizacao();
+
   }
 
-  @Override
-  public String getAdicionais() {
-    return adicionais;
-  }
+  String getAdicionais();
 
-  @Override
-  public String getParametroSecuritizacao() {
-    return parametroSecuritizacao;
-  }
+  String getParametroSecuritizacao();
 
 }

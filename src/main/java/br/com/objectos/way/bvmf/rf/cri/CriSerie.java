@@ -22,9 +22,9 @@ import com.google.common.base.Optional;
 /**
  * @author anderson.silva@objectos.com.br (Anderson Silva)
  */
-public interface CaracteristicaSerie {
+public interface CriSerie {
 
-  interface Construtor extends br.com.objectos.comuns.base.Construtor<CaracteristicaSerie> {
+  interface Construtor extends br.com.objectos.comuns.base.Construtor<CriSerie> {
 
     String getCodigoTitulo();
 

@@ -22,17 +22,17 @@ import com.google.common.base.Optional;
 /**
  * @author carolene.bertoldi@objectos.com.br (Carolene Bertoldi)
  */
-class CaracteristicaSerieParser implements CaracteristicaSerie.Construtor {
+class CriSerieParser implements CriSerie.Construtor {
 
   private final CriMap map;
 
-  public CaracteristicaSerieParser(CriMap map) {
+  public CriSerieParser(CriMap map) {
     this.map = map;
   }
 
   @Override
-  public CaracteristicaSerie novaInstancia() {
-    return new CaracteristicaSeriePojo(this);
+  public CriSerie novaInstancia() {
+    return new CriSeriePojo(this);
   }
 
   @Override

@@ -16,39 +16,36 @@
 package br.com.objectos.way.bvmf.rf.cri;
 
 /**
- * @author carolene.bertoldi@objectos.com.br (Carolene Bertoldi)
+ * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class RemuneracaoParser implements Remuneracao.Construtor {
+public class ConstrutorDeCriInformacoesFalso implements CriInformacoes.Construtor {
 
-  private final CriMap map;
+  private String adicionais;
+  private String parametroSecuritizacao;
 
-  public RemuneracaoParser(CriMap map) {
-    this.map = map;
+  @Override
+  public CriInformacoes novaInstancia() {
+    return new CriInformacoesPojo(this);
+  }
+
+  public ConstrutorDeCriInformacoesFalso adicionais(String adicionais) {
+    this.adicionais = adicionais;
+    return this;
+  }
+
+  public ConstrutorDeCriInformacoesFalso parametroSecuritizacao(String parametroSecuritizacao) {
+    this.parametroSecuritizacao = parametroSecuritizacao;
+    return this;
   }
 
   @Override
-  public Remuneracao novaInstancia() {
-    return new RemuneracaoPojo(this);
+  public String getAdicionais() {
+    return adicionais;
   }
 
   @Override
-  public boolean isParticipacaoLucro() {
-    return map.getBoolean("Participação no Lucro:");
-  }
-
-  @Override
-  public String getTaxaJuros() {
-    return map.getString("Taxa de Juros:");
-  }
-
-  @Override
-  public String getPagamento() {
-    return map.getString("Pagamento:");
-  }
-
-  @Override
-  public double getPremio() {
-    return map.getDouble("Prêmio:");
+  public String getParametroSecuritizacao() {
+    return parametroSecuritizacao;
   }
 
 }

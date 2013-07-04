@@ -18,37 +18,34 @@ package br.com.objectos.way.bvmf.rf.cri;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class RemuneracaoPojo implements Remuneracao {
+public class ConstrutorDeCriEmissorFalso implements CriEmissor.Construtor {
 
-  private final boolean participacaoLucro;
-  private final String taxaJuros;
-  private final String pagamento;
-  private final double premio;
+  private String status;
+  private String localNegociacao;
 
-  public RemuneracaoPojo(Construtor construtor) {
-    participacaoLucro = construtor.isParticipacaoLucro();
-    taxaJuros = construtor.getTaxaJuros();
-    pagamento = construtor.getPagamento();
-    premio = construtor.getPremio();
+  @Override
+  public CriEmissor novaInstancia() {
+    return new CriEmissorPojo(this);
   }
 
-  public boolean isParticipacaoLucro() {
-    return participacaoLucro;
+  public ConstrutorDeCriEmissorFalso status(String status) {
+    this.status = status;
+    return this;
+  }
+
+  public ConstrutorDeCriEmissorFalso localNegociacao(String localNegociacao) {
+    this.localNegociacao = localNegociacao;
+    return this;
   }
 
   @Override
-  public String getTaxaJuros() {
-    return taxaJuros;
+  public String getStatus() {
+    return status;
   }
 
   @Override
-  public String getPagamento() {
-    return pagamento;
-  }
-
-  @Override
-  public double getPremio() {
-    return premio;
+  public String getLocalNegociacao() {
+    return localNegociacao;
   }
 
 }

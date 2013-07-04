@@ -47,33 +47,33 @@ class CriParser {
     }
 
     @Override
-    public Emissor getEmissor() {
+    public CriEmissor getEmissor() {
       CriMap map = tableMap.get("Emissor");
-      return new EmissorParser(map).novaInstancia();
+      return new CriEmissorParser(map).novaInstancia();
     }
 
     @Override
-    public CaracteristicaEmissao getCaracteristicaEmissao() {
+    public CriEmissao getEmissao() {
       CriMap map = tableMap.get("Características da Emissão");
-      return new CaracteristicaEmissaoParser(map).novaInstancia();
+      return new CriEmissaoParser(map).novaInstancia();
     }
 
     @Override
-    public CaracteristicaSerie getCaracteristicaSerie() {
+    public CriSerie getSerie() {
       CriMap map = tableMap.get("Características da Série");
-      return new CaracteristicaSerieParser(map).novaInstancia();
+      return new CriSerieParser(map).novaInstancia();
     }
 
     @Override
-    public Remuneracao getRemuneracao() {
+    public CriRemuneracao getRemuneracao() {
       CriMap map = tableMap.get("Remuneração");
-      return new RemuneracaoParser(map).novaInstancia();
+      return new CriRemuneracaoParser(map).novaInstancia();
     }
 
     @Override
-    public InformacoesRelacionadas getInformacoesRelacionadas() {
+    public CriInformacoes getInformacoes() {
       CriMap map = tableMap.get("Informações relacionadas");
-      return new InformacoesRelacionadasParser(map).novaInstancia();
+      return new CriInformacoesParser(map).novaInstancia();
     }
 
   }

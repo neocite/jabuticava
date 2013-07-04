@@ -18,37 +18,27 @@ package br.com.objectos.way.bvmf.rf.cri;
 /**
  * @author carolene.bertoldi@objectos.com.br (Carolene Bertoldi)
  */
-class CaracteristicaEmissaoParser implements CaracteristicaEmissao.Construtor {
+class CriEmissorParser implements CriEmissor.Construtor {
 
   private final CriMap map;
 
-  public CaracteristicaEmissaoParser(CriMap map) {
+  public CriEmissorParser(CriMap map) {
     this.map = map;
   }
 
   @Override
-  public CaracteristicaEmissao novaInstancia() {
-    return new CaracteristicaEmissaoPojo(this);
+  public CriEmissor novaInstancia() {
+    return new CriEmissorPojo(this);
   }
 
   @Override
-  public int getNumero() {
-    return map.getInt("Número da emissão:");
+  public String getStatus() {
+    return map.getString("Status atual da emissão:");
   }
 
   @Override
-  public double getVolumeTotalEmissao() {
-    return map.getDouble("Volume Total da Emissão (R$):");
-  }
-
-  @Override
-  public int getQuantidadeCri() {
-    return map.getInt("Quantidade de CRIs:");
-  }
-
-  @Override
-  public int getQuantidadeSeriesEmitidas() {
-    return map.getInt("Quantidade de Séries Emitidas:");
+  public String getLocalNegociacao() {
+    return map.getString("Local de negociação:");
   }
 
 }

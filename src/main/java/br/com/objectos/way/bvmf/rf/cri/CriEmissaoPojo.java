@@ -18,31 +18,38 @@ package br.com.objectos.way.bvmf.rf.cri;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class CriErro implements Cri {
+class CriEmissaoPojo implements CriEmissao {
 
-  @Override
-  public CriEmissor getEmissor() {
-    return null;
+  private final int numero;
+  private final double volumeTotalEmissao;
+  private final int quantidadeCri;
+  private final int quantidadeSeriesEmitidas;
+
+  public CriEmissaoPojo(Construtor construtor) {
+    numero = construtor.getNumero();
+    volumeTotalEmissao = construtor.getVolumeTotalEmissao();
+    quantidadeCri = construtor.getQuantidadeCri();
+    quantidadeSeriesEmitidas = construtor.getQuantidadeSeriesEmitidas();
   }
 
   @Override
-  public CriEmissao getEmissao() {
-    return null;
+  public int getNumero() {
+    return numero;
   }
 
   @Override
-  public CriSerie getSerie() {
-    return null;
+  public double getVolumeTotalEmissao() {
+    return volumeTotalEmissao;
   }
 
   @Override
-  public CriRemuneracao getRemuneracao() {
-    return null;
+  public int getQuantidadeCri() {
+    return quantidadeCri;
   }
 
   @Override
-  public CriInformacoes getInformacoes() {
-    return null;
+  public int getQuantidadeSeriesEmitidas() {
+    return quantidadeSeriesEmitidas;
   }
 
 }

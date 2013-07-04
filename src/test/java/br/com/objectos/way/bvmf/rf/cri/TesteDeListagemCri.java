@@ -23,13 +23,13 @@ import org.jsoup.nodes.Document;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import br.com.objectos.way.bvmf.rf.cri.CaracteristicaEmissao;
-import br.com.objectos.way.bvmf.rf.cri.CaracteristicaSerie;
+import br.com.objectos.way.bvmf.rf.cri.CriEmissao;
+import br.com.objectos.way.bvmf.rf.cri.CriSerie;
 import br.com.objectos.way.bvmf.rf.cri.Cri;
 import br.com.objectos.way.bvmf.rf.cri.CriParser;
-import br.com.objectos.way.bvmf.rf.cri.Emissor;
-import br.com.objectos.way.bvmf.rf.cri.InformacoesRelacionadas;
-import br.com.objectos.way.bvmf.rf.cri.Remuneracao;
+import br.com.objectos.way.bvmf.rf.cri.CriEmissor;
+import br.com.objectos.way.bvmf.rf.cri.CriInformacoes;
+import br.com.objectos.way.bvmf.rf.cri.CriRemuneracao;
 
 /**
  * @author anderson.silva@objectos.com.br (Anderson Silva)
@@ -46,14 +46,14 @@ public class TesteDeListagemCri {
   }
 
   public void emissor() {
-    Emissor res = cri.getEmissor();
+    CriEmissor res = cri.getEmissor();
 
     assertThat(res.getStatus(), equalTo("ATIVO"));
     assertThat(res.getLocalNegociacao(), equalTo("Bovespa Fix"));
   }
 
   public void caracteristica() {
-    CaracteristicaEmissao res = cri.getCaracteristicaEmissao();
+    CriEmissao res = cri.getEmissao();
 
     assertThat(res.getNumero(), equalTo(1));
     assertThat(res.getVolumeTotalEmissao(), equalTo(34912722.86));
@@ -62,7 +62,7 @@ public class TesteDeListagemCri {
   }
 
   public void caracterista_serie() {
-    CaracteristicaSerie res = cri.getCaracteristicaSerie();
+    CriSerie res = cri.getSerie();
 
     assertThat(res.getCodigoTitulo(), equalTo("AETA-C10"));
     assertThat(res.getCodigoIsin(), equalTo("BRAETACRI099"));
@@ -83,7 +83,7 @@ public class TesteDeListagemCri {
   }
 
   public void remuneracao() {
-    Remuneracao res = cri.getRemuneracao();
+    CriRemuneracao res = cri.getRemuneracao();
 
     assertThat(res.isParticipacaoLucro(), equalTo(false));
     assertThat(res.getTaxaJuros(), equalTo("9,%"));
@@ -92,7 +92,7 @@ public class TesteDeListagemCri {
   }
 
   public void informacoes_relacionadas() {
-    InformacoesRelacionadas res = cri.getInformacoesRelacionadas();
+    CriInformacoes res = cri.getInformacoes();
 
     assertThat(res.getAdicionais(), equalTo("Informações de Atas de Assembleias"));
   }

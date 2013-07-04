@@ -18,27 +18,37 @@ package br.com.objectos.way.bvmf.rf.cri;
 /**
  * @author carolene.bertoldi@objectos.com.br (Carolene Bertoldi)
  */
-class InformacoesRelacionadasParser implements InformacoesRelacionadas.Construtor {
+class CriRemuneracaoParser implements CriRemuneracao.Construtor {
 
   private final CriMap map;
 
-  public InformacoesRelacionadasParser(CriMap map) {
+  public CriRemuneracaoParser(CriMap map) {
     this.map = map;
   }
 
   @Override
-  public InformacoesRelacionadas novaInstancia() {
-    return new InformacoesRelacionadasPojo(this);
+  public CriRemuneracao novaInstancia() {
+    return new CriRemuneracaoPojo(this);
   }
 
   @Override
-  public String getAdicionais() {
-    return map.getString("Adicionais:");
+  public boolean isParticipacaoLucro() {
+    return map.getBoolean("Participação no Lucro:");
   }
 
   @Override
-  public String getParametroSecuritizacao() {
-    return map.getString("Download Termo de Securitização:");
+  public String getTaxaJuros() {
+    return map.getString("Taxa de Juros:");
+  }
+
+  @Override
+  public String getPagamento() {
+    return map.getString("Pagamento:");
+  }
+
+  @Override
+  public double getPremio() {
+    return map.getDouble("Prêmio:");
   }
 
 }
