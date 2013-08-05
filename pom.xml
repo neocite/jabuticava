@@ -6,7 +6,7 @@
 		<version>1.0</version>
 	</parent>
 	<artifactId>way-boleto</artifactId>
-	<version>1.5-SNAPSHOT</version>
+	<version>1.5</version>
 	<packaging>pom</packaging>
 	<name>objectos :: way :: boleto</name>
 	<description>Geração de boletos. Simples.</description>
