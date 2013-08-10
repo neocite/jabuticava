@@ -1,4 +1,5 @@
-# objectos :: way :: cnab - CNAB400 em Java(tm) 
+# objectos :: way :: cnab
+## Processamento de arquivos CNAB em Java(tm)
 
 objectos way-cnab ([www.objectos.com.br](http://www.objectos.com.br)) 
 é uma implementação em Java(tm) da especificação CNAB400 da Febrabran.
