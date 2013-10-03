@@ -48,7 +48,7 @@ public class TesteDeLoteBradesco {
     File file = CnabsFalso.RETORNO_237_01.getFile();
     lotes = Cnab.retornoDe(file).getLotes();
 
-    assertThat(lotes.size(), equalTo(31));
+    assertThat(lotes.size(), equalTo(32));
   }
 
   public void tipo_de_inscricao_da_empresa() {

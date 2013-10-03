@@ -18,7 +18,7 @@ package br.com.objectos.comuns.cnab;
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)
  */
-public class ColunaVazia extends Coluna<String> {
+class ColunaVazia extends Coluna<String> {
 
   private final String valor;
 
