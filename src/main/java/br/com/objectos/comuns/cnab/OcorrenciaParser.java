@@ -111,6 +111,7 @@ abstract class OcorrenciaParser {
       private final int pos0;
       private final int pos1;
 
+      String ignorarExtras;
       final List<Motivo> motivos = newArrayList();
 
       public MotivoBuilder(int codigo, String descricao, int pos0, int pos1) {
@@ -118,6 +119,11 @@ abstract class OcorrenciaParser {
         this.descricao = descricao;
         this.pos0 = pos0;
         this.pos1 = pos1;
+      }
+
+      public MotivoBuilder ignorarExtras(String codigo) {
+        this.ignorarExtras = codigo;
+        return this;
       }
 
       public MotivoBuilder add(String codigo, String descricao) {
@@ -130,7 +136,7 @@ abstract class OcorrenciaParser {
       }
 
       public BuilderWrapper put() {
-        MotivoParser motivoParser = new MotivoParserPadrao(pos0, pos1, motivos);
+        MotivoParser motivoParser = new MotivoParserPadrao(pos0, pos1, ignorarExtras, motivos);
 
         OcorrenciaCodigoPadrao value = newInstance(codigo, descricao, motivoParser);
         String key = value.get();

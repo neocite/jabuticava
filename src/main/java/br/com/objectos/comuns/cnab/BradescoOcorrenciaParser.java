@@ -25,6 +25,7 @@ class BradescoOcorrenciaParser extends OcorrenciaParser {
   private static final Map<String, OcorrenciaCodigoPadrao> codigoMap = new Wrapper()
       .codigo(2, "Entrada Confirmada")
       .motivosAt(318, 328)
+      .ignorarExtras("00")
       .add("00", "Ocorrência aceita")
       .add("01", "Código do Banco inválido")
       .add("04", "Código do movimento não permitido para a carteira")
@@ -100,12 +101,14 @@ class BradescoOcorrenciaParser extends OcorrenciaParser {
 
       .codigo(9, "Baixado Automat. via Arquivo")
       .motivosAt(318, 328)
+      .ignorarExtras("00")
       .add("00", "Ocorrência Aceita")
       .add("10", "Baixa Comandada pelo cliente")
       .put()
 
       .codigo(10, "Baixado conforme instruções da Agência")
       .motivosAt(318, 328)
+      .ignorarExtras("00")
       .add("00", "Baixado Conforme Instruções da Agência")
       .add("14", "Título Protestado")
       .add("15", "Título excluído")

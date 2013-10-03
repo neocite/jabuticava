@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package br.com.objectos.comuns.cnab.bradesco;
+package br.com.objectos.comuns.cnab;
 
 import static com.google.common.collect.Lists.transform;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -26,8 +26,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import br.com.objectos.comuns.cnab.Cnab;
-import br.com.objectos.comuns.cnab.CnabsFalso;
-import br.com.objectos.comuns.cnab.Lote;
+import br.com.objectos.comuns.cnab.LoteExt;
 import br.com.objectos.comuns.cnab.Ocorrencia;
 import br.com.objectos.comuns.cnab.OcorrenciaCodigo;
 
@@ -38,16 +37,16 @@ import com.google.common.collect.ImmutableList;
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Test
-public class TesteDeOcorrenciaBradesco {
+public class TesteDeBradescoOcorrenciaParserIntegracao {
 
   private List<Ocorrencia> ocorrencias;
 
   @BeforeClass
   public void prepararOcorrencias() {
     File file = CnabsFalso.RETORNO_237_01.getFile();
-    List<Lote> lotes = Cnab.retornoDe(file).getLotes();
+    List<LoteExt> lotes = Cnab.retornoDe(file).getLotesExt();
     ocorrencias = transform(lotes, new ToOcorrencia());
-    assertThat(ocorrencias.size(), equalTo(31));
+    assertThat(ocorrencias.size(), equalTo(32));
   }
 
   public void codigos() {
@@ -83,6 +82,7 @@ public class TesteDeOcorrenciaBradesco {
         .add("14:Vencimento Alterado")
         .add("33:Confirmação Pedido Alteração Outros Dados")
         .add("33:Confirmação Pedido Alteração Outros Dados")
+        .add("02:Entrada Confirmada")
         .build();
 
     List<String> res = transform(ocorrencias, new ToCodigo());
@@ -90,9 +90,9 @@ public class TesteDeOcorrenciaBradesco {
     assertThat(res, equalTo(prova));
   }
 
-  private static class ToOcorrencia implements Function<Lote, Ocorrencia> {
+  private static class ToOcorrencia implements Function<LoteExt, Ocorrencia> {
     @Override
-    public Ocorrencia apply(Lote input) {
+    public Ocorrencia apply(LoteExt input) {
       return input.get(Cnab.lote().ocorrencia());
     }
   }

@@ -40,9 +40,11 @@ class MotivoParserPadrao implements MotivoParser {
 
   private final int length = 2;
 
+  private final Motivo ignorarExtras;
+
   private final Map<String, Motivo> codigoMap;
 
-  public MotivoParserPadrao(int pos0, int pos1, List<Motivo> motivos) {
+  public MotivoParserPadrao(int pos0, int pos1, String ignorarExtras, List<Motivo> motivos) {
     this.pos0 = pos0;
     this.pos1 = pos1;
 
@@ -53,6 +55,7 @@ class MotivoParserPadrao implements MotivoParser {
       codigoMap.put(codigo, motivo);
     }
 
+    this.ignorarExtras = ignorarExtras != null ? new MotivoPadrao(ignorarExtras, "") : null;
     this.codigoMap = ImmutableSortedMap.copyOf(codigoMap);
   }
 
@@ -60,13 +63,23 @@ class MotivoParserPadrao implements MotivoParser {
   public Set<Motivo> parse(FixedLine line) {
     String text = line.column(pos0, pos1).get(String.class);
 
-    Iterable<String> parts = Splitter.fixedLength(length).split(text);
+    Iterable<String> parts;
+    parts = Splitter.fixedLength(length).split(text);
 
-    Iterable<Motivo> motivos = Iterables.transform(parts, new ToMotivo());
+    Iterable<Motivo> motivos;
+    motivos = Iterables.transform(parts, new ToMotivo());
 
-    Iterable<Motivo> res = Iterables.filter(motivos, Predicates.notNull());
+    Iterable<Motivo> validos;
+    validos = Iterables.filter(motivos, Predicates.notNull());
 
-    return newLinkedHashSet(res);
+    Set<Motivo> distintos;
+    distintos = newLinkedHashSet(validos);
+
+    if (ignorarExtras != null && distintos.size() > 1) {
+      distintos.remove(ignorarExtras);
+    }
+
+    return distintos;
   }
 
   @Override
