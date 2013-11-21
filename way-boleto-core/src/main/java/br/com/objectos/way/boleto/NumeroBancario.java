@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import br.com.objectos.way.base.HasIntValue;
+import br.com.objectos.way.base.HasLongValue;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
@@ -17,7 +18,7 @@ import com.google.common.base.Strings;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class NumeroBancario implements HasIntValue {
+class NumeroBancario implements HasIntValue, HasLongValue {
 
   private static final Pattern pattern = Pattern.compile("([0-9]+)(|\\-([0-9]))");
 
@@ -40,6 +41,7 @@ class NumeroBancario implements HasIntValue {
   public int intValue() {
     return (int) numero;
   }
+  @Override
   public long longValue() {
     return numero;
   }

@@ -9,14 +9,14 @@ package br.com.objectos.way.boleto;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import br.com.objectos.way.base.HasIntValue;
+import br.com.objectos.way.base.HasLongValue;
 
 import com.google.common.base.Preconditions;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class NossoNumero implements HasIntValue {
+class NossoNumero implements HasLongValue {
 
   private static final Pattern pattern = Pattern.compile("[0-9]+[A-Za-z]?$");
 
@@ -36,9 +36,6 @@ class NossoNumero implements HasIntValue {
   }
 
   @Override
-  public int intValue() {
-    return (int) numero;
-  }
   public long longValue() {
     return numero;
   }
