@@ -74,7 +74,7 @@ public enum BoletoBanco {
           .at(24, 25).integer(carteira.getCodigo(this))
 
           .col("Nosso Número")
-          .at(26, 36).hasIntValue(nossoNumero)
+          .at(26, 36).hasLongValue(nossoNumero)
 
           .col("Conta corrente")
           .at(37, 43).hasIntValue(numero)
@@ -132,7 +132,7 @@ public enum BoletoBanco {
           .at(20, 22).integer(carteira.getCodigo(this))
 
           .col("Nosso número")
-          .at(23, 30).hasIntValue(nossoNumero)
+          .at(23, 30).hasLongValue(nossoNumero)
 
           .col("DAC [Agência/Conta/Carteira/Nosso Número]")
           .at(31, 31).checkDigit(Modulos.MODULO_10)
