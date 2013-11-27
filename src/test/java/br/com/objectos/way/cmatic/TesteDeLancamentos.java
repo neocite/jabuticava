@@ -24,12 +24,15 @@ import org.joda.time.LocalDate;
 import org.testng.annotations.Test;
 
 /**
- * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
+ * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Test
-public class TesteDeLancamentoMM extends TesteDeLancamentoAbstrato {
+public class TesteDeLancamentos extends TesteDeLancamentoAbstrato {
 
-  public void multiplo_a_multiplo() {
+  public void to_txt() {
+    String empresa = "OBJECTOS";
+    LocalDate ano = new LocalDate(2013, 1, 1);
+
     int numero = 243;
     LocalDate dt = new LocalDate(2013, 2, 24);
 
@@ -39,16 +42,21 @@ public class TesteDeLancamentoMM extends TesteDeLancamentoAbstrato {
     SubLancamento sub04 = novoCrd(dt, 24, 3253.20, "LIQ P/ SAC TIT 007461A");
     SubLancamento sub05 = novoCrd(dt, 24, 24288.47, "LIQ P/ SAC TIT 007341C");
 
-    LancamentoMM mm = WayCMatic.multiploMultiplo(numero, dt)
+    LancamentoMM mm0 = WayCMatic.multiploMultiplo(numero, dt)
         .add(sub01)
         .add(sub02)
         .add(sub03)
         .add(sub04)
         .add(sub05)
         .novaInstancia();
-    String txt = mm.toTxt();
+
+    Lancamentos trxs = WayCMatic.lancamentosDe(empresa, ano)
+        .add(mm0)
+        .novaInstancia();
+    String txt = trxs.toTxt();
+
     List<String> res = Txts.split(txt);
-    List<String> prova = Txts.toLines("/txt/mm01.txt");
+    List<String> prova = Txts.toLines("/txt/lancamentos.txt");
 
     assertThat(res, equalTo(prova));
   }

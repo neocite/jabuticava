@@ -24,7 +24,7 @@ import org.joda.time.LocalDate;
  */
 public abstract class SubLancamento {
 
-  public static interface Construtor {
+  public static interface CMatic {
 
     DebitoCredito getTipo();
 
@@ -47,17 +47,17 @@ public abstract class SubLancamento {
   private final HistoricoPadrao historicoPadrao;
   private final ContaCentroCusto centroCusto;
 
-  public SubLancamento(Construtor construtor) {
-    data = construtor.getData();
-    conta = construtor.getConta();
-    valor = construtor.getValor();
-    historicoPadrao = construtor.getHistoricoPadrao();
-    centroCusto = construtor.getCentroCusto();
+  public SubLancamento(CMatic cmatic) {
+    data = cmatic.getData();
+    conta = cmatic.getConta();
+    valor = cmatic.getValor();
+    historicoPadrao = cmatic.getHistoricoPadrao();
+    centroCusto = cmatic.getCentroCusto();
   }
 
-  static SubLancamento of(Construtor construtor) {
-    DebitoCredito tipo = construtor.getTipo();
-    return tipo.subLancamentoDe(construtor);
+  static SubLancamento of(CMatic cmatic) {
+    DebitoCredito tipo = cmatic.getTipo();
+    return tipo.subLancamentoDe(cmatic);
   }
 
   String toLancamentoTxt() {

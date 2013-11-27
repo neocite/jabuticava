@@ -1,8 +1,17 @@
 /*
- * ConstrutorDeBloco.java criado em 27/11/2013
- * 
- * Propriedade de Objectos Fábrica de Software LTDA.
- * Reprodução parcial ou total proibida.
+ * Copyright 2013 Objectos, Fábrica de Software LTDA.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package br.com.objectos.way.cmatic;
 
@@ -22,14 +31,14 @@ import com.google.common.collect.ImmutableList;
  */
 public class ConstrutorDeLancamentoMM implements LancamentoMM.Construtor, Construtor<LancamentoMM> {
 
-  private final int codigo;
+  private final int numero;
   private final LocalDate data;
   private double valorCredito;
   private double valorDebito;
   private final List<SubLancamento> lancamentos = newArrayList();
 
-  ConstrutorDeLancamentoMM(int codigo, LocalDate data) {
-    this.codigo = codigo;
+  ConstrutorDeLancamentoMM(int numero, LocalDate data) {
+    this.numero = numero;
     this.data = data;
   }
 
@@ -47,9 +56,17 @@ public class ConstrutorDeLancamentoMM implements LancamentoMM.Construtor, Constr
     return this;
   }
 
+  public ConstrutorDeLancamentoMM addAll(Iterable<? extends SubLancamento.CMatic> cmatics) {
+    for (SubLancamento.CMatic cmatic : cmatics) {
+      SubLancamento lancamento = SubLancamento.of(cmatic);
+      add(lancamento);
+    }
+    return this;
+  }
+
   @Override
   public int getNumero() {
-    return codigo;
+    return numero;
   }
 
   @Override

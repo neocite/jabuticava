@@ -22,7 +22,7 @@ import br.com.objectos.comuns.base.Construtor;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class ConstrutorDeSubLancamentoFalso implements SubLancamento.Construtor, Construtor<SubLancamento> {
+class ConstrutorDeSubLancamentoFalso implements SubLancamento.CMatic, Construtor<SubLancamento> {
 
   private DebitoCredito tipo = DebitoCredito.CREDITO;
   private LocalDate data;

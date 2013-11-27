@@ -15,7 +15,7 @@
  */
 package br.com.objectos.way.cmatic;
 
-import br.com.objectos.way.cmatic.SubLancamento.Construtor;
+import br.com.objectos.way.cmatic.SubLancamento.CMatic;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -24,18 +24,18 @@ public enum DebitoCredito {
 
   DEBITO {
     @Override
-    SubLancamento subLancamentoDe(Construtor construtor) {
+    SubLancamento subLancamentoDe(CMatic construtor) {
       return new SubLancamentoDebito(construtor);
     }
   },
 
   CREDITO {
     @Override
-    SubLancamento subLancamentoDe(Construtor construtor) {
+    SubLancamento subLancamentoDe(CMatic construtor) {
       return new SubLancamentoCredito(construtor);
     }
   };
 
-  abstract SubLancamento subLancamentoDe(SubLancamento.Construtor construtor);
+  abstract SubLancamento subLancamentoDe(SubLancamento.CMatic construtor);
 
 }

@@ -18,25 +18,8 @@ package br.com.objectos.way.cmatic;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class SubLancamentoDebito extends SubLancamento {
+interface IsLancamento {
 
-  public SubLancamentoDebito(CMatic construtor) {
-    super(construtor);
-  }
-
-  @Override
-  String debito() {
-    return getConta();
-  }
-
-  @Override
-  double getValorDebito() {
-    return getValor();
-  }
-
-  @Override
-  ContaCentroCusto ccdb() {
-    return getCentroCusto();
-  }
+  String toTxt();
 
 }
