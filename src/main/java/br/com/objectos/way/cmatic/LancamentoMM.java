@@ -1,8 +1,17 @@
 /*
- * LancamentoContmaticBloco.java criado em 18/10/2013
- * 
- * Propriedade de Objectos Fábrica de Software LTDA.
- * Reprodução parcial ou total proibida.
+ * Copyright 2013 Objectos, Fábrica de Software LTDA.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package br.com.objectos.way.cmatic;
 
@@ -22,7 +31,7 @@ import com.google.common.collect.Iterables;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public class LancamentoMM {
+public class LancamentoMM implements IsLancamento {
 
   interface Construtor {
 
@@ -50,7 +59,7 @@ public class LancamentoMM {
     lancamentos = construtor.getLancamentos();
   }
 
-  public static ConstrutorDeLancamentoMM multiploMultiplo(int numero, LocalDate data) {
+  static ConstrutorDeLancamentoMM multiploMultiplo(int numero, LocalDate data) {
     return new ConstrutorDeLancamentoMM(numero, data);
   }
 
@@ -58,12 +67,8 @@ public class LancamentoMM {
     return new LancamentoMM(construtor);
   }
 
-  List<String> toLines() {
-    Iterable<String> lines = toLines0();
-    return ImmutableList.copyOf(lines);
-  }
-
-  public String toLancamentoTxt() {
+  @Override
+  public String toTxt() {
     Iterable<String> parts = toLines0();
     return Joiner.on("\r\n").join(parts);
   }

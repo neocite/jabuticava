@@ -15,15 +15,16 @@
  */
 package br.com.objectos.way.cmatic;
 
+import static br.com.objectos.way.cmatic.WayCMatic.toTxtPart;
+
+import com.google.common.base.Strings;
+
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public abstract class HistoricoPadrao {
+public class HistoricoPadrao {
 
-  private static final HistoricoPadrao VAZIO = hpOf("");
-
-  public static interface Construtor
-      extends br.com.objectos.comuns.base.Construtor<HistoricoPadrao> {
+  interface CMatic {
 
     int getCodigo();
 
@@ -31,23 +32,51 @@ public abstract class HistoricoPadrao {
 
   }
 
-  public static HistoricoPadrao of() {
+  private static final HistoricoPadrao VAZIO = hpOf("");
+
+  private final int codigo;
+
+  private final String complemento;
+
+  public HistoricoPadrao(CMatic cmatic) {
+    this.codigo = cmatic.getCodigo();
+    String _complemento = cmatic.getComplemento();
+    this.complemento = Strings.nullToEmpty(_complemento);
+  }
+
+  public HistoricoPadrao(int codigo, String complemento) {
+    this.codigo = codigo;
+    this.complemento = complemento;
+  }
+
+  static HistoricoPadrao of() {
     return VAZIO;
   }
-  public static HistoricoPadrao of(Construtor construtor) {
-    return new HistoricoPadraoPojo(construtor);
+  static HistoricoPadrao of(CMatic cmatic) {
+    return new HistoricoPadrao(cmatic);
   }
-  public static HistoricoPadrao hpOf(int codigo, String complemento) {
-    return new HistoricoPadraoPojo(codigo, complemento);
+  static HistoricoPadrao hpOf(int codigo, String complemento) {
+    return new HistoricoPadrao(codigo, complemento);
   }
-  public static HistoricoPadrao hpOf(String complemento) {
-    return new HistoricoPadraoPojo(0, complemento);
+  static HistoricoPadrao hpOf(String complemento) {
+    return new HistoricoPadrao(0, complemento);
   }
 
-  abstract String toLancamentoTxt();
+  String toLancamentoTxt() {
+    return new StringBuilder()
+        .append(codigoToLancamentoTxt())
+        .append(toTxtPart("%-200s", complemento, 200))
+        .toString();
+  }
 
-  abstract int getCodigo();
+  private String codigoToLancamentoTxt() {
+    String res = "     ";
 
-  abstract String getComplemento();
+    if (codigo != 0) {
+      res = toTxtPart("%05d", codigo, 5);
+    }
+
+    return res;
+  }
 
 }

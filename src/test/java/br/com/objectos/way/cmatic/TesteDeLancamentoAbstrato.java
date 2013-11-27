@@ -15,28 +15,30 @@
  */
 package br.com.objectos.way.cmatic;
 
+import org.joda.time.LocalDate;
+
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-class SubLancamentoDebito extends SubLancamento {
+public abstract class TesteDeLancamentoAbstrato {
 
-  public SubLancamentoDebito(CMatic construtor) {
-    super(construtor);
+  SubLancamento novoCrd(LocalDate dt, int cc, double val, String hp) {
+    return subLancamento(DebitoCredito.CREDITO, dt, cc, hp, val);
   }
 
-  @Override
-  String debito() {
-    return getConta();
+  SubLancamento novoDeb(LocalDate dt, int cc, double val, String hp) {
+    return subLancamento(DebitoCredito.DEBITO, dt, cc, hp, val);
   }
 
-  @Override
-  double getValorDebito() {
-    return getValor();
-  }
-
-  @Override
-  ContaCentroCusto ccdb() {
-    return getCentroCusto();
+  private SubLancamento subLancamento(
+      DebitoCredito tipo, LocalDate dt, int cc, String hp, double val) {
+    return new ConstrutorDeSubLancamentoFalso()
+        .tipo(tipo)
+        .conta(cc)
+        .data(dt)
+        .historicoPadrao(HistoricoPadrao.hpOf(hp))
+        .valor(val)
+        .novaInstancia();
   }
 
 }

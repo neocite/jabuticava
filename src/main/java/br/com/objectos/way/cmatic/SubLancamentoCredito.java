@@ -20,7 +20,7 @@ package br.com.objectos.way.cmatic;
  */
 class SubLancamentoCredito extends SubLancamento {
 
-  public SubLancamentoCredito(Construtor construtor) {
+  public SubLancamentoCredito(CMatic construtor) {
     super(construtor);
   }
 

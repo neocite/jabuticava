@@ -15,10 +15,13 @@
  */
 package br.com.objectos.way.cmatic;
 
+import br.com.objectos.comuns.base.Construtor;
+
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class ConstrutorDeHistoricoPadraoFalso implements HistoricoPadrao.Construtor {
+public class ConstrutorDeHistoricoPadraoFalso
+    implements HistoricoPadrao.CMatic, Construtor<HistoricoPadrao> {
 
   private int codigo;
 
@@ -36,7 +39,7 @@ public class ConstrutorDeHistoricoPadraoFalso implements HistoricoPadrao.Constru
 
   @Override
   public HistoricoPadrao novaInstancia() {
-    return HistoricoPadraoPojo.of(this);
+    return HistoricoPadrao.of(this);
   }
 
   @Override

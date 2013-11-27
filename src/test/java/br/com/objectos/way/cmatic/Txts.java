@@ -20,7 +20,9 @@ import java.net.URL;
 import java.util.List;
 
 import com.google.common.base.Charsets;
+import com.google.common.base.Splitter;
 import com.google.common.base.Throwables;
+import com.google.common.collect.ImmutableList;
 import com.google.common.io.Resources;
 
 /**
@@ -29,6 +31,11 @@ import com.google.common.io.Resources;
 class Txts {
 
   private Txts() {
+  }
+
+  public static List<String> split(String txt) {
+    Iterable<String> lines = Splitter.on(WayCMatic.SEPARATOR).split(txt);
+    return ImmutableList.copyOf(lines);
   }
 
   public static String toString(String name) {
