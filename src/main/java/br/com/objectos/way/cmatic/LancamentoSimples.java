@@ -17,7 +17,11 @@ package br.com.objectos.way.cmatic;
 
 import static br.com.objectos.way.cmatic.WayCMatic.toTxtPart;
 
+import java.util.List;
+
 import org.joda.time.LocalDate;
+
+import com.google.common.collect.ImmutableList;
 
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
@@ -65,6 +69,11 @@ public class LancamentoSimples implements IsLancamento {
 
   public static LancamentoSimples of(Construtor construtor) {
     return new LancamentoSimples(construtor);
+  }
+
+  @Override
+  public List<String> toLog() {
+    return ImmutableList.of();
   }
 
   @Override

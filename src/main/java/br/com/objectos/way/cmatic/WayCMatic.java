@@ -19,6 +19,7 @@ import java.util.Locale;
 
 import org.joda.time.LocalDate;
 
+import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
 
 /**
@@ -52,6 +53,10 @@ public class WayCMatic {
 
   public static ConstrutorDePlanoDeContas planoDeContas() {
     return new ConstrutorDePlanoDeContas();
+  }
+
+  static String joinLines(Iterable<String> lines) {
+    return Joiner.on(SEPARATOR).join(lines);
   }
 
   static String toTxtPart(String format, Object val, int limit) {

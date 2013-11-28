@@ -39,7 +39,8 @@ public class LancamentoMM implements IsLancamento {
 
     LocalDate getData();
 
-    double getValor();
+    double getValorDebito();
+    double getValorCredito();
 
     List<SubLancamento> getLancamentos();
 
@@ -49,13 +50,15 @@ public class LancamentoMM implements IsLancamento {
 
   private final int numero;
   private final LocalDate data;
-  private final double valor;
+  private final double valorDebito;
+  private final double valorCredito;
   private final List<SubLancamento> lancamentos;
 
   private LancamentoMM(Construtor construtor) {
     numero = construtor.getNumero();
     data = construtor.getData();
-    valor = construtor.getValor();
+    valorDebito = construtor.getValorDebito();
+    valorCredito = construtor.getValorCredito();
     lancamentos = construtor.getLancamentos();
   }
 
@@ -65,6 +68,20 @@ public class LancamentoMM implements IsLancamento {
 
   static LancamentoMM of(Construtor construtor) {
     return new LancamentoMM(construtor);
+  }
+
+  @Override
+  public List<String> toLog() {
+    List<String> log = ImmutableList.of();
+
+    double diff = valorDebito - valorCredito;
+    if (Math.abs(diff) > 0.01) {
+      String tmpl = "[ERRO] %s: diferença contábil. Débito - Crédito = %.2f";
+      String msg = String.format(tmpl, data.toString("dd/MM/yy"), diff);
+      log = ImmutableList.of(msg);
+    }
+
+    return log;
   }
 
   @Override
@@ -86,7 +103,7 @@ public class LancamentoMM implements IsLancamento {
         .append(data.toString("dd/MM"))
         .append("M      ")
         .append("M      ")
-        .append(toTxtPart("%-17.2f", valor, 17))
+        .append(toTxtPart("%-17.2f", valorDebito, 17))
         .append(HEADER_TRAILER)
         .toString();
   }

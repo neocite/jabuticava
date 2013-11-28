@@ -23,7 +23,6 @@ import org.joda.time.LocalDate;
 
 import br.com.objectos.comuns.base.Construtor;
 
-import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 
 /**
@@ -33,8 +32,8 @@ public class ConstrutorDeLancamentoMM implements LancamentoMM.Construtor, Constr
 
   private final int numero;
   private final LocalDate data;
-  private double valorCredito;
   private double valorDebito;
+  private double valorCredito;
   private final List<SubLancamento> lancamentos = newArrayList();
 
   ConstrutorDeLancamentoMM(int numero, LocalDate data) {
@@ -44,14 +43,12 @@ public class ConstrutorDeLancamentoMM implements LancamentoMM.Construtor, Constr
 
   @Override
   public LancamentoMM novaInstancia() {
-    Preconditions.checkArgument(valorCredito == valorDebito,
-        "Diferença contábil: valores de débito e crédito não são iguais.");
     return LancamentoMM.of(this);
   }
 
   public ConstrutorDeLancamentoMM add(SubLancamento lancamento) {
-    valorCredito += lancamento.getValorCredito();
     valorDebito += lancamento.getValorDebito();
+    valorCredito += lancamento.getValorCredito();
     lancamentos.add(lancamento);
     return this;
   }
@@ -75,7 +72,12 @@ public class ConstrutorDeLancamentoMM implements LancamentoMM.Construtor, Constr
   }
 
   @Override
-  public double getValor() {
+  public double getValorDebito() {
+    return valorDebito;
+  }
+
+  @Override
+  public double getValorCredito() {
     return valorCredito;
   }
 
