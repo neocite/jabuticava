@@ -7,7 +7,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>way-cmatic</artifactId>
 	<name>objectos :: way :: contmatic</name>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.1.0</version>
 	<description>Arquivos de troca para o Contmatic Phoenix (marca registrada)</description>
 	<url>https://github.com/objectos/way-cmatic</url>
 	<licenses>
