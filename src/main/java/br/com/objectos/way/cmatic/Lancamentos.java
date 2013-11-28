@@ -26,7 +26,7 @@ import org.joda.time.LocalDate;
 import br.com.objectos.comuns.base.Strings;
 
 import com.google.common.base.Function;
-import com.google.common.base.Joiner;
+import com.google.common.collect.Iterables;
 
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
@@ -49,6 +49,7 @@ public class Lancamentos {
   private final List<IsLancamento> lancamentos;
 
   private String nome;
+  private String log;
   private String txt;
 
   private Lancamentos(CMatic cmatic) {
@@ -74,12 +75,29 @@ public class Lancamentos {
     return this.nome;
   }
 
+  public String toLog() {
+    if (log == null) {
+      List<List<String>> listzes = transform(lancamentos, ToLog.INSTANCE);
+      Iterable<String> lines = Iterables.concat(listzes);
+      log = WayCMatic.joinLines(lines);
+    }
+    return log;
+  }
+
   public String toTxt() {
     if (txt == null) {
       List<String> lines = transform(lancamentos, ToTxt.INSTANCE);
-      txt = Joiner.on(WayCMatic.SEPARATOR).join(lines);
+      txt = WayCMatic.joinLines(lines);
     }
     return txt;
+  }
+
+  private static enum ToLog implements Function<IsLancamento, List<String>> {
+    INSTANCE;
+    @Override
+    public List<String> apply(IsLancamento input) {
+      return input.toLog();
+    }
   }
 
   private static enum ToTxt implements Function<IsLancamento, String> {

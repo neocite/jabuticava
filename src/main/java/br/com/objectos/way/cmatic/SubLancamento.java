@@ -95,7 +95,7 @@ public abstract class SubLancamento {
   }
 
   String getConta() {
-    return conta.toString();
+    return conta.toLancamentoTxt();
   }
 
   double getValor() {

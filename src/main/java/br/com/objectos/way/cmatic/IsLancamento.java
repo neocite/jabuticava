@@ -15,10 +15,14 @@
  */
 package br.com.objectos.way.cmatic;
 
+import java.util.List;
+
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 interface IsLancamento {
+
+  List<String> toLog();
 
   String toTxt();
 

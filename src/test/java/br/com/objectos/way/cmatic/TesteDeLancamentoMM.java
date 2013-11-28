@@ -17,6 +17,7 @@ package br.com.objectos.way.cmatic;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.startsWith;
 
 import java.util.List;
 
@@ -51,6 +52,30 @@ public class TesteDeLancamentoMM extends TesteDeLancamentoAbstrato {
     List<String> prova = Txts.toLines("/txt/mm01.txt");
 
     assertThat(res, equalTo(prova));
+
+    List<String> log = mm.toLog();
+    assertThat(log.size(), equalTo(0));
+  }
+
+  public void log() {
+    int numero = 243;
+    LocalDate dt = new LocalDate(2013, 2, 24);
+
+    SubLancamento sub01 = novoDeb(dt, 143, 6.24, "DESP SUST CART TIT 7671 1/1");
+    SubLancamento sub03 = novoCrd(dt, 3, 6.24, "DESP SUST CART DIVERSOS");
+    SubLancamento sub04 = novoCrd(dt, 24, 3253.20, "LIQ P/ SAC TIT 007461A");
+
+    LancamentoMM mm = WayCMatic.multiploMultiplo(numero, dt)
+        .add(sub01)
+        .add(sub03)
+        .add(sub04)
+        .novaInstancia();
+
+    List<String> res = mm.toLog();
+    assertThat(res.size(), equalTo(1));
+
+    String r0 = res.get(0);
+    assertThat(r0, startsWith("[ERRO]"));
   }
 
 }

@@ -50,6 +50,16 @@ public class ContaReduzida {
     return intValue;
   }
 
+  String toLancamentoTxt() {
+    String res = "       ";
+
+    if (!isZero()) {
+      res = String.format("%07d", intValue);
+    }
+
+    return res;
+  }
+
   @Override
   public String toString() {
     String res = "";
