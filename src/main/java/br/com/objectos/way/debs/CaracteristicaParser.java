@@ -1,15 +1,24 @@
 /*
- * Parser.java criado em 24/04/2013
- * 
- * Propriedade de Objectos Fábrica de Software LTDA.
- * Reprodução parcial ou total proibida.
+ * Copyright 2013 Objectos, Fábrica de Software LTDA.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
-package br.com.objectos.way.debs.emissao;
+package br.com.objectos.way.debs;
 
-import static br.com.objectos.way.debs.emissao.CaracteristicaSpec.DATA_SAIDA;
-import static br.com.objectos.way.debs.emissao.CaracteristicaSpec.DATA_VENCIMENTO;
-import static br.com.objectos.way.debs.emissao.CaracteristicaSpec.EMISSAO;
-import static br.com.objectos.way.debs.emissao.CaracteristicaSpec.SERIE;
+import static br.com.objectos.way.debs.CaracteristicaSpec.DATA_SAIDA;
+import static br.com.objectos.way.debs.CaracteristicaSpec.DATA_VENCIMENTO;
+import static br.com.objectos.way.debs.CaracteristicaSpec.EMISSAO;
+import static br.com.objectos.way.debs.CaracteristicaSpec.SERIE;
 
 import org.joda.time.LocalDate;
 
@@ -62,9 +71,10 @@ class CaracteristicaParser {
     Iterable<Record> registros;
     registros = Iterables.transform(lines, new ToRecord());
 
-    registros = Iterables.filter(registros, Predicates.notNull());
+    Iterable<Record> naoNulos;
+    naoNulos = Iterables.filter(registros, Predicates.notNull());
 
-    return new Caracteristica(data, registros);
+    return new Caracteristica(data, naoNulos);
   }
 
   private static class ToRecord implements Function<Line, Record> {
