@@ -6,7 +6,7 @@
 		<version>1.0</version>
 	</parent>
 	<artifactId>way-debs</artifactId>
-	<version>1.2-SNAPSHOT</version>
+	<version>1.2.0-SNAPSHOT</version>
 	<name>objectos :: way :: debentures.com.br</name>
 	<description>Extrai e trata informações do site debenture.com.br</description>
 	<url>https://github.com/objectos/way-debs</url>
@@ -30,18 +30,18 @@
 		</developer>
 	</developers>
 	<properties>
-		<way.io.version>1.0</way.io.version>
+		<br.com.objectos.way-io.version>1.2</br.com.objectos.way-io.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>br.com.objectos</groupId>
 			<artifactId>way-io</artifactId>
-			<version>${way.io.version}</version>
+			<version>${br.com.objectos.way-io.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>br.com.objectos</groupId>
 			<artifactId>way-io</artifactId>
-			<version>${way.io.version}</version>
+			<version>${br.com.objectos.way-io.version}</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
