@@ -43,11 +43,14 @@ class CaracteristicaParser {
 
   private static final RecordSpec spec = new CaracteristicaSpec();
 
+  private final String text;
+
   private final LocalDate data;
 
   private final CsvFile file;
 
-  public CaracteristicaParser(LocalDate data, CsvFile file) {
+  public CaracteristicaParser(String text, LocalDate data, CsvFile file) {
+    this.text = text;
     this.data = data;
     this.file = file;
   }
@@ -74,7 +77,7 @@ class CaracteristicaParser {
     Iterable<Record> naoNulos;
     naoNulos = Iterables.filter(registros, Predicates.notNull());
 
-    return new Caracteristica(data, naoNulos);
+    return new Caracteristica(text, data, naoNulos);
   }
 
   private static class ToRecord implements Function<Line, Record> {
