@@ -4,7 +4,17 @@ Biblioteca Java (&trade;) para extrair e tratar informações do site debenture.
 
 ## Can haz code?
 
-TBD
+### Características das debêntures
+
+```java
+Caracteristica caracteristica = Caracteristica.wget(); // download do site debenture.com.br
+List<Record> registros = caracteristica.getRegistros();
+for (Record registro : registros) {
+   String codigo = registro.get(Caracteristica.keys().codigo());
+   String serie = registro.get(Caracteristica.keys().serie());
+   // etc...
+}
+```
 
 ## Maven
 

@@ -1,10 +1,19 @@
 /*
- * CaracteristicaSpec.java criado em 24/04/2013
- * 
- * Propriedade de Objectos Fábrica de Software LTDA.
- * Reprodução parcial ou total proibida.
+ * Copyright 2013 Objectos, Fábrica de Software LTDA.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
-package br.com.objectos.way.debs.emissao;
+package br.com.objectos.way.debs;
 
 import org.joda.time.LocalDate;
 
@@ -15,7 +24,7 @@ import br.com.objectos.way.io.LineKey;
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
-public class CaracteristicaSpec extends AbstractLineSpec implements CaracteristicaKeys {
+class CaracteristicaSpec extends AbstractLineSpec implements CaracteristicaKeys {
 
   static final ColumnKey<LocalDate> DATA_VENCIMENTO =
       ColumnKey.of(LocalDate.class, "dataVencimento");
@@ -51,7 +60,7 @@ public class CaracteristicaSpec extends AbstractLineSpec implements Caracteristi
   private final LineKey<Double> valorNominalAtual;
   private final LineKey<String> indice;
 
-  public CaracteristicaSpec() {
+  CaracteristicaSpec() {
     codigo = id("Código do Ativo")
         .get(String.class);
 

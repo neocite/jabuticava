@@ -32,6 +32,17 @@
 	<properties>
 		<br.com.objectos.way-io.version>1.2</br.com.objectos.way-io.version>
 	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<excludedGroups>manual</excludedGroups>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	<dependencies>
 		<dependency>
 			<groupId>br.com.objectos</groupId>
