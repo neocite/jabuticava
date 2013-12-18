@@ -15,6 +15,7 @@
  */
 package br.com.objectos.way.debs;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
@@ -27,6 +28,7 @@ import br.com.objectos.way.io.Record;
 import com.google.common.base.Charsets;
 import com.google.common.collect.ImmutableList;
 import com.google.common.io.CharStreams;
+import com.google.common.io.Files;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
@@ -41,11 +43,14 @@ public class Caracteristica {
 
   static final Charset CHARSET = Charsets.ISO_8859_1;
 
+  private final String text;
+
   private final LocalDate data;
 
   private final List<Record> registros;
 
-  Caracteristica(LocalDate data, Iterable<Record> registros) {
+  Caracteristica(String text, LocalDate data, Iterable<Record> registros) {
+    this.text = text;
     this.data = data;
     this.registros = ImmutableList.copyOf(registros);
   }
@@ -60,16 +65,32 @@ public class Caracteristica {
     }
   }
 
-  static Caracteristica parseString(String text) {
+  public static Caracteristica parse(File file) {
+    try {
+      String text = Files.toString(file, CHARSET);
+      return parseString(text);
+    } catch (IOException e) {
+      return Caracteristica.vazio();
+    }
+  }
+
+  public static Caracteristica parseString(String text) {
     LocalDate data = new DataParser(text).get();
     CsvFile csvFile = CsvFile.parseString(text);
-    return new CaracteristicaParser(data, csvFile).get();
+    return new CaracteristicaParser(text, data, csvFile).get();
   }
 
   static Caracteristica vazio() {
     LocalDate data = new LocalDate();
     List<Record> registros = ImmutableList.of();
-    return new Caracteristica(data, registros);
+    return new Caracteristica("", data, registros);
+  }
+
+  public void writeTo(File file) {
+    try {
+      Files.write(text, file, CHARSET);
+    } catch (IOException e) {
+    }
   }
 
   public static CaracteristicaKeys keys() {
@@ -82,6 +103,11 @@ public class Caracteristica {
 
   public List<Record> getRegistros() {
     return registros;
+  }
+
+  @Override
+  public String toString() {
+    return text;
   }
 
 }
