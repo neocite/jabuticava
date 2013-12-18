@@ -8,6 +8,8 @@ package br.com.objectos.way.debs.emissao;
 
 import static br.com.objectos.way.debs.emissao.CaracteristicaSpec.DATA_SAIDA;
 import static br.com.objectos.way.debs.emissao.CaracteristicaSpec.DATA_VENCIMENTO;
+import static br.com.objectos.way.debs.emissao.CaracteristicaSpec.EMISSAO;
+import static br.com.objectos.way.debs.emissao.CaracteristicaSpec.SERIE;
 
 import org.joda.time.LocalDate;
 
@@ -53,6 +55,8 @@ class CaracteristicaParser {
         .withConverter(LocalDate.class, new LocalDateCsvConverter("dd/MM/yyyy"))
         .withConverter(DATA_VENCIMENTO, new DataVencimento())
         .withConverter(DATA_SAIDA, new DataOpcional())
+        .withConverter(SERIE, SerieConverter.INSTANCE)
+        .withConverter(EMISSAO, EmissaoConverter.INSTANCE)
         .getLines();
 
     Iterable<Record> registros;

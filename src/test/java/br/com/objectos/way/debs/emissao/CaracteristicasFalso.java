@@ -18,6 +18,9 @@ public class CaracteristicasFalso {
   public static final File CARACTERISTICAS_20130424 =
       gunzip(CaracteristicasFalso.class, "/caracteristicas_e.asp.gz");
 
+  public static final File CARACTERISTICAS_20131206 =
+      gunzip(CaracteristicasFalso.class, "/caracteristicas_20131206.asp.gz");
+
   private CaracteristicasFalso() {
   }
 

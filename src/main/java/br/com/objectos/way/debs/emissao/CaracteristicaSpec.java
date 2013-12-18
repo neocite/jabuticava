@@ -21,6 +21,10 @@ public class CaracteristicaSpec extends AbstractLineSpec implements Caracteristi
       ColumnKey.of(LocalDate.class, "dataVencimento");
   static final ColumnKey<LocalDate> DATA_SAIDA =
       ColumnKey.of(LocalDate.class, "dataSaida");
+  static final ColumnKey<String> SERIE =
+      ColumnKey.of(String.class, "serie");
+  static final ColumnKey<Integer> EMISSAO =
+      ColumnKey.of(Integer.class, "emissao");
 
   private final LineKey<String> codigo;
   private final LineKey<String> empresa;
@@ -55,10 +59,10 @@ public class CaracteristicaSpec extends AbstractLineSpec implements Caracteristi
         .get(String.class);
 
     serie = id("Série")
-        .get(String.class);
+        .get(SERIE);
 
     emissao = id("Emissão")
-        .get(Integer.class);
+        .get(EMISSAO);
 
     id("IPO").get(String.class);
 
