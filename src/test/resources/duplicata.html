@@ -2,32 +2,28 @@
   <div class="dup dup-hd0">
     <div class="col col00">
       <div class="mwrap">
-        {{#cedente}}
         <div class="cwrap">
-          <h1>{{nome}}</h1>
-          <span class="dup-field">Tel. {{telefone}}</span>
-          <span class="dup-field">{{site}}</span>
+          <h1>Meu Nome Fantasia</h1>
+          <span class="dup-field">Tel. 11 3333-3333</span>
+          <span class="dup-field">www.meusite.com.br</span>
         </div>
-        {{/cedente}}
       </div>
     </div>
     <div class="col col01">
-      {{#cedente}}
       <div class="dup-cep">
         <span class="dup-label">CEP: </span>
-        <span class="dup-field">{{cep}}</span>
+        <span class="dup-field">04512-012</span>
       </div>
       <div class="cwrap">
         <span class="dup-label">Razão Social: </span>
-        <span class="dup-field">{{razaoSocial}}</span>
+        <span class="dup-field">Minha razão social</span>
         <span class="dup-label">CNPJ: </span>
-        <span class="dup-field">{{cadastroRFB}}</span>
+        <span class="dup-field">13.674.724/0001-62</span>
         <span class="dup-label">Endereço: </span>
-        <span class="dup-field">{{endereco}} - {{bairro}}</span>
+        <span class="dup-field">Rua x csdfdf - Centro</span>
         <span class="dup-label">Município / UF: </span>
-        <span class="dup-field">{{cidade}} - {{estado}}</span>
+        <span class="dup-field">São Paulo - SP</span>
       </div>
-      {{/cedente}}
     </div>
   </div>
 
@@ -35,7 +31,6 @@
     <div class="col col00">
       <div class="mwrap">
         <div class="cwrap">
-          {{#fatura}}
           <h4>Fatura</h4>
           <table class="dup-table">
             <thead>
@@ -47,20 +42,18 @@
             </thead>
             <tbody>
               <tr>
-                <td>{{numero}}</td>
-                <td>{{valor.text}}</td>                  
-                <td>{{emissao}}</td>                  
+                <td>122</td>
+                <td>R$ 1.000,00</td>                  
+                <td>01/02/2012</td>                  
               </tr>
             </tbody>
           </table>
-          {{/fatura}}
         </div>
       </div>
     </div>
     <div class="col col01">
       <div class="mwrap">
         <div class="cwrap">
-          {{#titulo}}
           <h4>Duplicata</h4>
           <table class="dup-table">
             <thead>
@@ -72,13 +65,12 @@
             </thead>
             <tbody>
               <tr>
-                <td>{{numero}}</td>
-                <td>{{valor.text}}</td>                  
-                <td>{{vencimento}}</td>                  
+                <td>122A</td>
+                <td>R$ 500,00</td>                  
+                <td>01/02/2012</td>                  
               </tr>
             </tbody>
           </table>
-          {{/titulo}}
        </div>
       </div>
     </div>
@@ -102,7 +94,7 @@
       <div class="dup dup-bd01">
         <div class="mwrap">
           <div class="cwrap">
-            <span class="dup-field">{{cedente.razaoSocial}}</span>
+            <span class="dup-field">Minha razão social</span>
           </div>
         </div>
       </div>          
@@ -110,28 +102,26 @@
     <div class="col col-rt">
       <div class="cwrap">
         <div class="dup dup-bd00">
-          {{#sacado}}
           <h4>Sacado/Devedor</h4>
           <div class="cwrap">
             <span class="dup-label">Razão Social: </span>
-            <span class="dup-field">{{nome}}</span>
+            <span class="dup-field">Empresa LTDA&nbsp;</span>
             <span class="dup-label">CPF/CNPJ: </span>          
-            <span class="dup-field">{{cadastroRFB}}</span>
+            <span class="dup-field">57.336.483/0001-17&nbsp;</span>
             <span class="dup-label">Endereço: </span>          
-            <span class="dup-field">{{endereco}} - {{bairro}}</span>          
+            <span class="dup-field">Rua com número, 2150 - Paraíso</span>          
             <span class="dup-label">Município / UF: </span>          
-            <span class="dup-field">{{cidade}} / {{estado}}</span>          
+            <span class="dup-field">São Paulo / SP</span>          
             <span class="dup-label">CEP: </span>          
-            <span class="dup-field">{{cep}}</span>          
+            <span class="dup-field">01254-012&nbsp;</span>          
             <span class="dup-label">Praça de pagamento: </span>
             <span class="dup-field">a mesma</span> 
-          {{/sacado}}
           </div>
         </div>
         <div class="dup dup-bd01">
           <div class="cwrap">
             <span class="dup-label">Valor por extenso </span>             
-            <span class="dup-field">{{titulo.valor.extenso}}&nbsp;</span>              
+            <span class="dup-field">quinhentos reais&nbsp;</span>              
           </div>
         </div>
         <div class="dup dup-bd02">
@@ -139,9 +129,9 @@
             <div class="cpadd">
               <p>
               Reconheço(emos) a exatidão desta DUPLICATA de
-              <span class="dup-field">{{tipo}}</span>
+              <span class="dup-field">Venda Mercantil</span>
               na importância acima que pagarei(emos) à 
-              <span class="dup-field">{{cedente.razaoSocial}}</span>
+              <span class="dup-field">Minha razão social</span>
               ou a sua ordem, na praça e vencimentos acima indicados.
               </p>
               
@@ -154,9 +144,9 @@
                   </tr>
                   <tr>
                     <td class="td0"></td>
-                    <td class="td1">Data do aceite</td>
+                    <td class="td1">&nbsp;</td>
                     <td class="td2 ass">
-                      <span class="dup-field">{{sacado.nome}}</span>
+                      <span class="dup-field">Empresa LTDA</span>
                     </td>
                   </tr>
                 </tbody>
