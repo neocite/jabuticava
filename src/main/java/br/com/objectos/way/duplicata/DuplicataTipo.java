@@ -13,7 +13,9 @@ public enum DuplicataTipo {
 
   MERCANTIL("Venda Mercantil"),
 
-  SERVICO("Prestação de Serviços");
+  SERVICO("Prestação de Serviços"),
+
+  OU("Venda Mercantil ou Prestação de Serviços");
 
   private final String descricao;
 
