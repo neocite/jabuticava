@@ -1,31 +1,23 @@
 # objectos :: way :: cnab
-## Processamento de arquivos CNAB em Java(tm)
 
-objectos way-cnab ([www.objectos.com.br](http://www.objectos.com.br)) 
-é uma implementação em Java(tm) da especificação CNAB400 da Febrabran.
-
-Filosofias principais:
-
-- fácil de usar: fluent interfaces
-- type safety
-- fácil de extender
+Arquivos de retorno e remessa (CNAB / Febraban) para Java (&trade;). Simples.
 
 ## Bancos
+
+objectos way-cnab implementa o padrão CNAB 400 da Febrabran para os seguintes bancos:
 
 - Bradesco
 - Itaú
 
-## Como usar
-
-Estão implementados tanto o arquivo de retorno, como o arquivo de remessa.
+## Can Haz Code?
 
 ### Retorno
 
-A utilização é razoavelmente simples:
+A utilização é bem simples:
 
 ```java
 File file = // abrir um retorno BRADESCO, por exemplo.
-ArquivoRetorno retorno = Cnab.retornoDe(file);
+Retorno retorno = WayCnab.retornoDe(file);
 
 List<Lote> lotes = retorno.getLotes();
 for (Lote lote : lotes) {
@@ -34,14 +26,36 @@ for (Lote lote : lotes) {
 }
 ```
 
-## Notas
+## Maven
 
-- A implementação está longe de completa. 
+way-cnab está na central Maven.
 
-## Licença de uso
+```xml
+<dependency>
+    <groupId>br.com.objectos</groupId>
+    <artifactId>way-cnab</artifactId>
+    <version>x.y.z</version>
+</dependency>
+```
 
-Copyright 2012 objectos, fábrica de software LTDA
+## Versões
 
-Distributed under the Apache License, Version 2.0
+Estamos trabalhando para atender a especificação SemVer.
 
-http://www.apache.org/licenses/LICENSE-2.0 
+Até o lançamento da versão 2.0.0, a API poderá mudar bastante...
+
+# Licença de uso
+
+Copyright 2012 [objectos, fábrica de software LTDA](http://www.objectos.com.br)
+
+Licensed under the Apache License, Version 2.0 (the "License"); 
+you may not use this file except in compliance with the License. 
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, 
+software distributed under the License is distributed on an "AS IS" BASIS, 
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+See the License for the specific language governing permissions 
+and limitations under the License.
