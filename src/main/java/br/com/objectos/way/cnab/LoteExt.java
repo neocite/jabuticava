@@ -36,6 +36,8 @@ public interface LoteExt extends Lote {
 
   LocalDate getDataOcorrencia();
 
+  LocalDate getDataCredito();
+
   double getValorNominal();
 
   double getValorRecebido();

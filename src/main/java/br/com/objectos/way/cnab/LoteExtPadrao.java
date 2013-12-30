@@ -124,6 +124,11 @@ class LoteExtPadrao implements LoteExt {
   }
 
   @Override
+  public LocalDate getDataCredito() {
+    return lote.get(lote().dataDeCredito());
+  }
+
+  @Override
   public double getValorNominal() {
     Double val = lote.get(lote().valorTitulo());
     return val.doubleValue();
