@@ -107,6 +107,8 @@ class ItauOcorrencia extends OcorrenciaCodigoPadrao {
       return OcorrenciaTipo.ENTRADA_REJEITADA;
     case 6:
       return OcorrenciaTipo.LIQUIDACAO_NORMAL;
+    case 8:
+      return OcorrenciaTipo.LIQUIDACAO_CARTORIO;
     case 12:
       return OcorrenciaTipo.ABATIMENTO_CONCEDIDO;
     case 13:
