@@ -72,6 +72,8 @@ class BradescoOcorrencia extends OcorrenciaCodigoPadrao {
       return OcorrenciaTipo.ABATIMENTO_CANCELADO;
     case 14:
       return OcorrenciaTipo.VENCIMENTO_ALTERADO;
+    case 15:
+      return OcorrenciaTipo.LIQUIDACAO_CARTORIO;
     case 19:
       return OcorrenciaTipo.PROTESTO_CONFIRMADO;
     case 33:
