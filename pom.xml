@@ -2,7 +2,7 @@
 	<parent>
 		<groupId>br.com.objectos</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.0</version>
+		<version>9</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>way-boleto</artifactId>
@@ -30,32 +30,22 @@
 			<email>marcio.endo@objectos.com.br</email>
 		</developer>
 	</developers>
-	<properties>
-		<br.com.objectos.way-barcode.version>0.1.0</br.com.objectos.way-barcode.version>
-		<br.com.objectos.way-base.version>1.5</br.com.objectos.way-base.version>
-		<mustache.java.version>0.8.12</mustache.java.version>
-		<org.lesscss.version>1.3.3</org.lesscss.version>
-	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>br.com.objectos</groupId>
 			<artifactId>way-barcode</artifactId>
-			<version>${br.com.objectos.way-barcode.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>br.com.objectos</groupId>
 			<artifactId>way-base</artifactId>
-			<version>${br.com.objectos.way-base.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.spullara.mustache.java</groupId>
 			<artifactId>compiler</artifactId>
-			<version>${mustache.java.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.lesscss</groupId>
 			<artifactId>lesscss</artifactId>
-			<version>${org.lesscss.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>commons-logging</groupId>

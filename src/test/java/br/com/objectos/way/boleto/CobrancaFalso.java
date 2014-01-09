@@ -29,7 +29,7 @@ class CobrancaFalso implements BoletoCobranca {
 
   @Override
   public String getNossoNumero() {
-    return "5252528";
+    return "5252528-0";
   }
 
   @Override
