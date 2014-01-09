@@ -24,6 +24,7 @@ public class TesteDeNumeroBancario {
 
     assertThat(res.longValue(), equalTo(123l));
     assertThat(res.getDigito(), equalTo('4'));
+    assertThat(res.getDigitoValue(), equalTo(4));
   }
 
   public void numero_sem_digito() {
@@ -33,6 +34,7 @@ public class TesteDeNumeroBancario {
 
     assertThat(res.longValue(), equalTo(789l));
     assertThat(res.getDigito(), equalTo((char) 0));
+    assertThat(res.getDigitoValue(), equalTo(-1));
   }
 
   @Test(expectedExceptions = IllegalArgumentException.class)

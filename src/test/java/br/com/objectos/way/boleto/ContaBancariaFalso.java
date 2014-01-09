@@ -28,7 +28,7 @@ class ContaBancariaFalso implements BoletoContaBancaria {
 
   @Override
   public String getNumero() {
-    return "1234";
+    return "1234-5";
   }
 
 }

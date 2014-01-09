@@ -26,6 +26,8 @@ class NumeroBancario implements HasIntValue, HasLongValue {
 
   private final char digito;
 
+  private final int digitoValue;
+
   NumeroBancario(String numero) {
     Matcher matcher = pattern.matcher(numero);
     Preconditions.checkArgument(matcher.matches());
@@ -35,6 +37,8 @@ class NumeroBancario implements HasIntValue, HasLongValue {
 
     String _digito = matcher.group(3);
     this.digito = Strings.isNullOrEmpty(_digito) ? 0 : _digito.charAt(0);
+
+    this.digitoValue = Character.getNumericValue(digito);
   }
 
   @Override
@@ -48,6 +52,10 @@ class NumeroBancario implements HasIntValue, HasLongValue {
 
   public char getDigito() {
     return digito;
+  }
+
+  public int getDigitoValue() {
+    return digitoValue;
   }
 
 }

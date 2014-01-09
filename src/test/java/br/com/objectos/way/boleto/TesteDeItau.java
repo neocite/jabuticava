@@ -47,7 +47,7 @@ public class TesteDeItau {
   }
 
   public void codigo_barras() {
-    String prova = "34195250000000340001120000105090123001232000";
+    String prova = "34192250000000340001120000105080123001234000";
 
     CodigoDeBarras res = banco.codigoDeBarrasDe(boleto);
 
@@ -55,7 +55,7 @@ public class TesteDeItau {
   }
 
   public void linha_digitavel() {
-    String prova = "34191.12002 00105.090120 30012.320005 5 25000000034000";
+    String prova = "34191.12002 00105.080121 30012.340003 2 25000000034000";
 
     CodigoDeBarras codigo = banco.codigoDeBarrasDe(boleto);
     LinhaDigitavel res = codigo.toLinhaDigitavel();
@@ -128,7 +128,7 @@ public class TesteDeItau {
 
     @Override
     public String getNossoNumero() {
-      return "00001050";
+      return "00001050-8";
     }
 
     @Override
