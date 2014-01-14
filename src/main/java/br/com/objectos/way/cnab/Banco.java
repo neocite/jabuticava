@@ -15,6 +15,7 @@
  */
 package br.com.objectos.way.cnab;
 
+import static br.com.objectos.way.cnab.WayCnab.lote;
 import static com.google.common.collect.Lists.transform;
 import static com.google.common.collect.Maps.newHashMap;
 
@@ -54,6 +55,13 @@ public enum Banco implements InstrucaoSet, OcorrenciaSpecSet {
   },
 
   ITAU(341, Itau.banco, Itau.ocorrenciaParser) {
+    @Override
+    String getNumeroCobranca(Lote lote) {
+      String numero = lote.get(Itau.lote().nossoNumero());
+      Integer dac = lote.get(Itau.lote().dacNossoNumero2());
+      return String.format("%s%d", numero, dac.intValue());
+    }
+
     @Override
     RemessaBuilder newRemessaBuilder() {
       return new ItauRemessaBuilder(this);
@@ -165,6 +173,10 @@ public enum Banco implements InstrucaoSet, OcorrenciaSpecSet {
     }
 
     return evento;
+  }
+
+  String getNumeroCobranca(Lote lote) {
+    return lote.get(lote().nossoNumero());
   }
 
   abstract RemessaBuilder newRemessaBuilder();

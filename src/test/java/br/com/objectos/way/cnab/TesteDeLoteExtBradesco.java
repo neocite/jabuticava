@@ -19,10 +19,8 @@ import static com.google.common.collect.Lists.transform;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-import java.io.File;
 import java.util.List;
 
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.google.common.base.Function;
@@ -32,19 +30,14 @@ import com.google.common.collect.ImmutableList;
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 @Test
-public class TesteDeBradescoOcorrenciaParserIntegracao {
+public class TesteDeLoteExtBradesco extends TesteDeLoteExtAbstrato {
 
-  private List<Ocorrencia> ocorrencias;
-
-  @BeforeClass
-  public void prepararOcorrencias() {
-    File file = CnabsFalso.RETORNO_237_01.getFile();
-    List<LoteExt> lotes = WayCnab.retornoDe(file).getLotesExt();
-    ocorrencias = transform(lotes, new ToOcorrencia());
-    assertThat(ocorrencias.size(), equalTo(32));
+  @Override
+  MiniCnab cnab() {
+    return CnabsFalso.RETORNO_237_01;
   }
 
-  public void codigos() {
+  public void ocorrencias() {
     List<String> prova = ImmutableList.<String> builder()
         .add("06:Liquidação normal")
         .add("06:Liquidação normal")
@@ -80,16 +73,11 @@ public class TesteDeBradescoOcorrenciaParserIntegracao {
         .add("02:Entrada Confirmada")
         .build();
 
+    List<Ocorrencia> ocorrencias = lotesTo(LoteExtToOcorrencia.INSTANCE);
     List<String> res = transform(ocorrencias, new ToCodigo());
 
+    assertThat(res.size(), equalTo(32));
     assertThat(res, equalTo(prova));
-  }
-
-  private static class ToOcorrencia implements Function<LoteExt, Ocorrencia> {
-    @Override
-    public Ocorrencia apply(LoteExt input) {
-      return input.get(WayCnab.lote().ocorrencia());
-    }
   }
 
   private static class ToCodigo implements Function<Ocorrencia, String> {
