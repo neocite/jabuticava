@@ -6,33 +6,41 @@
  */
 package br.com.objectos.way.boleto;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import br.com.objectos.way.base.HasLongValue;
-
-import com.google.common.base.Preconditions;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
 class NossoNumero implements HasLongValue {
 
-  private static final Pattern pattern = Pattern.compile("[0-9]+[A-Za-z]?$");
-
   private final long numero;
 
   private final char digito;
 
-  NossoNumero(String numero) {
-    Matcher matcher = pattern.matcher(numero);
-    Preconditions.checkArgument(matcher.matches());
+  private final int digitoValue;
 
-    int length = numero.length();
-    String _numero = numero.substring(0, length - 1);
-    this.numero = Long.parseLong(_numero);
+  private NossoNumero(long numero, char digito) {
+    this.numero = numero;
+    this.digito = digito;
+    this.digitoValue = Character.getNumericValue(digito);
+  }
 
-    this.digito = numero.charAt(length - 1);
+  public static NossoNumero parseString(String text) {
+    long numero = 0;
+    char digito = 0;
+
+    String source = text.replaceAll("[^0-9]", "");
+    int length = source.length();
+    if (length > 0) {
+      String _numero = source.substring(0, length - 1);
+      numero = Long.parseLong(_numero);
+
+      if (length > 1) {
+        digito = source.charAt(length - 1);
+      }
+    }
+
+    return new NossoNumero(numero, digito);
   }
 
   @Override
@@ -42,6 +50,10 @@ class NossoNumero implements HasLongValue {
 
   public char getDigito() {
     return digito;
+  }
+
+  public int getDigitoValue() {
+    return digitoValue;
   }
 
 }
