@@ -33,12 +33,15 @@ class LoteExtPadrao implements LoteExt {
 
   final Lote lote;
 
+  final Banco banco;
+
   final OcorrenciaCodigo ocorrencia;
 
   final Motivo motivo;
 
   LoteExtPadrao(Lote lote, OcorrenciaEvento evento) {
     this.lote = lote;
+    this.banco = lote.getBanco();
     this.ocorrencia = evento.getOcorrencia();
     this.motivo = evento.getMotivo();
   }
@@ -80,7 +83,7 @@ class LoteExtPadrao implements LoteExt {
 
   @Override
   public Banco getBanco() {
-    return lote.getBanco();
+    return banco;
   }
 
   @Override
@@ -105,7 +108,7 @@ class LoteExtPadrao implements LoteExt {
 
   @Override
   public String getNumeroCobranca() {
-    return lote.get(lote().nossoNumero());
+    return banco.getNumeroCobranca(lote);
   }
 
   @Override
