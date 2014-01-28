@@ -101,7 +101,7 @@ public class TesteDeLoteRemessaItau {
 
   public void instrucao_alegacao() {
     CnabKey<ItauLoteRemessa, Integer> col = loteRemessa().instrucaoCancelada();
-    int valor = 0; // N
+    int valor = 1; // N
     writeAndAssert(col, valor);
   }
 

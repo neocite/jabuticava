@@ -221,7 +221,7 @@ class ItauLoteRemessaSpec extends AbstractRemessaSpec<ItauLoteRemessa> implement
 
     sacadoBairro = id("Bairro sacado")
 
-        .at(315, 326).colunaAlfanumerica().toKey();
+        .at(315, 326).colunaAlfanumerica().opcional().toKey();
 
     sacadoCep = id("CEP sacado")
 
