@@ -10,8 +10,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import br.com.objectos.comuns.base.br.Cnpj;
-import br.com.objectos.comuns.base.br.ExcecaoDeCnpjInvalido;
+import br.com.objectos.way.base.br.Cnpj;
+import br.com.objectos.way.base.br.ExcecaoDeCnpjInvalido;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

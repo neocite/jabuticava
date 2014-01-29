@@ -6,7 +6,7 @@
  */
 package br.com.objectos.way.bvmf.fi.fii;
 
-import br.com.objectos.comuns.base.br.Cnpj;
+import br.com.objectos.way.base.br.Cnpj;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
