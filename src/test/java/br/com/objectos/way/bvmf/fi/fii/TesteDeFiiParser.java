@@ -14,7 +14,7 @@ import org.jsoup.nodes.Document;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import br.com.objectos.comuns.base.br.Cnpj;
+import br.com.objectos.way.base.br.Cnpj;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

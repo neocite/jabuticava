@@ -13,13 +13,14 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import br.com.objectos.way.base.util.concurrent.WayExecutors;
 
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
@@ -38,8 +39,7 @@ class FiiWgetGuice implements FiiWget {
 
   @Inject
   public FiiWgetGuice(FiiUrl url) {
-    int cpus = Runtime.getRuntime().availableProcessors();
-    this.executor = Executors.newFixedThreadPool(cpus * 4);
+    this.executor = WayExecutors.newCoreSizedNamed(4, "fii-wget");
     this.url = url;
   }
 
