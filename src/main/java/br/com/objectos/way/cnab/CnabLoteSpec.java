@@ -31,7 +31,7 @@ class CnabLoteSpec extends AbstractSpec implements CnabLote {
       .id("No. Inscriação da Emprea").at(3, 17).get(Long.class);
 
   private final CnabKey<CnabLote, String> USO_EMPRESA = cnabKey()
-      .id("Uso da Empresa").at(37, 62).get(String.class);
+      .id("Uso da Empresa").at(37, 62).getWithDefaultValue(String.class, "");
 
   private final CnabKey<CnabLote, String> NOSSO_NUMERO = cnabKey()
       .id("Nosso Número").at(70, 82).get(String.class);

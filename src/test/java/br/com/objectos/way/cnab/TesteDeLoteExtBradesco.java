@@ -15,9 +15,9 @@
  */
 package br.com.objectos.way.cnab;
 
+import static br.com.objectos.way.base.testing.WayMatchers.equalTo;
 import static com.google.common.collect.Lists.transform;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
 
 import java.util.List;
 
@@ -71,12 +71,13 @@ public class TesteDeLoteExtBradesco extends TesteDeLoteExtAbstrato {
         .add("33:Confirmação Pedido Alteração Outros Dados")
         .add("33:Confirmação Pedido Alteração Outros Dados")
         .add("02:Entrada Confirmada")
+        .add("30:Alteração de Outros Dados Rejeitados")
         .build();
 
     List<Ocorrencia> ocorrencias = lotesTo(LoteExtToOcorrencia.INSTANCE);
     List<String> res = transform(ocorrencias, new ToCodigo());
 
-    assertThat(res.size(), equalTo(32));
+    assertThat(res.size(), equalTo(33));
     assertThat(res, equalTo(prova));
   }
 

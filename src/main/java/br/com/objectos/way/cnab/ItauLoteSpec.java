@@ -39,9 +39,6 @@ class ItauLoteSpec extends CnabLoteSpec implements ItauLote {
   private final CnabKey<ItauLote, Integer> DAC_CONTA = key()
       .id("DAC Conta").at(28, 29).get(Integer.class);
 
-  private final CnabKey<CnabLote, String> USO_EMPRESA = reconf(super.usoDaEmpresa())
-      .withDefaultValue("");
-
   private final CnabKey<CnabLote, String> NOSSO_NUMERO = reconf(super.nossoNumero())
       .moveTo(62, 70);
 
@@ -145,11 +142,6 @@ class ItauLoteSpec extends CnabLoteSpec implements ItauLote {
   @Override
   public CnabKey<ItauLote, Integer> dacConta() {
     return DAC_CONTA;
-  }
-
-  @Override
-  public CnabKey<CnabLote, String> usoDaEmpresa() {
-    return USO_EMPRESA;
   }
 
   @Override

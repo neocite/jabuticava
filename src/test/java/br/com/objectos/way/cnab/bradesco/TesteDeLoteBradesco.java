@@ -27,11 +27,11 @@ import org.joda.time.LocalDate;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import br.com.objectos.way.cnab.WayCnab;
 import br.com.objectos.way.cnab.CnabsFalso;
 import br.com.objectos.way.cnab.Codigo;
 import br.com.objectos.way.cnab.Lote;
 import br.com.objectos.way.cnab.LoteToCnabKey;
+import br.com.objectos.way.cnab.WayCnab;
 
 import com.google.common.base.Function;
 
@@ -48,7 +48,7 @@ public class TesteDeLoteBradesco {
     File file = CnabsFalso.RETORNO_237_01.getFile();
     lotes = WayCnab.retornoDe(file).getLotes();
 
-    assertThat(lotes.size(), equalTo(32));
+    assertThat(lotes.size(), equalTo(33));
   }
 
   public void tipo_de_inscricao_da_empresa() {
