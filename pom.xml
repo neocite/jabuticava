@@ -7,7 +7,7 @@
 	</parent>
 	<artifactId>way-cnab</artifactId>
 	<name>objectos :: way :: cnab</name>
-	<version>1.7.2</version>
+	<version>1.7.3-SNAPSHOT</version>
 	<description>CNAB400: Arquivos retorno e remessa</description>
 	<url>https://github.com/objectos/way-cnab</url>
 	<licenses>
@@ -21,7 +21,7 @@
 		<connection>scm:git:git://objectos/way-cnab.git</connection>
 		<developerConnection>scm:git:git@github.com:objectos/way-cnab.git</developerConnection>
 		<url>https://github.com/objectos/way-cnab</url>
-	  <tag>way-cnab-1.7.2</tag>
+	  <tag>HEAD</tag>
   </scm>
 	<developers>
 		<developer>
