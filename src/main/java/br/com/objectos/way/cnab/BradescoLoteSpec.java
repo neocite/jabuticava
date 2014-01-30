@@ -28,6 +28,9 @@ class BradescoLoteSpec extends CnabLoteSpec implements BradescoLote {
   private final CnabKey<BradescoLote, String> INDICADOR_RATEIO_CREDITO = key()
       .id("Indicador de Rateio Crédito").at(104, 105).get(String.class);
 
+  private final CnabKey<CnabLote, String> NUMERO_DOCUMENTO = reconf(super.numeroDoDocumento())
+      .optional();
+
   private final CnabKey<BradescoLote, Double> VALOR_OUTRAS_DESPESAS = key()
       .id("Outras despesas / Custas de Protesto").at(188, 201).get(Double.class);
 
@@ -53,6 +56,11 @@ class BradescoLoteSpec extends CnabLoteSpec implements BradescoLote {
   @Override
   public CnabKey<BradescoLote, String> indicadorDeRateio() {
     return INDICADOR_RATEIO_CREDITO;
+  }
+
+  @Override
+  public CnabKey<CnabLote, String> numeroDoDocumento() {
+    return NUMERO_DOCUMENTO;
   }
 
   @Override
