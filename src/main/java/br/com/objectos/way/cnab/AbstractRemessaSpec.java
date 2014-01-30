@@ -22,8 +22,8 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
-import br.com.objectos.comuns.base.br.CadastroRFB;
-import br.com.objectos.comuns.base.br.Cep;
+import br.com.objectos.way.base.br.CadastroRFB;
+import br.com.objectos.way.base.br.Cep;
 import br.com.objectos.way.cnab.remessa.Caixa;
 
 /**

@@ -15,11 +15,9 @@
  */
 package br.com.objectos.way.cnab.remessa;
 
-import br.com.objectos.comuns.base.br.CadastroRFB;
-import br.com.objectos.comuns.base.br.Cnpj;
-import br.com.objectos.comuns.base.br.Cpf;
-import br.com.objectos.way.cnab.remessa.Empresa;
-import br.com.objectos.way.cnab.remessa.EmpresaCnab;
+import br.com.objectos.way.base.br.CadastroRFB;
+import br.com.objectos.way.base.br.Cnpj;
+import br.com.objectos.way.base.br.Cpf;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

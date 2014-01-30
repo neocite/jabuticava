@@ -16,7 +16,7 @@
 package br.com.objectos.way.cnab;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import br.com.objectos.comuns.base.br.Cep;
+import br.com.objectos.way.base.br.Cep;
 
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)

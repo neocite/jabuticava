@@ -25,9 +25,9 @@ import java.util.List;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import br.com.objectos.way.cnab.WayCnab;
 import br.com.objectos.way.cnab.CnabsFalso;
 import br.com.objectos.way.cnab.Lote;
+import br.com.objectos.way.cnab.WayCnab;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

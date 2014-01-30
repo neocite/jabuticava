@@ -23,8 +23,8 @@ import static com.google.common.collect.Lists.transform;
 
 import java.util.List;
 
-import br.com.objectos.comuns.base.br.CadastroRFB;
-import br.com.objectos.comuns.base.br.Estado;
+import br.com.objectos.way.base.br.CadastroRFB;
+import br.com.objectos.way.base.br.Estado;
 import br.com.objectos.way.cnab.bradesco.TipoDeIncricaoDoSacado;
 import br.com.objectos.way.cnab.remessa.Cedente;
 import br.com.objectos.way.cnab.remessa.Cobranca;

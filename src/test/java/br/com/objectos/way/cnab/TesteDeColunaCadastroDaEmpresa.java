@@ -20,10 +20,10 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.testng.annotations.Test;
 
-import br.com.objectos.comuns.base.br.CadastroRFB;
-import br.com.objectos.comuns.base.br.Cnpj;
-import br.com.objectos.comuns.base.br.Cpf;
-import br.com.objectos.comuns.base.br.ExcecaoDeCnpjInvalido;
+import br.com.objectos.way.base.br.CadastroRFB;
+import br.com.objectos.way.base.br.Cnpj;
+import br.com.objectos.way.base.br.Cpf;
+import br.com.objectos.way.base.br.ExcecaoDeCnpjInvalido;
 
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)

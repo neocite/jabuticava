@@ -20,8 +20,8 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.testng.annotations.Test;
 
-import br.com.objectos.comuns.base.br.Cep;
-import br.com.objectos.comuns.base.br.ExcecaoDeCepInvalido;
+import br.com.objectos.way.base.br.Cep;
+import br.com.objectos.way.base.br.ExcecaoDeCepInvalido;
 
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)

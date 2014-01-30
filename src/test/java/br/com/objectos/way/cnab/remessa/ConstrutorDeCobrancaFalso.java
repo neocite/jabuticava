@@ -15,14 +15,6 @@
  */
 package br.com.objectos.way.cnab.remessa;
 
-import br.com.objectos.way.cnab.remessa.Agencia;
-import br.com.objectos.way.cnab.remessa.Carteira;
-import br.com.objectos.way.cnab.remessa.Cobranca;
-import br.com.objectos.way.cnab.remessa.CobrancaCnab;
-import br.com.objectos.way.cnab.remessa.CobrancaOpcoes;
-import br.com.objectos.way.cnab.remessa.Comando;
-import br.com.objectos.way.cnab.remessa.Conta;
-import br.com.objectos.way.cnab.remessa.Titulo;
 
 
 /**
