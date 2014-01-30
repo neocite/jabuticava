@@ -22,9 +22,9 @@ import org.codehaus.jackson.map.module.SimpleModule;
 import org.codehaus.jackson.map.ser.std.ScalarSerializerBase;
 import org.joda.time.LocalDate;
 
-import br.com.objectos.comuns.base.br.Cep;
-import br.com.objectos.comuns.base.br.Cnpj;
 import br.com.objectos.comuns.matematica.financeira.ValorFinanceiro;
+import br.com.objectos.way.base.br.Cep;
+import br.com.objectos.way.base.br.Cnpj;
 
 import com.google.common.base.Throwables;
 

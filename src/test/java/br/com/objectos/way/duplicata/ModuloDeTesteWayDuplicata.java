@@ -6,8 +6,6 @@
  */
 package br.com.objectos.way.duplicata;
 
-import br.com.objectos.way.duplicata.WayDuplicataConfig;
-
 import com.google.inject.AbstractModule;
 
 /**
