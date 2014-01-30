@@ -15,7 +15,7 @@
  */
 package br.com.objectos.way.boleto;
 
-import br.com.objectos.comuns.base.br.CadastroRFB;
+import br.com.objectos.way.base.br.CadastroRFB;
 
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)

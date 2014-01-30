@@ -6,10 +6,10 @@
  */
 package br.com.objectos.way.boleto;
 
-import br.com.objectos.comuns.base.br.CadastroRFB;
-import br.com.objectos.comuns.base.br.Cep;
-import br.com.objectos.comuns.base.br.Cnpj;
-import br.com.objectos.comuns.base.br.Estado;
+import br.com.objectos.way.base.br.CadastroRFB;
+import br.com.objectos.way.base.br.Cep;
+import br.com.objectos.way.base.br.Cnpj;
+import br.com.objectos.way.base.br.Estado;
 
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
