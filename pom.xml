@@ -6,7 +6,7 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>way-duplicata</artifactId>
-	<version>1.1.1-SNAPSHOT</version>
+	<version>1.1.1</version>
 	<packaging>jar</packaging>
 	<name>objectos :: way :: duplicata</name>
 	<description>Geração de duplicatas. Simples.</description>
@@ -22,7 +22,8 @@
 		<connection>scm:git:git://objectos/way-duplicata.git</connection>
 		<developerConnection>scm:git:git@github.com:objectos/way-duplicata.git</developerConnection>
 		<url>https://github.com/objectos/way-duplicata</url>
-	</scm>
+	  <tag>way-duplicata-1.1.1</tag>
+  </scm>
 	<developers>
 		<developer>
 			<id>moe</id>
