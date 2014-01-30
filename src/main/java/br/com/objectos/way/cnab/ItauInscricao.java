@@ -15,8 +15,8 @@
  */
 package br.com.objectos.way.cnab;
 
-import br.com.objectos.comuns.base.br.CadastroRFB;
-import br.com.objectos.comuns.base.br.TipoDeCadastroRFB;
+import br.com.objectos.way.base.br.CadastroRFB;
+import br.com.objectos.way.base.br.TipoDeCadastroRFB;
 import br.com.objectos.way.cnab.remessa.Cedente;
 import br.com.objectos.way.cnab.remessa.Empresa;
 import br.com.objectos.way.cnab.remessa.Titulo;

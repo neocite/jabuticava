@@ -26,9 +26,9 @@ import org.joda.time.LocalDate;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import br.com.objectos.way.cnab.WayCnab;
 import br.com.objectos.way.cnab.CnabsFalso;
 import br.com.objectos.way.cnab.Lote;
+import br.com.objectos.way.cnab.WayCnab;
 
 /**
  * @author marcos.piazzolla@objectos.com.br (Marcos Piazzolla)

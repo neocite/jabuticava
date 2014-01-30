@@ -26,9 +26,9 @@ import org.joda.time.LocalDate;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import br.com.objectos.comuns.base.br.CadastroRFB;
-import br.com.objectos.comuns.base.br.Cep;
-import br.com.objectos.comuns.base.br.Cnpj;
+import br.com.objectos.way.base.br.CadastroRFB;
+import br.com.objectos.way.base.br.Cep;
+import br.com.objectos.way.base.br.Cnpj;
 import br.com.objectos.way.cnab.bradesco.TipoDeIncricaoDoSacado;
 import br.com.objectos.way.cnab.remessa.Comando;
 import br.com.objectos.way.cnab.remessa.EnderecamentoDebitoAutomatico;

@@ -15,8 +15,6 @@
  */
 package br.com.objectos.way.cnab.remessa;
 
-import br.com.objectos.way.cnab.remessa.Agencia;
-import br.com.objectos.way.cnab.remessa.AgenciaCnab;
 
 
 /**

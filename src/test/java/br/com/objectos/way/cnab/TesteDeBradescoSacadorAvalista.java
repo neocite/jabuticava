@@ -20,9 +20,9 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.testng.annotations.Test;
 
-import br.com.objectos.comuns.base.br.CadastroRFB;
-import br.com.objectos.comuns.base.br.Cnpj;
-import br.com.objectos.comuns.base.br.Cpf;
+import br.com.objectos.way.base.br.CadastroRFB;
+import br.com.objectos.way.base.br.Cnpj;
+import br.com.objectos.way.base.br.Cpf;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

@@ -15,7 +15,6 @@
  */
 package br.com.objectos.way.cnab.remessa;
 
-import br.com.objectos.way.cnab.remessa.Cedente;
 
 
 /**

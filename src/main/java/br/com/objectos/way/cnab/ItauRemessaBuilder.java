@@ -15,7 +15,7 @@
  */
 package br.com.objectos.way.cnab;
 
-import static br.com.objectos.comuns.base.br.TipoDeCadastroRFB.CPF;
+import static br.com.objectos.way.base.br.TipoDeCadastroRFB.CPF;
 import static br.com.objectos.way.cnab.Itau.headerRemessa;
 import static br.com.objectos.way.cnab.Itau.loteRemessa;
 import static br.com.objectos.way.cnab.Itau.trailerRemessa;
@@ -24,9 +24,9 @@ import static com.google.common.collect.Lists.transform;
 
 import java.util.List;
 
-import br.com.objectos.comuns.base.br.CadastroRFB;
-import br.com.objectos.comuns.base.br.Estado;
-import br.com.objectos.comuns.base.br.TipoDeCadastroRFB;
+import br.com.objectos.way.base.br.CadastroRFB;
+import br.com.objectos.way.base.br.Estado;
+import br.com.objectos.way.base.br.TipoDeCadastroRFB;
 import br.com.objectos.way.cnab.remessa.Agencia;
 import br.com.objectos.way.cnab.remessa.Cedente;
 import br.com.objectos.way.cnab.remessa.Cobranca;

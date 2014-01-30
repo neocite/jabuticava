@@ -15,7 +15,7 @@
  */
 package br.com.objectos.way.cnab.remessa;
 
-import br.com.objectos.comuns.base.br.CadastroRFB;
+import br.com.objectos.way.base.br.CadastroRFB;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

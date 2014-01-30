@@ -15,10 +15,8 @@
  */
 package br.com.objectos.way.cnab.remessa;
 
-import br.com.objectos.comuns.base.br.Cep;
-import br.com.objectos.comuns.base.br.Estado;
-import br.com.objectos.way.cnab.remessa.Endereco;
-import br.com.objectos.way.cnab.remessa.EnderecoCnab;
+import br.com.objectos.way.base.br.Cep;
+import br.com.objectos.way.base.br.Estado;
 
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)

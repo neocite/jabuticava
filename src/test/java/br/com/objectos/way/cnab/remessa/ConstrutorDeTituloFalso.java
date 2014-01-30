@@ -17,12 +17,6 @@ package br.com.objectos.way.cnab.remessa;
 
 import org.joda.time.LocalDate;
 
-import br.com.objectos.way.cnab.remessa.Cedente;
-import br.com.objectos.way.cnab.remessa.EspecieDeTitulo;
-import br.com.objectos.way.cnab.remessa.Sacado;
-import br.com.objectos.way.cnab.remessa.Titulo;
-import br.com.objectos.way.cnab.remessa.TituloCnab;
-
 /**
  * @author marcio.endo@objectos.com.br (Marcio Endo)
  */
