@@ -69,7 +69,13 @@ public class Boletos {
   }
 
   static ValorFinanceiro zeroToNull(ValorFinanceiro val) {
-    return val.isZero() ? null : val;
+    ValorFinanceiro res = val;
+
+    if (val != null) {
+      res = val.isZero() ? null : val;
+    }
+
+    return res;
   }
 
   private static MustacheFactory newMustacheFactoryAt(File dir) throws IOException {
