@@ -30,7 +30,8 @@ import com.google.common.io.Resources;
  */
 class HtmlsFalso {
 
-  public static final Document LISTAGEM = html("/bdr/BdrListagem.html");;
+  public static final Document LISTAGEM = html("/bdr/BdrListagem.html");
+  public static final Document DETALHES = html("/bdr/BrdsListadosDetalhes.html");;
 
   private HtmlsFalso() {
   }
