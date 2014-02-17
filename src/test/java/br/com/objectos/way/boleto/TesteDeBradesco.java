@@ -79,6 +79,11 @@ public class TesteDeBradesco {
     }
 
     @Override
+    public ValorFinanceiro getDesconto() {
+      return new ValorFinanceiroImpl(3.50);
+    }
+
+    @Override
     public LocalDate getEmissao() {
       return new LocalDate(2013, 5, 7);
     }

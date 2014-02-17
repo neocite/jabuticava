@@ -26,6 +26,7 @@ class MustacheTitulo {
 
   private final String especie;
   private final String valor;
+  private final String desconto;
   private final String emissao;
   private final String vencimento;
 
@@ -34,6 +35,8 @@ class MustacheTitulo {
     this.especie = especie.getSigla();
     ValorFinanceiro valor = titulo.getValor();
     this.valor = Boletos.toString(valor);
+    ValorFinanceiro desconto = titulo.getDesconto();
+    this.desconto = Boletos.toString(Boletos.zeroToNull(desconto));
     LocalDate data = titulo.getEmissao();
     this.emissao = Boletos.toString(data);
     data = titulo.getVencimento();
@@ -46,6 +49,10 @@ class MustacheTitulo {
 
   public final String getValor() {
     return valor;
+  }
+
+  public String getDesconto() {
+    return desconto;
   }
 
   public final String getEmissao() {

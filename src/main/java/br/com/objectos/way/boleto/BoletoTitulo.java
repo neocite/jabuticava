@@ -28,6 +28,8 @@ public interface BoletoTitulo {
 
   ValorFinanceiro getValor();
 
+  ValorFinanceiro getDesconto();
+
   LocalDate getEmissao();
   LocalDate getVencimento();
 

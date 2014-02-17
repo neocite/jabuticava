@@ -68,6 +68,10 @@ public class Boletos {
     return res;
   }
 
+  static ValorFinanceiro zeroToNull(ValorFinanceiro val) {
+    return val.isZero() ? null : val;
+  }
+
   private static MustacheFactory newMustacheFactoryAt(File dir) throws IOException {
     copyMustache("boleto.mustache", dir);
     copyMustache("boleto-inline-css.mustache", dir);
