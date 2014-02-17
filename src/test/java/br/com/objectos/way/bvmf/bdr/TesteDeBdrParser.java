@@ -10,7 +10,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.jsoup.nodes.Document;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 /**
@@ -19,19 +18,20 @@ import org.testng.annotations.Test;
 @Test
 public class TesteDeBdrParser {
 
-  private Bdr bdr;
-
-  @BeforeClass
-  public void setUp() {
-    Document doc = HtmlsFalso.DETALHES;
-    bdr = new BdrParser(doc).get();
-  }
-
   public void bdr() {
-    Bdr res = bdr;
+    Document doc = HtmlsFalso.DETALHES;
+    Bdr res = new BdrParser(doc).get();
 
     assertThat(res.getCodigoDeNegocicao(), equalTo("MMMC34"));
     assertThat(res.getCodigoDeIsin(), equalTo("BRMMMCBDR000"));
+  }
+
+  public void bdr_com_colunas_vazias() {
+    Document doc = HtmlsFalso.DETALHES_COLUNAS_VAZIA;
+    Bdr res = new BdrParser(doc).get();
+
+    assertThat(res.getCodigoDeNegocicao(), equalTo(""));
+    assertThat(res.getCodigoDeIsin(), equalTo(""));
   }
 
 }

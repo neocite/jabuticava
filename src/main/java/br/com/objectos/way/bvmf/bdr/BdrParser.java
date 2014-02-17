@@ -10,6 +10,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.google.common.base.Preconditions;
+
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
@@ -49,9 +51,10 @@ class BdrParser {
     }
 
     private String parse(String find, int indice) {
-      String res = "";
-
       Elements anchors = div.select(find);
+      Preconditions.checkArgument(anchors.size() > indice);
+
+      String res = "";
       if (anchors.size() > 0) {
         Element a = anchors.get(indice);
         res = a.text();
