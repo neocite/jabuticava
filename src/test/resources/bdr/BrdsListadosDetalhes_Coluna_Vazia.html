@@ -1,0 +1,524 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta name="WT.cg_n" content="VS_PORTUGUES" />
+    <!--		<link href="/InstLibrary/InfoEmpresas.css" rel="stylesheet" type="text/css">-->
+    <link href="/aspnet_client/system_web/2_0_50727/Themes/SiteBmfBovespa/Estrutura.css"
+        type="text/css" rel="stylesheet" />
+    <link href="/aspnet_client/system_web/2_0_50727/Themes/SiteBmfBovespa/Controles.css"
+        type="text/css" rel="stylesheet" />
+    <link href="css/EmpresasListadas.css" type="text/css" rel="stylesheet" />
+    <link href="css/busca-de-noticias.css" type="text/css" rel="stylesheet" />
+    <script language="javascript" src="/InstLibrary/InformacoesEmpresas.js"></script>
+    <script language="JavaScript1.2" type="text/javascript" src="/InstLibrary/ExecutaAcaoXML.js"></script>
+    <script language="JavaScript">
+        var gstrCA = new String('707065481559690340681248570544650570452559491845572940512747550365665270')
+
+        /******************************************************************************
+        / Objetivo  : Atualiza as not&iacute;cias do Plant&atilde;o de Not&iacute;cias
+        / Premissas : Nenhuma
+        / Entradas  : objXmlREt objeto xml
+        / Retorno   : Nenhum
+        /******************************************************************************/
+        function AtualizarNoticias(objXmlREt) {
+
+            var objXMLElement = objXmlREt.getElementsByTagName("Noticias"); // objeto xml
+            try {
+                if (objXMLElement.length > 0)
+                    document.getElementById("divTabelaNoticias").innerHTML = objXMLElement[0].childNodes[0].nodeValue
+            }
+            catch (objEx) {
+                alert(objEx.message);
+            }
+        }
+
+        /******************************************************************************
+        / Objetivo  : Atualiza as informa&ccedil;&otilde;es Dados Econômico-Financeiros
+        / Premissas : Nenhuma
+        / Entradas  : objXmlREt objeto xml
+        / Retorno   : Nenhum
+        /******************************************************************************/
+        function AtualizarDadosEcon(objXmlREt) {
+            //alert(objXmlREt.xml)               
+            var objXMLElement = objXmlREt.getElementsByTagName("DadosEconFinanc"); // objeto xml
+            var objXMLElement2 = objXmlREt.getElementsByTagName("TituloEconFinanc"); // objeto xml
+            var objXMLElement3 = objXmlREt.getElementsByTagName("ImgDuvida"); // objeto xml
+            try {
+                //alert(objXMLElement[0].childNodes[0].nodeValue)
+                document.getElementById("divTabelaDadosEconFinanc").innerHTML = objXMLElement[0].childNodes[0].nodeValue
+                document.getElementById("divTituloDadosEconFinanc").innerHTML = objXMLElement2[0].childNodes[0].nodeValue
+                document.getElementById("divImagemDuvida").innerHTML = objXMLElement3[0].childNodes[0].nodeValue
+            }
+            catch (objEx) {
+                alert(objEx.message);
+            }
+        }
+
+        /******************************************************************************
+        / Objetivo  : Recupera o tipo de Dados Econômicos-Financeiros e envia para Ajax
+        / Premissas : Nenhuma
+        / Entradas  : Nenhuma
+        / Retorno   : Nenhum
+        /******************************************************************************/
+        function VerificaDadosEcon(intCodCVM, strValor) {
+            try {
+                var strFuncao = 'intEstado=1&funcao=AtualizarDadosEcon&codCVM=' + intCodCVM + '&formato=' + strValor
+                CarregarXMLHTTP('ExecutaAcaoAjaxInfoEmpresas.asp?rnd=232', 'post', 2, true, 'AtualizarDadosEcon', strFuncao);
+            }
+            catch (objEx) {
+                alert(objEx.message);
+            }
+        }
+
+        /******************************************************************************
+        /objetivo........: Abre Formulário Cadastral
+        /Premissas.......:
+        /Entradas........: url do formulário
+        /Retorno.........: Nenhum 
+        ******************************************************************************/
+        function AbreFormularioCadastral(url) {
+            window.open(url, '', 'width=800px,height=520px,scrollbars=1');
+        }
+						
+    </script>
+    <title>Empresas Listadas | BM&amp;FBOVESPA</title>
+</head>
+<!--<body class="pagEmpresas" onLoad="parent.resizeFrame(parent.document.getElementById('ctl00_contentPlaceHolderConteudo_iframeCarregadorPaginaExterna'))">-->
+<body class="pagEmpresas" onload="parent.resizeFrame(parent.document.getElementById('ctl00_contentPlaceHolderConteudo_iframeCarregadorPaginaExterna'))">
+    <h1>
+        LINKEDIN CORP.
+    </h1>
+    <!-- LOGOTIPO -->
+    
+    <div id="divImgSegmento" class="logoEmpresa">
+        
+    </div>
+    
+    <!-- FIM LOGOTIPO -->
+    <p class="dataAtualizacao">
+        Atualizado em
+        17/02/2014, às 05h10
+    </p>
+    <br />
+    <p>
+        A aquisição de BDRs Nível I Não Patrocinados é autorizada exclusivamente para instituições
+        financeiras; fundos de investimento; administradores de carteira e consultores de
+        valores mobiliários autorizados pela CVM, em relação a seus recursos próprios; entidades
+        fechadas de previdência complementar; e pessoas físicas ou jurídicas com investimentos
+        financeiros superiores a R$ 1.000.000,00 (um milhão de reais), nos termos da <a href="/pt-br/download/InstrucaoCvm332.pdf"
+            target="_blank">Instrução CVM 332/00</a>. A companhia aberta com sede no exterior,
+        emissora das ações que lastreiam os BDRs, não é listada na BM&FBOVESPA ou registrada
+        na CVM; portanto, não está sujeita à regulamentação e fiscalização por referidas
+        instituições. Por se tratar de companhia não registrada na CVM, não adotar padrões
+        contábeis brasileiros e não estar submetida à legislação vigente no Brasil, os investidores
+        deverão avaliar os riscos antes de negociar com BDRs não patrocinados. O acesso
+        às informações divulgadas pelas referidas companhias será disponibilizado na internet
+        pela instituição depositária emissora dos BDRs. A BM&FBOVESPA não se responsabiliza
+        pelas informações divulgadas, nem por eventuais falhas no acesso dessas informações.</p>
+    <p>
+        &nbsp;
+    </p>
+    <h2 class="titulo02">
+        Dados da Companhia</h2>
+    <br />
+    <!-- caixa para impedir que o conteudo ap&oacute;s a caixa sobreponha às colunas -->
+    <div id="caixaContainer">
+        <div id="caixaComColunaDireita" class="caixaComColunaDireita">
+            <div id="colunaEsquerda">
+                <div id="colunaCentral">
+                    <!-- TABELA DADOS DA COMPANIA -->
+                    <div class="tabelaSemBorda">
+                        <table>
+                            <tr>
+                                <td class="IdentificacaoDado">
+                                    Nome de Preg&atilde;o:
+                                </td>
+                                <td class="Dado">
+                                    LINKEDIN
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td class="IdentificacaoDado">
+                                    C&oacute;digos de Negocia&ccedil;&atilde;o:
+                                </td>
+                                <td class="Dado">
+                                    Nenhum ativo no Mercado a Vista - Lote Padr&atilde;o.
+                                    &nbsp;
+                                    
+                                    <a href="#" onclick="javascript:ExibirOcultarContatos('divCodigosOculto', 'spnCodigosOculto'); parent.resizeFrame(parent.document.getElementById('ctl00_contentPlaceHolderConteudo_iframeCarregadorPaginaExterna'))">
+                                        <strong>Mais C&oacute;digos</strong></a>
+                                </td>
+                            </tr>
+                        </table>
+                        <span id="spnCodigosOculto"></span>
+                        <div id="divCodigosOculto" style="display: none;">
+                            <table>
+                                <tr>
+                                    <td class="IdentificacaoDado">
+                                        <td class="Dado">
+                                            <a href='javascript:;' class=LinkCodNeg onclick=javascript:VerificaCotacao('','0');></a>
+                                        </td>
+                                </tr>
+                                <tr>
+                                    <td class="IdentificacaoDado">
+                                        <strong>C&oacute;digos ISIN:</strong>
+                                    </td>
+                                    <td class="Dado">
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="IdentificacaoDado">
+                                        <strong>C&oacute;digos CVM:</strong>
+                                    </td>
+                                    <td class="Dado">
+                                        50440
+                                    </td>
+                                </tr>
+                            </table>
+                            </ul>
+                        </div>
+                        <table>
+                            
+                            <tr>
+                                <td class="IdentificacaoDado">
+                                    Atividade Principal:
+                                </td>
+                                <td class="Dado">
+                                    
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td class="IdentificacaoDado">
+                                    Site:
+                                </td>
+                                <td class="Dado">
+                                    <a target="_blank" href="http://www.linkedin.com">
+                                        www.linkedin.com
+                                    </a>
+                                </td>
+                            </tr>
+                            
+                        </table>
+                    </div>
+                    <!-- FIM TAB DADOS DA COMPANIA -->
+                    <div id="divContatos">
+                        <div id="divContatosTitulo" class="tabelaSemBorda">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <a href="javascript:;" onclick="javascript:ExibirOcultarContatos('divContatosOculto', 'spnContatosOculto'); parent.resizeFrame(parent.document.getElementById('ctl00_contentPlaceHolderConteudo_iframeCarregadorPaginaExterna'))"
+                                            class="itemBullet"><strong>Contatos</strong></a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <span id="spnContatosOculto"></span>
+                        </div>
+                        <div id="divContatosOculto" style="display: none;">
+                            
+                            <div class="tabelaSemBorda">
+                                <table>
+                                    <tr>
+                                        <td colspan="2">
+                                            <strong>Sede</strong>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="IdentificacaoDado">
+                                            Endere&ccedil;o:
+                                        </td>
+                                        <td class="Dado">
+                                            2029 Stierlin Court Mountain View 94043
+                                            <br>
+                                            <span class="Dado">CEP:&nbsp;</span>0<span class="Dado">&nbsp;&nbsp;Cidade:&nbsp;</span>California<span
+                                                class="Dado">&nbsp;&nbsp;UF:&nbsp;</span>NI
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="IdentificacaoDado">
+                                            Telefone:
+                                        </td>
+                                        <td class="Dado">
+                                            (11)&nbsp;4009 3299&nbsp;-&nbsp;<b>Fax:</b>&nbsp;(11)&nbsp;2122 5057
+                                        </td>
+                                    </tr>
+                                    
+                                </table>
+                            </div>
+                            
+                            <div class="tabelaSemBorda">
+                                <table>
+                                    <tr>
+                                        <td colspan="2">
+                                            <strong>Diretor de Rela&ccedil;&otilde;es com Investidores</strong>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="IdentificacaoDado">
+                                            Nome:
+                                        </td>
+                                        <td class="Dado">
+                                            Marcio Veronese Alves
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="IdentificacaoDado">
+                                            Endere&ccedil;o:
+                                        </td>
+                                        <td class="Dado">
+                                            Av Paulista 1111 - 2 Andar - Parte
+                                            <br>
+                                            <span class="Dado">CEP:&nbsp;</span>1311920<span class="Dado">&nbsp;&nbsp;Cidade:&nbsp;</span>São Paulo<span
+                                                class="Dado">&nbsp;&nbsp;UF:&nbsp;</span>SP
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="IdentificacaoDado">
+                                            Telefone:
+                                        </td>
+                                        <td class="Dado">
+                                            (11)&nbsp;4009 3299&nbsp;-&nbsp;<b>Fax:</b>&nbsp;(11)&nbsp;2122 5057
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="IdentificacaoDado">
+                                            E-mail:
+                                        </td>
+                                        <td class="Dado">
+                                            marcio.veronese@citi.com
+                                        </td>
+                                    </tr>
+                                    
+                                </table>
+                            </div>
+                            
+                            <div class="tabelaSemBorda">
+                                <table>
+                                    <tr>
+                                        <td colspan="2">
+                                            <strong>Escriturador (Departamento de Acionistas)</strong>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="IdentificacaoDado">
+                                            Institui&ccedil;&atilde;o:
+                                        </td>
+                                        <td class="Dado">
+                                            CITIBANK DTVM
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="IdentificacaoDado">
+                                            Endere&ccedil;o:
+                                        </td>
+                                        <td class="Dado">
+                                            Av Paulista 1111 - 7º Andar/parte
+                                            <br>
+                                            <span class="Dado">CEP:&nbsp;</span>1311000<span class="Dado">&nbsp;&nbsp;&nbsp;&nbsp;Cidade:&nbsp;</span>Sao Paulo<span
+                                                class="Dado">&nbsp;&nbsp;&nbsp;&nbsp;UF:&nbsp;</span>SP
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="IdentificacaoDado">
+                                            Telefone:
+                                        </td>
+                                        <td class="Dado">
+                                            (11)&nbsp;4009 5568&nbsp;-&nbsp;<b>Fax:</b>&nbsp;(11)&nbsp;4009 3006
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="IdentificacaoDado">
+                                            E-mail:
+                                        </td>
+                                        <td class="Dado">
+                                            clientservices.management@citi.com
+                                        </td>
+                                    </tr>
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!-- BOVESPA MAIS  -->
+                    
+                    <!-- FIM BOVESPA MAIS -->
+                </div>
+            </div>
+            
+            <div id="colunaDireita">
+                <div id="divCotacoesGraficos">
+                    <form name="frmPapelCotacaoGrafico" id="frmPapelCotacaoGrafico">
+                    <!--div id="divSubTituloDadoGrafico" style="border: none;"-->
+                    
+                    <!--/div-->
+                    </form>
+                    <div id="divGraficoPapel">
+                        
+                        <div id="div" style="display: block">
+                            <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0"
+                                width="340" height="220" id="Grafico-Papeis" align="middle">
+                                <param name="allowScriptAccess" value="sameDomain" />
+                                <param name="movie" value="/img/Grafico-Papeis.swf" />
+                                <param name="quality" value="high" />
+                                <param name="bgcolor" value="#ffffff" />
+                                <param name="FlashVars" value="Papel=&Idiomas=pt-br" />
+                                <embed src="/img/Grafico-Papeis.swf" quality="high" bgcolor="#ffffff" width="340"
+                                    height="220" name="Grafico-Papeis" align="middle" allowscriptaccess="sameDomain"
+                                    type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"
+                                    flashvars="Papel=&Idiomas=pt-br" />
+                            </object>
+                        </div>
+                        
+                    </div>
+                    <div class="SubTituloDado">
+                        <a href="/Pregao-Online/FormConsultaCotacoes.asp?idLapela=divLapelaCotacao&idPainel=divConteudoCotacao"
+                            target="_blank" class="itemBullet">Acompanhe a cota&ccedil;&atilde;o de outros t&iacute;tulos
+                            desta empresa</a>
+                    </div>
+                </div>
+                <script language="javascript">
+                    //SelecionarGrafico(frmPapelCotacaoGrafico.cboPapelCotacaoGrafico, frmPapelCotacaoGrafico.cboPapelCotacaoGrafico.value);
+                </script>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- MENU REMOVIDO -->
+    
+    <!-- NOTICIAS  -->
+    
+    <p>
+        &nbsp;
+    </p>
+    <div id="divPlantaoNoticias">
+        <h2 class="titulo02">
+            <span>Plant&atilde;o de Not&iacute;cias</span>
+            <div class="obsDelayPlantao">
+                delay de 15min.</div>
+        </h2>
+        <div id="divTabelaNoticias" class="tabelaSemBorda">
+            <table id="tabelaNoticiasEmpresas">
+                
+                <tr class=DadoFundoCinza>
+      <td width="14%">29/11/2013</td>
+      <td width="9%">08:37</td>
+      <td align="left" width="73%"><a href="#a" onClick="javascript:window.open('FormConsultaDetalhePlantaoNot.asp?Data=29/11/2013&Sequencia=6','DetalheNoticias','resizable=0,width=720,height=400');">LINKEDIN (LNKD) - Os BDRs deixam de ser negociados</a></td>
+    </tr>
+    
+                <tr>
+      <td width="14%">06/11/2013</td>
+      <td width="9%">15:29</td>
+      <td align="left" width="73%"><a href="#a" onClick="javascript:window.open('FormConsultaDetalhePlantaoNot.asp?Data=06/11/2013&Sequencia=70','DetalheNoticias','resizable=0,width=720,height=400');">LINKEDIN (LNKD)- Comunicados</a></td>
+    </tr>
+    
+                <tr class=DadoFundoCinza>
+      <td width="14%">05/11/2013</td>
+      <td width="9%">18:00</td>
+      <td align="left" width="73%"><a href="#a" onClick="javascript:window.open('FormConsultaDetalhePlantaoNot.asp?Data=05/11/2013&Sequencia=105','DetalheNoticias','resizable=0,width=720,height=400');">LINKEDIN (LNKD) - Form 8-K - Current report</a></td>
+    </tr>
+    
+                <tr>
+      <td width="14%">05/11/2013</td>
+      <td width="9%">17:56</td>
+      <td align="left" width="73%"><a href="#a" onClick="javascript:window.open('FormConsultaDetalhePlantaoNot.asp?Data=05/11/2013&Sequencia=104','DetalheNoticias','resizable=0,width=720,height=400');">LINKEDIN (LNKD) - Form 10-Q - Quarterly report</a></td>
+    </tr>
+    
+                <tr class=DadoFundoCinza>
+      <td width="14%">02/10/2013</td>
+      <td width="9%">17:36</td>
+      <td align="left" width="73%"><a href="#a" onClick="javascript:window.open('FormConsultaDetalhePlantaoNot.asp?Data=02/10/2013&Sequencia=55','DetalheNoticias','resizable=0,width=720,height=400');">LINKEDIN (LNKD-MB) - Materiais a disposicao</a></td>
+    </tr>
+    
+            </table>
+        </div>
+        <div id="divAtualizar" class="rodape2colunas">
+            <span class="PlantaoNota colEsquerda">
+                <p>
+                    <a href="#a" onclick="javascript:window.open('FormConsultaPlantaoNoticias.asp?CodCVM=50440&Periodo=dia','PlantaoNoticias','resizable=0,width=615,height=420');"
+                        class="itemBullet">Mais Not&iacute;cias</a>
+            </span>
+            <div class="colDireita">
+                <a href="#a" onclick="CarregarXMLHTTP('ExecutaAcaoAjaxInfoEmpresas.asp?rnd=232', 'post', 2, true, 'AtualizarNoticias','intEstado=1&funcao=AtualizarNoticias&codCVM=50440');">
+                    <input name="" type="button" class="botaoFuncaoAtualizar" value="Atualizar" />
+                </a>
+            </div>
+        </div>
+        
+        <!-- FIM NOTICIAS -->
+        <!-- PROGRAMA DE BDRS -->
+        
+        <p>
+            &nbsp;
+            <br />
+            &nbsp;
+            <br />
+        </p>
+        <div id="divProgramaDeBDRs">
+            <h2 class="titulo02">
+                <span>Programa de BDRs</span></h2>
+            <div id="divTabelaProgramaDeBDRs" class="tabelaSemBorda">
+                <strong><a href="http://www.bmfbovespa.com.br/empresas/consbov/VisualizaArquivo.asp?protocolo=400686&funcao=download&Site=400686">Características do Programa</a></strong>
+            </div>
+        </div>
+        <p>
+            &nbsp;
+            <br />
+        </p>
+        
+        <!-- FIM PROGRAMA DE BDRS -->
+        <!-- COTACOES -->
+        
+        <!-- FIM COTACOES -->
+        <!--<div id="divObservacao">A &iacute;ntegra das informa&ccedil;&otilde;es prestadas pelas empresas, eventuais dados mais recentes e outras informa&ccedil;&otilde;es sobre cota&ccedil;&otilde;es est&atilde;o dispon&iacute;veis no menu à esquerda, logo abaixo do item "Principal".</div>-->
+        <div class="cleaner">
+        </div>
+        <p>
+            &nbsp;
+        </p>
+        <!-- START OF SmartSource Data Collector TAG -->
+        <!-- Copyright (c) 1996-2010 WebTrends Inc.  All rights reserved. -->
+        <!-- Version: 8.6.2 -->
+        <!-- Tag Builder Version: 3.0  -->
+        <!-- Created: 3/30/2010 4:35:15 PM -->
+        <script src="/shared/js/webtrends.js" type="text/javascript"></script>
+        <!-- ----------------------------------------------------------------------------------- -->
+        <!-- Warning: The two script blocks below must remain inline. Moving them to an external -->
+        <!-- JavaScript include file can cause serious problems with cross-domain tracking.      -->
+        <!-- ----------------------------------------------------------------------------------- -->
+        <script type="text/javascript">
+    //<![CDATA[
+            var objTag = new WebTrends();
+            objTag.dcsGetId();
+            //]]>>
+        </script>
+        <script type="text/javascript">
+    //<![CDATA[
+            // Add custom parameters here.
+            //objTag.DCSext.param_name=param_value;
+            objTag.dcsCollect();
+            //]]>>
+        </script>
+        <noscript>
+            <div>
+                <img alt="DCSIMG" id="DCSIMG" width="1" height="1" src="http://sdcbov.bovespa.com.br/dcs7cxucm10000g0rpvv97ynr_2s8b/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=8.6.2" /></div>
+        </noscript>
+        <!-- END OF SmartSource Data Collector TAG -->
+</body>
+</html>
