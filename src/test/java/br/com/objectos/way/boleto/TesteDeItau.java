@@ -103,6 +103,11 @@ public class TesteDeItau {
     }
 
     @Override
+    public ValorFinanceiro getDesconto() {
+      return new ValorFinanceiroImpl(0);
+    }
+
+    @Override
     public LocalDate getEmissao() {
       return new LocalDate(2004, 8, 11);
     }

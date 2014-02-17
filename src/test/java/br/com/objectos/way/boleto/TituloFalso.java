@@ -35,6 +35,11 @@ public class TituloFalso implements BoletoTitulo {
   }
 
   @Override
+  public ValorFinanceiro getDesconto() {
+    return new ValorFinanceiroImpl(15.50);
+  }
+
+  @Override
   public LocalDate getEmissao() {
     return new LocalDate(2013, 4, 30);
   }
