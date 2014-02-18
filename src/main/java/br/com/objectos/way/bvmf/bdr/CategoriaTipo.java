@@ -18,24 +18,30 @@ package br.com.objectos.way.bvmf.bdr;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-class BdrLinkPojo implements BdrLink {
+enum CategoriaTipo {
 
-  private final String href;
-  private final CategoriaTipo categoria;
+  DR1("BDR Nível 1"),
+  DR2("BDR Nível 2"),
+  DR3("BDR Nível 3"),
+  DRN("BDR Não Patrocinado"),
+  VOID("VOID");
 
-  public BdrLinkPojo(Construtor construtor) {
-    href = construtor.getHref();
-    categoria = construtor.getCategoria();
+  private final String descricao;
+
+  private CategoriaTipo(String descricao) {
+    this.descricao = descricao;
   }
 
-  @Override
-  public String getHref() {
-    return href;
+  public String getDescricao() {
+    return descricao;
   }
 
-  @Override
-  public CategoriaTipo getCategoria() {
-    return categoria;
+  public static CategoriaTipo valueOrVoid(String name) {
+    try {
+      return CategoriaTipo.valueOf(name);
+    } catch (IllegalArgumentException e) {
+      return VOID;
+    }
   }
 
 }

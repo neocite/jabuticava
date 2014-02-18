@@ -18,6 +18,8 @@ package br.com.objectos.way.bvmf.bdr;
 import static com.google.common.collect.Lists.transform;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -69,14 +71,29 @@ class ListagemParser {
 
     @Override
     public String getHref() {
-      Element href = a.select("a").first();
-      return href.attr("abs:href");
+      Element _href = a.select("a").first();
+      String href = _href.attr("href");
+
+      return doUrl(href);
+    }
+
+    private String doUrl(String href) {
+      String url = "http://www.bmfbovespa.com.br/pt-br/mercados-internacionais/acoes/empresas/ExecutaAcaoConsultaInfoEmp.asp?CodCVM=";
+
+      Pattern p = Pattern.compile("[?&]codigoCvm=(\\d+)");
+      Matcher m = p.matcher(href);
+
+      if (m.find()) {
+        url = url + m.group(1);
+      }
+      return url;
     }
 
     @Override
-    public String getCategoria() {
+    public CategoriaTipo getCategoria() {
       Element td = a.select("td").get(1);
-      return td.text();
+      String name = td.text();
+      return CategoriaTipo.valueOrVoid(name);
     }
 
   }

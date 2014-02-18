@@ -15,27 +15,15 @@
  */
 package br.com.objectos.way.bvmf.bdr;
 
+import com.google.inject.AbstractModule;
+
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-class BdrLinkPojo implements BdrLink {
-
-  private final String href;
-  private final CategoriaTipo categoria;
-
-  public BdrLinkPojo(Construtor construtor) {
-    href = construtor.getHref();
-    categoria = construtor.getCategoria();
-  }
+public class ModuloDeTesteWayBdr extends AbstractModule {
 
   @Override
-  public String getHref() {
-    return href;
-  }
-
-  @Override
-  public CategoriaTipo getCategoria() {
-    return categoria;
+  protected void configure() {
   }
 
 }

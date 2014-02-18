@@ -15,27 +15,16 @@
  */
 package br.com.objectos.way.bvmf.bdr;
 
+import java.util.List;
+
+import com.google.inject.ImplementedBy;
+
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-class BdrLinkPojo implements BdrLink {
+@ImplementedBy(BdrWgetGuice.class)
+public interface BdrWget {
 
-  private final String href;
-  private final CategoriaTipo categoria;
-
-  public BdrLinkPojo(Construtor construtor) {
-    href = construtor.getHref();
-    categoria = construtor.getCategoria();
-  }
-
-  @Override
-  public String getHref() {
-    return href;
-  }
-
-  @Override
-  public CategoriaTipo getCategoria() {
-    return categoria;
-  }
+  List<BdrStage> connect();
 
 }

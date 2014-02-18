@@ -18,24 +18,22 @@ package br.com.objectos.way.bvmf.bdr;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-class BdrLinkPojo implements BdrLink {
+public interface BdrStage {
 
-  private final String href;
-  private final CategoriaTipo categoria;
+  interface Construtor extends br.com.objectos.comuns.base.Construtor<BdrStage> {
 
-  public BdrLinkPojo(Construtor construtor) {
-    href = construtor.getHref();
-    categoria = construtor.getCategoria();
+    CategoriaTipo getCategoria();
+
+    String getCodigoDeNegocicao();
+
+    String getCodigoDeIsin();
+
   }
 
-  @Override
-  public String getHref() {
-    return href;
-  }
+  CategoriaTipo getCategoria();
 
-  @Override
-  public CategoriaTipo getCategoria() {
-    return categoria;
-  }
+  String getCodigoDeNegocicao();
+
+  String getCodigoDeIsin();
 
 }

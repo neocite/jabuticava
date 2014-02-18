@@ -52,13 +52,13 @@ public class TesteDeListagemParser {
     List<String> links = transform(res, new ToLink());
     assertThat(
         links.get(i0),
-        equalTo("http://fake/ResumoEmpresaPrincipal.aspx?codigoCvm=50504&bdr="));
+        equalTo("http://www.bmfbovespa.com.br/pt-br/mercados-internacionais/acoes/empresas/ExecutaAcaoConsultaInfoEmp.asp?CodCVM=50504"));
     assertThat(
         links.get(i1),
-        equalTo("http://fake/ResumoEmpresaPrincipal.aspx?codigoCvm=50512&bdr="));
+        equalTo("http://www.bmfbovespa.com.br/pt-br/mercados-internacionais/acoes/empresas/ExecutaAcaoConsultaInfoEmp.asp?CodCVM=50512"));
     assertThat(
         links.get(in),
-        equalTo("http://fake/ResumoEmpresaPrincipal.aspx?codigoCvm=50130&bdr="));
+        equalTo("http://www.bmfbovespa.com.br/pt-br/mercados-internacionais/acoes/empresas/ExecutaAcaoConsultaInfoEmp.asp?CodCVM=50130"));
 
     List<String> categorias = transform(res, new ToCategoria());
     assertThat(categorias.get(i0), equalTo("DRN"));
@@ -76,7 +76,7 @@ public class TesteDeListagemParser {
   private class ToCategoria implements Function<BdrLink, String> {
     @Override
     public String apply(BdrLink input) {
-      return input.getCategoria();
+      return input.getCategoria().name();
     }
   }
 
