@@ -18,24 +18,31 @@ package br.com.objectos.way.bvmf.bdr;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-class BdrLinkPojo implements BdrLink {
+class BdrStagePojo implements BdrStage {
 
-  private final String href;
   private final CategoriaTipo categoria;
+  private final String codigoDeNegocicao;
+  private final String codigoDeIsin;
 
-  public BdrLinkPojo(Construtor construtor) {
-    href = construtor.getHref();
+  public BdrStagePojo(Construtor construtor) {
     categoria = construtor.getCategoria();
-  }
-
-  @Override
-  public String getHref() {
-    return href;
+    codigoDeNegocicao = construtor.getCodigoDeNegocicao();
+    codigoDeIsin = construtor.getCodigoDeIsin();
   }
 
   @Override
   public CategoriaTipo getCategoria() {
     return categoria;
+  }
+
+  @Override
+  public String getCodigoDeNegocicao() {
+    return codigoDeNegocicao;
+  }
+
+  @Override
+  public String getCodigoDeIsin() {
+    return codigoDeIsin;
   }
 
 }

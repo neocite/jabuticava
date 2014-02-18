@@ -18,24 +18,11 @@ package br.com.objectos.way.bvmf.bdr;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-class BdrLinkPojo implements BdrLink {
-
-  private final String href;
-  private final CategoriaTipo categoria;
-
-  public BdrLinkPojo(Construtor construtor) {
-    href = construtor.getHref();
-    categoria = construtor.getCategoria();
-  }
+class BrtUrlPadrao implements BrtUrl {
 
   @Override
-  public String getHref() {
-    return href;
-  }
-
-  @Override
-  public CategoriaTipo getCategoria() {
-    return categoria;
+  public String get() {
+    return "http://www.bmfbovespa.com.br/cias-listadas/Mercado-Internacional/Mercado-Internacional.aspx?idioma=pt-br";
   }
 
 }

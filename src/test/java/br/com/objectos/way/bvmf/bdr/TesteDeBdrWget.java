@@ -15,27 +15,30 @@
  */
 package br.com.objectos.way.bvmf.bdr;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+
+import java.util.List;
+
+import org.testng.annotations.Guice;
+import org.testng.annotations.Test;
+
+import com.google.inject.Inject;
+
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-class BdrLinkPojo implements BdrLink {
+@Test
+@Guice(modules = { ModuloDeTesteWayBdr.class })
+public class TesteDeBdrWget {
 
-  private final String href;
-  private final CategoriaTipo categoria;
+  @Inject
+  private BdrWget wget;
 
-  public BdrLinkPojo(Construtor construtor) {
-    href = construtor.getHref();
-    categoria = construtor.getCategoria();
-  }
+  public void deve_receber_todos_bdrs() {
+    List<BdrStage> res = wget.connect();
 
-  @Override
-  public String getHref() {
-    return href;
-  }
-
-  @Override
-  public CategoriaTipo getCategoria() {
-    return categoria;
+    assertThat(res.size(), equalTo(81));
   }
 
 }

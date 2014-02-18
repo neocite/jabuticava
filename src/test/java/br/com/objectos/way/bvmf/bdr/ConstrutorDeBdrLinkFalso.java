@@ -15,17 +15,29 @@
  */
 package br.com.objectos.way.bvmf.bdr;
 
+import br.com.objectos.way.bvmf.bdr.BdrLink.Construtor;
+
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-class BdrLinkPojo implements BdrLink {
+class ConstrutorDeBdrLinkFalso implements Construtor {
 
-  private final String href;
-  private final CategoriaTipo categoria;
+  private String href;
+  private CategoriaTipo categoria;
 
-  public BdrLinkPojo(Construtor construtor) {
-    href = construtor.getHref();
-    categoria = construtor.getCategoria();
+  @Override
+  public BdrLink novaInstancia() {
+    return new BdrLinkPojo(this);
+  }
+
+  public ConstrutorDeBdrLinkFalso href(String href) {
+    this.href = href;
+    return this;
+  }
+
+  public ConstrutorDeBdrLinkFalso categoria(CategoriaTipo categoria) {
+    this.categoria = categoria;
+    return this;
   }
 
   @Override
