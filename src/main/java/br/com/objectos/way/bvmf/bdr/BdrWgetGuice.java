@@ -15,8 +15,6 @@
  */
 package br.com.objectos.way.bvmf.bdr;
 
-import static com.google.common.collect.Lists.transform;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -33,7 +31,10 @@ import br.com.objectos.way.base.util.concurrent.WayExecutors;
 
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
+
+import static com.google.common.collect.Lists.transform;
 
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
@@ -61,14 +62,17 @@ class BdrWgetGuice implements BdrWget {
       List<BdrLink> links;
       links = new ListagemParser(doc).get();
 
-      List<Future<BdrStage>> lazyFutures;
+      List<Future<Iterable<BdrStage>>> lazyFutures;
       lazyFutures = transform(links, new ToFuture());
 
-      List<Future<BdrStage>> futures;
+      List<Future<Iterable<BdrStage>>> futures;
       futures = ImmutableList.copyOf(lazyFutures);
 
-      List<BdrStage> bdrs;
-      bdrs = transform(futures, new ToBdrStage());
+      List<Iterable<BdrStage>> lazyBdrs;
+      lazyBdrs = transform(futures, new ToBdrStage());
+
+      Iterable<BdrStage> bdrs;
+      bdrs = Iterables.concat(lazyBdrs);
 
       return ImmutableList.copyOf(bdrs);
     } catch (IOException e) {
@@ -76,28 +80,30 @@ class BdrWgetGuice implements BdrWget {
     }
   }
 
-  private class ToFuture implements Function<BdrLink, Future<BdrStage>> {
+  private class ToFuture implements Function<BdrLink,
+      Future<Iterable<BdrStage>>> {
     @Override
-    public Future<BdrStage> apply(BdrLink link) {
+    public Future<Iterable<BdrStage>> apply(BdrLink link) {
       Get get = new Get(link);
       return executor.submit(get);
     }
   }
 
-  private class ToBdrStage implements Function<Future<BdrStage>, BdrStage> {
+  private class ToBdrStage implements Function<Future<Iterable<BdrStage>>,
+      Iterable<BdrStage>> {
     @Override
-    public BdrStage apply(Future<BdrStage> future) {
+    public Iterable<BdrStage> apply(Future<Iterable<BdrStage>> input) {
       try {
-        return future.get();
+        return input.get();
       } catch (InterruptedException e) {
-        return new BdrErro();
+        return ImmutableList.of();
       } catch (ExecutionException e) {
-        return new BdrErro();
+        return ImmutableList.of();
       }
     }
   }
 
-  private static class Get implements Callable<BdrStage> {
+  private static class Get implements Callable<Iterable<BdrStage>> {
 
     private final BdrLink bdrLink;
 
@@ -106,12 +112,12 @@ class BdrWgetGuice implements BdrWget {
     }
 
     @Override
-    public BdrStage call() throws Exception {
+    public Iterable<BdrStage> call() throws Exception {
       String href = bdrLink.getHref();
       Document doc = Jsoup.connect(href).get();
-      BdrStage bdr = new BdrParser(doc, bdrLink).get();
-      logger.info("got :<< {}", bdr.getCodigoDeNegocicao());
-      return bdr;
+      Iterable<BdrStage> bdrs = new BdrParser(doc, bdrLink).get();
+      logger.info("got :<< {}", href);
+      return bdrs;
     }
 
   }

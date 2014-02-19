@@ -33,6 +33,7 @@ class HtmlsFalso {
   public static final Document LISTAGEM = html("/bdr/BdrListagem.html");
   public static final Document DETALHES = html("/bdr/BrdsListadosDetalhes.html");
   public static final Document DETALHES_COLUNAS_VAZIA = html("/bdr/BrdsListadosDetalhes_Coluna_Vazia.html");
+  public static final Document DETALHES_COLUNAS_CODIGOS = html("/bdr/BrdsListadosDetalhes_Com_Codigos.html");
 
   private HtmlsFalso() {
   }
