@@ -15,35 +15,95 @@
  */
 package br.com.objectos.way.bvmf.bdr;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.google.common.base.Preconditions;
+import com.google.common.base.Function;
+import com.google.common.base.Splitter;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
 class BdrParser {
 
-  private final Document doc;
+  private final Element div;
   private final BdrLink bdrLink;
 
   public BdrParser(Document doc, BdrLink bdrLink) {
-    this.doc = doc;
+    this.div = doc.getElementById("colunaCentral");
     this.bdrLink = bdrLink;
   }
 
-  public BdrStage get() {
-    return new Construtor().novaInstancia();
+  public List<BdrStage> get() {
+    Iterator<String> negociaoIt = negociaoIterator();
+    Iterator<String> isinIt = isinIterator();
+
+    return buildBdrs(negociaoIt, isinIt);
+  }
+
+  private Iterator<String> negociaoIterator() {
+    Elements anchorsNegociacao = div.select(".LinkCodNeg");
+
+    Iterable<String> lazyNegociacoes;
+    lazyNegociacoes = Iterables.transform(anchorsNegociacao, new ToSetNegociacao());
+
+    Set<String> negociacoes;
+    negociacoes = ImmutableSet.copyOf(lazyNegociacoes);
+
+    return negociacoes.iterator();
+  }
+
+  private Iterator<String> isinIterator() {
+    Elements anchorsIsin = div.select("#divCodigosOculto td");
+    String element = anchorsIsin.get(3).text();
+
+    Iterable<String> lazyIsins = Splitter.on(",")
+        .trimResults()
+        .split(element);
+
+    Set<String> isins;
+    isins = ImmutableSet.copyOf(lazyIsins);
+
+    return isins.iterator();
+  }
+
+  private List<BdrStage> buildBdrs(Iterator<String> negociaoIt, Iterator<String> isinIt) {
+    List<BdrStage> bdrs = Lists.newArrayList();
+    while (negociaoIt.hasNext() && isinIt.hasNext()) {
+      String codigoNegociacao = negociaoIt.next();
+      String codigoIsin = isinIt.next();
+
+      BdrStage bdr;
+      bdr = new Construtor(codigoNegociacao, codigoIsin).novaInstancia();
+      bdrs.add(bdr);
+    }
+    return ImmutableList.copyOf(bdrs);
+  }
+
+  private class ToSetNegociacao implements Function<Element, String> {
+    @Override
+    public String apply(Element input) {
+      return input.text();
+    }
   }
 
   private class Construtor implements BdrStage.Construtor {
 
-    private final Element div;
+    private final String codigoNegociacao;
+    private final String codigoIsin;
 
-    public Construtor() {
-      this.div = doc.getElementById("colunaCentral");
+    public Construtor(String codigoNegociacao, String codigoIsin) {
+      this.codigoNegociacao = codigoNegociacao;
+      this.codigoIsin = codigoIsin;
     }
 
     @Override
@@ -58,25 +118,12 @@ class BdrParser {
 
     @Override
     public String getCodigoDeNegocicao() {
-      return parse(".tabelaSemBorda td", 5);
+      return codigoNegociacao;
     }
 
     @Override
     public String getCodigoDeIsin() {
-      return parse("#divCodigosOculto td", 3);
-    }
-
-    private String parse(String find, int indice) {
-      Elements anchors = div.select(find);
-      Preconditions.checkArgument(anchors.size() > indice);
-
-      String res = "";
-      if (anchors.size() > 0) {
-        Element a = anchors.get(indice);
-        res = a.text();
-      }
-
-      return res;
+      return codigoIsin;
     }
 
   }

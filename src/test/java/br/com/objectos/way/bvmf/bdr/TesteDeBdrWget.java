@@ -15,15 +15,15 @@
  */
 package br.com.objectos.way.bvmf.bdr;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-
 import java.util.List;
 
 import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
 
 import com.google.inject.Inject;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
 
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
@@ -38,7 +38,7 @@ public class TesteDeBdrWget {
   public void deve_receber_todos_bdrs() {
     List<BdrStage> res = wget.connect();
 
-    assertThat(res.size(), equalTo(81));
+    assertThat(res.size(), greaterThan(81));
   }
 
 }
