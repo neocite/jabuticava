@@ -15,39 +15,48 @@
  */
 package br.com.objectos.way.bvmf.bdr;
 
-import br.com.objectos.way.bvmf.bdr.BdrLink.Construtor;
-
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public class ConstrutorDeBdrLinkFalso implements Construtor {
+public class ConstrutorDeBdrFalso implements Bdr.Construtor {
 
-  private String href;
   private CategoriaTipo categoria;
+  private String codigoDeNegocicao;
+  private String codigoDeIsin;
 
   @Override
-  public BdrLink novaInstancia() {
-    return new BdrLinkPojo(this);
+  public Bdr novaInstancia() {
+    return new BdrPojo(this);
   }
 
-  public ConstrutorDeBdrLinkFalso href(String href) {
-    this.href = href;
-    return this;
-  }
-
-  public ConstrutorDeBdrLinkFalso categoria(CategoriaTipo categoria) {
+  public ConstrutorDeBdrFalso categoria(CategoriaTipo categoria) {
     this.categoria = categoria;
     return this;
   }
 
-  @Override
-  public String getHref() {
-    return href;
+  public ConstrutorDeBdrFalso codigoDeNegocicao(String codigoDeNegocicao) {
+    this.codigoDeNegocicao = codigoDeNegocicao;
+    return this;
+  }
+
+  public ConstrutorDeBdrFalso codigoDeIsin(String codigoDeIsin) {
+    this.codigoDeIsin = codigoDeIsin;
+    return this;
   }
 
   @Override
   public CategoriaTipo getCategoria() {
     return categoria;
+  }
+
+  @Override
+  public String getCodigoDeNegocicao() {
+    return codigoDeNegocicao;
+  }
+
+  @Override
+  public String getCodigoDeIsin() {
+    return codigoDeIsin;
   }
 
 }
