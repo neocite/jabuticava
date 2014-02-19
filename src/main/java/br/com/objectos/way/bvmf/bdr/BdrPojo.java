@@ -18,22 +18,31 @@ package br.com.objectos.way.bvmf.bdr;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public interface BdrStage {
+class BdrPojo implements Bdr {
 
-  interface Construtor extends br.com.objectos.comuns.base.Construtor<BdrStage> {
+  private final CategoriaTipo categoria;
+  private final String codigoDeNegocicao;
+  private final String codigoDeIsin;
 
-    CategoriaTipo getCategoria();
-
-    String getCodigoDeNegocicao();
-
-    String getCodigoDeIsin();
-
+  public BdrPojo(Construtor construtor) {
+    categoria = construtor.getCategoria();
+    codigoDeNegocicao = construtor.getCodigoDeNegocicao();
+    codigoDeIsin = construtor.getCodigoDeIsin();
   }
 
-  CategoriaTipo getCategoria();
+  @Override
+  public CategoriaTipo getCategoria() {
+    return categoria;
+  }
 
-  String getCodigoDeNegocicao();
+  @Override
+  public String getCodigoDeNegocicao() {
+    return codigoDeNegocicao;
+  }
 
-  String getCodigoDeIsin();
+  @Override
+  public String getCodigoDeIsin() {
+    return codigoDeIsin;
+  }
 
 }

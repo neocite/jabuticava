@@ -1,5 +1,5 @@
 # objectos :: way :: bvmf-bdr
-============
+
 Coleta de dados sobre BDRs na BM&amp;F Bovespa
 
 ## Maven
@@ -22,7 +22,7 @@ Até o lançamento da versão 1.0.0, a API poderá mudar bastante...
 
 # Licença de uso
 
-Copyright 2012 [objectos, fábrica de software LTDA](http://www.objectos.com.br)
+Copyright 2014 [objectos, fábrica de software LTDA](http://www.objectos.com.br)
 
 Licensed under the Apache License, Version 2.0 (the "License"); 
 you may not use this file except in compliance with the License. 

@@ -26,9 +26,9 @@ import org.jsoup.select.Elements;
 import com.google.common.base.Function;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableList.Builder;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
 
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
@@ -43,7 +43,7 @@ class BdrParser {
     this.bdrLink = bdrLink;
   }
 
-  public List<BdrStage> get() {
+  public List<Bdr> get() {
     Iterator<String> negociaoIt = negociaoIterator();
     Iterator<String> isinIt = isinIterator();
 
@@ -76,17 +76,19 @@ class BdrParser {
     return isins.iterator();
   }
 
-  private List<BdrStage> buildBdrs(Iterator<String> negociaoIt, Iterator<String> isinIt) {
-    List<BdrStage> bdrs = Lists.newArrayList();
+  private List<Bdr> buildBdrs(Iterator<String> negociaoIt, Iterator<String> isinIt) {
+    Builder<Bdr> bdrs = ImmutableList.<Bdr> builder();
+
     while (negociaoIt.hasNext() && isinIt.hasNext()) {
       String codigoNegociacao = negociaoIt.next();
       String codigoIsin = isinIt.next();
 
-      BdrStage bdr;
+      Bdr bdr;
       bdr = new Construtor(codigoNegociacao, codigoIsin).novaInstancia();
       bdrs.add(bdr);
     }
-    return ImmutableList.copyOf(bdrs);
+
+    return bdrs.build();
   }
 
   private class ToSetNegociacao implements Function<Element, String> {
@@ -96,7 +98,7 @@ class BdrParser {
     }
   }
 
-  private class Construtor implements BdrStage.Construtor {
+  private class Construtor implements Bdr.Construtor {
 
     private final String codigoNegociacao;
     private final String codigoIsin;
@@ -107,8 +109,8 @@ class BdrParser {
     }
 
     @Override
-    public BdrStage novaInstancia() {
-      return new BdrStagePojo(this);
+    public Bdr novaInstancia() {
+      return new BdrPojo(this);
     }
 
     @Override

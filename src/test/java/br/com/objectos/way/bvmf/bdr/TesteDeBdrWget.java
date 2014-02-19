@@ -36,7 +36,7 @@ public class TesteDeBdrWget {
   private BdrWget wget;
 
   public void deve_receber_todos_bdrs() {
-    List<BdrStage> res = wget.connect();
+    List<Bdr> res = wget.connect();
 
     assertThat(res.size(), greaterThan(81));
   }

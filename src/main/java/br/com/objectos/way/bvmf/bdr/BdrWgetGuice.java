@@ -54,7 +54,7 @@ class BdrWgetGuice implements BdrWget {
   }
 
   @Override
-  public List<BdrStage> connect() {
+  public List<Bdr> connect() {
     try {
       String _url = url.get();
       Document doc = Jsoup.connect(_url).get();
@@ -62,16 +62,16 @@ class BdrWgetGuice implements BdrWget {
       List<BdrLink> links;
       links = new ListagemParser(doc).get();
 
-      List<Future<Iterable<BdrStage>>> lazyFutures;
+      List<Future<Iterable<Bdr>>> lazyFutures;
       lazyFutures = transform(links, new ToFuture());
 
-      List<Future<Iterable<BdrStage>>> futures;
+      List<Future<Iterable<Bdr>>> futures;
       futures = ImmutableList.copyOf(lazyFutures);
 
-      List<Iterable<BdrStage>> lazyBdrs;
+      List<Iterable<Bdr>> lazyBdrs;
       lazyBdrs = transform(futures, new ToBdrStage());
 
-      Iterable<BdrStage> bdrs;
+      Iterable<Bdr> bdrs;
       bdrs = Iterables.concat(lazyBdrs);
 
       return ImmutableList.copyOf(bdrs);
@@ -81,18 +81,18 @@ class BdrWgetGuice implements BdrWget {
   }
 
   private class ToFuture implements Function<BdrLink,
-      Future<Iterable<BdrStage>>> {
+      Future<Iterable<Bdr>>> {
     @Override
-    public Future<Iterable<BdrStage>> apply(BdrLink link) {
+    public Future<Iterable<Bdr>> apply(BdrLink link) {
       Get get = new Get(link);
       return executor.submit(get);
     }
   }
 
-  private class ToBdrStage implements Function<Future<Iterable<BdrStage>>,
-      Iterable<BdrStage>> {
+  private class ToBdrStage implements Function<Future<Iterable<Bdr>>,
+      Iterable<Bdr>> {
     @Override
-    public Iterable<BdrStage> apply(Future<Iterable<BdrStage>> input) {
+    public Iterable<Bdr> apply(Future<Iterable<Bdr>> input) {
       try {
         return input.get();
       } catch (InterruptedException e) {
@@ -103,7 +103,7 @@ class BdrWgetGuice implements BdrWget {
     }
   }
 
-  private static class Get implements Callable<Iterable<BdrStage>> {
+  private static class Get implements Callable<Iterable<Bdr>> {
 
     private final BdrLink bdrLink;
 
@@ -112,10 +112,10 @@ class BdrWgetGuice implements BdrWget {
     }
 
     @Override
-    public Iterable<BdrStage> call() throws Exception {
+    public Iterable<Bdr> call() throws Exception {
       String href = bdrLink.getHref();
       Document doc = Jsoup.connect(href).get();
-      Iterable<BdrStage> bdrs = new BdrParser(doc, bdrLink).get();
+      Iterable<Bdr> bdrs = new BdrParser(doc, bdrLink).get();
       logger.info("got :<< {}", href);
       return bdrs;
     }
