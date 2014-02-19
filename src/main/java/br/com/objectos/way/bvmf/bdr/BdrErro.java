@@ -18,7 +18,7 @@ package br.com.objectos.way.bvmf.bdr;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-class BdrErro implements BdrStage {
+class BdrErro implements Bdr {
 
   @Override
   public CategoriaTipo getCategoria() {

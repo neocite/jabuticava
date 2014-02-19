@@ -35,10 +35,10 @@ public class TesteDeBdrParser {
     BdrLink bdrLink = novoBdrLink(DRN);
 
     Document doc = HtmlsFalso.DETALHES;
-    List<BdrStage> bdrs = new BdrParser(doc, bdrLink).get();
+    List<Bdr> bdrs = new BdrParser(doc, bdrLink).get();
     assertThat(bdrs.size(), equalTo(1));
 
-    BdrStage res = bdrs.get(0);
+    Bdr res = bdrs.get(0);
     assertThat(res.getCategoria(), equalTo(CategoriaTipo.DRN));
     assertThat(res.getCodigoDeNegocicao(), equalTo("MMMC34"));
     assertThat(res.getCodigoDeIsin(), equalTo("BRMMMCBDR000"));
@@ -48,10 +48,10 @@ public class TesteDeBdrParser {
     BdrLink bdrLink = novoBdrLink(DRN);
 
     Document doc = HtmlsFalso.DETALHES_COLUNAS_VAZIA;
-    List<BdrStage> bdrs = new BdrParser(doc, bdrLink).get();
+    List<Bdr> bdrs = new BdrParser(doc, bdrLink).get();
     assertThat(bdrs.size(), equalTo(1));
 
-    BdrStage res = bdrs.get(0);
+    Bdr res = bdrs.get(0);
     assertThat(res.getCategoria(), equalTo(CategoriaTipo.DRN));
     assertThat(res.getCodigoDeNegocicao(), equalTo(""));
     assertThat(res.getCodigoDeIsin(), equalTo(""));
@@ -61,20 +61,20 @@ public class TesteDeBdrParser {
     BdrLink bdrLink = novoBdrLink(DR3);
 
     Document doc = HtmlsFalso.DETALHES_COLUNAS_CODIGOS;
-    List<BdrStage> bdrs = new BdrParser(doc, bdrLink).get();
+    List<Bdr> bdrs = new BdrParser(doc, bdrLink).get();
     assertThat(bdrs.size(), equalTo(3));
 
-    BdrStage bdr0 = bdrs.get(0);
+    Bdr bdr0 = bdrs.get(0);
     assertThat(bdr0.getCategoria(), equalTo(CategoriaTipo.DR3));
     assertThat(bdr0.getCodigoDeNegocicao(), equalTo("BBTG11"));
     assertThat(bdr0.getCodigoDeIsin(), equalTo("BRBBTGBDR002"));
 
-    BdrStage bdr1 = bdrs.get(1);
+    Bdr bdr1 = bdrs.get(1);
     assertThat(bdr1.getCategoria(), equalTo(CategoriaTipo.DR3));
     assertThat(bdr1.getCodigoDeNegocicao(), equalTo("BBTG35"));
     assertThat(bdr1.getCodigoDeIsin(), equalTo("BRBBTGBDR010"));
 
-    BdrStage bdr2 = bdrs.get(2);
+    Bdr bdr2 = bdrs.get(2);
     assertThat(bdr2.getCategoria(), equalTo(CategoriaTipo.DR3));
     assertThat(bdr2.getCodigoDeNegocicao(), equalTo("BBTG36"));
     assertThat(bdr2.getCodigoDeIsin(), equalTo("BRBBTGUNT007"));

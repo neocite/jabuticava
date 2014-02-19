@@ -25,6 +25,6 @@ import com.google.inject.ImplementedBy;
 @ImplementedBy(BdrWgetGuice.class)
 public interface BdrWget {
 
-  List<BdrStage> connect();
+  List<Bdr> connect();
 
 }
