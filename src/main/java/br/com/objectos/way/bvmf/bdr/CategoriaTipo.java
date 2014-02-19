@@ -18,7 +18,7 @@ package br.com.objectos.way.bvmf.bdr;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-enum CategoriaTipo {
+public enum CategoriaTipo {
 
   DR1("BDR Nível 1"),
   DR2("BDR Nível 2"),
