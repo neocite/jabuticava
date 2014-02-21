@@ -20,18 +20,13 @@ package br.com.objectos.way.bvmf.bdr;
  */
 public class ConstrutorDeBdrFalso implements Bdr.Construtor {
 
-  private CategoriaTipo categoria;
   private String codigoDeNegocicao;
-  private String codigoDeIsin;
+  private String codigoIsin;
+  private BdrCategoria categoria;
 
   @Override
   public Bdr novaInstancia() {
     return new BdrPojo(this);
-  }
-
-  public ConstrutorDeBdrFalso categoria(CategoriaTipo categoria) {
-    this.categoria = categoria;
-    return this;
   }
 
   public ConstrutorDeBdrFalso codigoDeNegocicao(String codigoDeNegocicao) {
@@ -40,13 +35,13 @@ public class ConstrutorDeBdrFalso implements Bdr.Construtor {
   }
 
   public ConstrutorDeBdrFalso codigoDeIsin(String codigoDeIsin) {
-    this.codigoDeIsin = codigoDeIsin;
+    this.codigoIsin = codigoDeIsin;
     return this;
   }
 
-  @Override
-  public CategoriaTipo getCategoria() {
-    return categoria;
+  public ConstrutorDeBdrFalso categoria(BdrCategoria categoria) {
+    this.categoria = categoria;
+    return this;
   }
 
   @Override
@@ -55,8 +50,13 @@ public class ConstrutorDeBdrFalso implements Bdr.Construtor {
   }
 
   @Override
-  public String getCodigoDeIsin() {
-    return codigoDeIsin;
+  public String getCodigoIsin() {
+    return codigoIsin;
+  }
+
+  @Override
+  public BdrCategoria getCategoria() {
+    return categoria;
   }
 
 }

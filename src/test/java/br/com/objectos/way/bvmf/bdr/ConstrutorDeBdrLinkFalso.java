@@ -23,7 +23,7 @@ import br.com.objectos.way.bvmf.bdr.BdrLink.Construtor;
 public class ConstrutorDeBdrLinkFalso implements Construtor {
 
   private String href;
-  private CategoriaTipo categoria;
+  private BdrCategoria categoria;
 
   @Override
   public BdrLink novaInstancia() {
@@ -35,7 +35,7 @@ public class ConstrutorDeBdrLinkFalso implements Construtor {
     return this;
   }
 
-  public ConstrutorDeBdrLinkFalso categoria(CategoriaTipo categoria) {
+  public ConstrutorDeBdrLinkFalso categoria(BdrCategoria categoria) {
     this.categoria = categoria;
     return this;
   }
@@ -46,7 +46,7 @@ public class ConstrutorDeBdrLinkFalso implements Construtor {
   }
 
   @Override
-  public CategoriaTipo getCategoria() {
+  public BdrCategoria getCategoria() {
     return categoria;
   }
 

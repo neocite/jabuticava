@@ -114,18 +114,18 @@ class BdrParser {
     }
 
     @Override
-    public CategoriaTipo getCategoria() {
-      return bdrLink.getCategoria();
-    }
-
-    @Override
     public String getCodigoDeNegocicao() {
       return codigoNegociacao;
     }
 
     @Override
-    public String getCodigoDeIsin() {
+    public String getCodigoIsin() {
       return codigoIsin;
+    }
+
+    @Override
+    public BdrCategoria getCategoria() {
+      return bdrLink.getCategoria();
     }
 
   }

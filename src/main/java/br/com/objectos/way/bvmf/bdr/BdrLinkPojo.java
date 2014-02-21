@@ -21,7 +21,7 @@ package br.com.objectos.way.bvmf.bdr;
 class BdrLinkPojo implements BdrLink {
 
   private final String href;
-  private final CategoriaTipo categoria;
+  private final BdrCategoria categoria;
 
   public BdrLinkPojo(Construtor construtor) {
     href = construtor.getHref();
@@ -34,7 +34,7 @@ class BdrLinkPojo implements BdrLink {
   }
 
   @Override
-  public CategoriaTipo getCategoria() {
+  public BdrCategoria getCategoria() {
     return categoria;
   }
 

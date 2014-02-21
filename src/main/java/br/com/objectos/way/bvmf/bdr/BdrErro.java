@@ -21,18 +21,17 @@ package br.com.objectos.way.bvmf.bdr;
 class BdrErro implements Bdr {
 
   @Override
-  public CategoriaTipo getCategoria() {
-    return null;
-  }
-
-  @Override
   public String getCodigoDeNegocicao() {
     return null;
   }
 
   @Override
-  public String getCodigoDeIsin() {
+  public String getCodigoIsin() {
     return null;
   }
 
+  @Override
+  public BdrCategoria getCategoria() {
+    return null;
+  }
 }

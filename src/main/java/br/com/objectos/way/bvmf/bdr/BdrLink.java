@@ -24,12 +24,12 @@ public interface BdrLink {
 
     String getHref();
 
-    CategoriaTipo getCategoria();
+    BdrCategoria getCategoria();
 
   }
 
   String getHref();
 
-  CategoriaTipo getCategoria();
+  BdrCategoria getCategoria();
 
 }
