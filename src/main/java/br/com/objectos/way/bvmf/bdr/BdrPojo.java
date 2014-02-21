@@ -20,19 +20,14 @@ package br.com.objectos.way.bvmf.bdr;
  */
 class BdrPojo implements Bdr {
 
-  private final CategoriaTipo categoria;
   private final String codigoDeNegocicao;
-  private final String codigoDeIsin;
+  private final String codigoIsin;
+  private final BdrCategoria categoria;
 
   public BdrPojo(Construtor construtor) {
-    categoria = construtor.getCategoria();
     codigoDeNegocicao = construtor.getCodigoDeNegocicao();
-    codigoDeIsin = construtor.getCodigoDeIsin();
-  }
-
-  @Override
-  public CategoriaTipo getCategoria() {
-    return categoria;
+    codigoIsin = construtor.getCodigoIsin();
+    categoria = construtor.getCategoria();
   }
 
   @Override
@@ -41,8 +36,13 @@ class BdrPojo implements Bdr {
   }
 
   @Override
-  public String getCodigoDeIsin() {
-    return codigoDeIsin;
+  public String getCodigoIsin() {
+    return codigoIsin;
+  }
+
+  @Override
+  public BdrCategoria getCategoria() {
+    return categoria;
   }
 
 }

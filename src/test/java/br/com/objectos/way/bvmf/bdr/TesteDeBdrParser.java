@@ -15,8 +15,8 @@
  */
 package br.com.objectos.way.bvmf.bdr;
 
-import static br.com.objectos.way.bvmf.bdr.CategoriaTipo.DR3;
-import static br.com.objectos.way.bvmf.bdr.CategoriaTipo.DRN;
+import static br.com.objectos.way.bvmf.bdr.BdrCategoria.DR3;
+import static br.com.objectos.way.bvmf.bdr.BdrCategoria.DRN;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -39,9 +39,9 @@ public class TesteDeBdrParser {
     assertThat(bdrs.size(), equalTo(1));
 
     Bdr res = bdrs.get(0);
-    assertThat(res.getCategoria(), equalTo(CategoriaTipo.DRN));
     assertThat(res.getCodigoDeNegocicao(), equalTo("MMMC34"));
-    assertThat(res.getCodigoDeIsin(), equalTo("BRMMMCBDR000"));
+    assertThat(res.getCodigoIsin(), equalTo("BRMMMCBDR000"));
+    assertThat(res.getCategoria(), equalTo(BdrCategoria.DRN));
   }
 
   public void bdr_com_colunas_vazias() {
@@ -52,9 +52,9 @@ public class TesteDeBdrParser {
     assertThat(bdrs.size(), equalTo(1));
 
     Bdr res = bdrs.get(0);
-    assertThat(res.getCategoria(), equalTo(CategoriaTipo.DRN));
     assertThat(res.getCodigoDeNegocicao(), equalTo(""));
-    assertThat(res.getCodigoDeIsin(), equalTo(""));
+    assertThat(res.getCodigoIsin(), equalTo(""));
+    assertThat(res.getCategoria(), equalTo(BdrCategoria.DRN));
   }
 
   public void bdr_com_mais_de_um_codigo_negociao_isin() {
@@ -65,22 +65,22 @@ public class TesteDeBdrParser {
     assertThat(bdrs.size(), equalTo(3));
 
     Bdr bdr0 = bdrs.get(0);
-    assertThat(bdr0.getCategoria(), equalTo(CategoriaTipo.DR3));
     assertThat(bdr0.getCodigoDeNegocicao(), equalTo("BBTG11"));
-    assertThat(bdr0.getCodigoDeIsin(), equalTo("BRBBTGBDR002"));
+    assertThat(bdr0.getCodigoIsin(), equalTo("BRBBTGBDR002"));
+    assertThat(bdr0.getCategoria(), equalTo(BdrCategoria.DR3));
 
     Bdr bdr1 = bdrs.get(1);
-    assertThat(bdr1.getCategoria(), equalTo(CategoriaTipo.DR3));
     assertThat(bdr1.getCodigoDeNegocicao(), equalTo("BBTG35"));
-    assertThat(bdr1.getCodigoDeIsin(), equalTo("BRBBTGBDR010"));
+    assertThat(bdr1.getCodigoIsin(), equalTo("BRBBTGBDR010"));
+    assertThat(bdr1.getCategoria(), equalTo(BdrCategoria.DR3));
 
     Bdr bdr2 = bdrs.get(2);
-    assertThat(bdr2.getCategoria(), equalTo(CategoriaTipo.DR3));
     assertThat(bdr2.getCodigoDeNegocicao(), equalTo("BBTG36"));
-    assertThat(bdr2.getCodigoDeIsin(), equalTo("BRBBTGUNT007"));
+    assertThat(bdr2.getCodigoIsin(), equalTo("BRBBTGUNT007"));
+    assertThat(bdr2.getCategoria(), equalTo(BdrCategoria.DR3));
   }
 
-  private BdrLink novoBdrLink(CategoriaTipo tipo) {
+  private BdrLink novoBdrLink(BdrCategoria tipo) {
     return new ConstrutorDeBdrLinkFalso()
         .href("http://fake/ResumoEmpresaPrincipal.aspx?codigoCvm=12345")
         .categoria(tipo)

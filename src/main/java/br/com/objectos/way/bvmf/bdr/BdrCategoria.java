@@ -18,30 +18,21 @@ package br.com.objectos.way.bvmf.bdr;
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-public enum CategoriaTipo {
+public enum BdrCategoria {
 
   DR1("BDR Nível 1"),
   DR2("BDR Nível 2"),
   DR3("BDR Nível 3"),
-  DRN("BDR Não Patrocinado"),
-  VOID("VOID");
+  DRN("BDR Não Patrocinado");
 
   private final String descricao;
 
-  private CategoriaTipo(String descricao) {
+  private BdrCategoria(String descricao) {
     this.descricao = descricao;
   }
 
   public String getDescricao() {
     return descricao;
-  }
-
-  public static CategoriaTipo valueOrVoid(String name) {
-    try {
-      return CategoriaTipo.valueOf(name);
-    } catch (IllegalArgumentException e) {
-      return VOID;
-    }
   }
 
 }

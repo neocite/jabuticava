@@ -22,18 +22,18 @@ public interface Bdr {
 
   interface Construtor extends br.com.objectos.comuns.base.Construtor<Bdr> {
 
-    CategoriaTipo getCategoria();
-
     String getCodigoDeNegocicao();
 
-    String getCodigoDeIsin();
+    String getCodigoIsin();
+
+    BdrCategoria getCategoria();
 
   }
 
-  CategoriaTipo getCategoria();
-
   String getCodigoDeNegocicao();
 
-  String getCodigoDeIsin();
+  String getCodigoIsin();
+
+  BdrCategoria getCategoria();
 
 }

@@ -90,10 +90,10 @@ class ListagemParser {
     }
 
     @Override
-    public CategoriaTipo getCategoria() {
+    public BdrCategoria getCategoria() {
       Element td = a.select("td").get(1);
       String name = td.text();
-      return CategoriaTipo.valueOrVoid(name);
+      return BdrCategoria.valueOf(name);
     }
 
   }
