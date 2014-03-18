@@ -274,7 +274,7 @@ public class TesteDeLoteItau {
 
     assertThat(res.get(0), equalTo("SACADO_A"));
     assertThat(res.get(1), equalTo("SACADO_B"));
-    assertThat(res.get(2), equalTo("SACADO_C"));
+    assertThat(res.get(2), equalTo(null));
   }
 
   public void erros() {

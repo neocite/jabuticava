@@ -116,7 +116,7 @@ class ItauLoteSpec extends CnabLoteSpec implements ItauLote {
       .id("Instrução Cancelada").at(301, 305).get(Integer.class);
 
   private final CnabKey<ItauLote, String> NOME_SACADO = key()
-      .id("Nome Sacado").at(324, 354).get(String.class);
+      .id("Nome Sacado").at(324, 354).optional().get(String.class);
 
   private final CnabKey<ItauLote, String> ERROS = key()
       .id("Erros").at(377, 385).optional().get(String.class);
