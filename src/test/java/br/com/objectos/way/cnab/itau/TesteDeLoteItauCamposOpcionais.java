@@ -49,4 +49,8 @@ public class TesteDeLoteItauCamposOpcionais {
     assertThat(lote.get(lote().especie()), equalTo(0));
   }
 
+  public void nome_sacado() {
+    assertThat(lote.get(lote().nomeDoSacado()), equalTo(null));
+  }
+
 }
