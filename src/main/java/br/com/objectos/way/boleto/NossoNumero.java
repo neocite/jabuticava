@@ -29,7 +29,9 @@ class NossoNumero implements HasLongValue {
     long numero = 0;
     char digito = 0;
 
-    String source = text.replaceAll("[^0-9]", "");
+    String source = text
+        .replaceAll("[A-Z]$", "0")
+        .replaceAll("[^0-9]", "");
     int length = source.length();
     if (length > 0) {
       String _numero = source.substring(0, length - 1);
