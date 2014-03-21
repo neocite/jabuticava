@@ -35,6 +35,15 @@ public class TesteDeNossoNumero {
     assertThat(res.getDigito(), equalTo('4'));
   }
 
+  public void nao_numero_letra() {
+    String numero = "40660000002P";
+
+    NossoNumero res = NossoNumero.parseString(numero);
+
+    assertThat(res.longValue(), equalTo(40660000002l));
+    assertThat(res.getDigito(), equalTo('0'));
+  }
+
   public void nao_numero() {
     String numero = "abc";
 

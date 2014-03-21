@@ -1,17 +1,8 @@
 /*
- * Copyright 2013 Objectos, Fábrica de Software LTDA.
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * PerdaDeCredito.java criado em 21/03/2014
+ * 
+ * Propriedade de Objectos Fábrica de Software LTDA.
+ * Reprodução parcial ou total proibida.
  */
 package br.com.objectos.way.boleto;
 
@@ -28,10 +19,10 @@ import org.testng.annotations.Test;
 import br.com.objectos.comuns.matematica.financeira.ValorFinanceiro;
 
 /**
- * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
+ * @author carolene.bertoldi@objectos.com.br (Carolene Bertoldi)
  */
 @Test
-public class TesteDeBradesco {
+public class TesteDeBradesco343701 {
 
   private final BoletoBanco bradesco = BoletoBanco.BRADESCO;
 
@@ -46,16 +37,8 @@ public class TesteDeBradesco {
         .novaInstancia();
   }
 
-  public void codigo_barras() {
-    String prova = "23791570100000150001018090000000502000163240";
-
-    CodigoDeBarras res = bradesco.codigoDeBarrasDe(boleto);
-
-    assertThat(res, hasToString(equalTo(prova)));
-  }
-
   public void linha_digitavel() {
-    String prova = "23791.01807 90000.000506 20001.632403 1 57010000015000";
+    String prova = "23790.59906 94066.000004 02001.580006 4 60130000057200";
 
     CodigoDeBarras codigo = bradesco.codigoDeBarrasDe(boleto);
     LinhaDigitavel res = codigo.toLinhaDigitavel();
@@ -72,22 +55,22 @@ public class TesteDeBradesco {
 
     @Override
     public ValorFinanceiro getValor() {
-      return new ValorFinanceiroImpl(150.0);
+      return new ValorFinanceiroImpl(572.0);
     }
 
     @Override
     public ValorFinanceiro getDesconto() {
-      return new ValorFinanceiroImpl(3.50);
+      return new ValorFinanceiroImpl(0.0);
     }
 
     @Override
     public LocalDate getEmissao() {
-      return new LocalDate(2013, 5, 7);
+      return new LocalDate(2014, 3, 7);
     }
 
     @Override
     public LocalDate getVencimento() {
-      return new LocalDate(2013, 5, 17);
+      return new LocalDate(2014, 3, 25);
     }
 
   }
@@ -106,12 +89,12 @@ public class TesteDeBradesco {
 
     @Override
     public String getAgencia() {
-      return "1018";
+      return "0599";
     }
 
     @Override
     public String getNumero() {
-      return "16324";
+      return "15800-3";
     }
 
   }
@@ -125,12 +108,12 @@ public class TesteDeBradesco {
 
     @Override
     public LocalDate getDataProcessamento() {
-      return null;
+      return new LocalDate(2014, 2, 21);
     }
 
     @Override
     public String getNossoNumero() {
-      return "50200";
+      return "40660000002P";
     }
 
     @Override
@@ -155,7 +138,7 @@ public class TesteDeBradesco {
 
     @Override
     public String getNumeroDocumento() {
-      return "1002";
+      return "3437/01";
     }
 
   }
