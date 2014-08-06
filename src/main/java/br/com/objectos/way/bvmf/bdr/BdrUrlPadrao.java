@@ -15,14 +15,14 @@
  */
 package br.com.objectos.way.bvmf.bdr;
 
-import com.google.inject.ImplementedBy;
-
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
-@ImplementedBy(BrtUrlPadrao.class)
-interface BrtUrl {
+class BdrUrlPadrao implements BdrUrl {
 
-  String get();
+  @Override
+  public String get() {
+    return "http://www.bmfbovespa.com.br/cias-listadas/mercado-internacional/mercado-internacional.aspx?idioma=pt-br";
+  }
 
 }
