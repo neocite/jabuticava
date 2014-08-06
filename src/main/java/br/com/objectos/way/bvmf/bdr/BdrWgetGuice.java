@@ -15,6 +15,8 @@
  */
 package br.com.objectos.way.bvmf.bdr;
 
+import static com.google.common.collect.Lists.transform;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -34,8 +36,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 
-import static com.google.common.collect.Lists.transform;
-
 /**
  * @author edenir.anschau@objectos.com.br (Edenir Norberto Anschau)
  */
@@ -45,10 +45,10 @@ class BdrWgetGuice implements BdrWget {
 
   private final ExecutorService executor;
 
-  private final BrtUrl url;
+  private final BdrUrl url;
 
   @Inject
-  public BdrWgetGuice(BrtUrl url) {
+  public BdrWgetGuice(BdrUrl url) {
     this.executor = WayExecutors.newCoreSizedNamed(4, "bdr-wget");
     this.url = url;
   }
@@ -57,7 +57,8 @@ class BdrWgetGuice implements BdrWget {
   public List<Bdr> connect() {
     try {
       String _url = url.get();
-      Document doc = Jsoup.connect(_url).get();
+      Document doc = Jsoup.connect(_url)
+          .get();
 
       List<BdrLink> links;
       links = new ListagemParser(doc).get();
