@@ -7,7 +7,7 @@
 	</parent>
 	<artifactId>way-bvmf-bdr</artifactId>
 	<name>objectos :: way :: bm&amp;f bovespa :: bdr</name>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.1.0</version>
 	<description>Coleta de dados sobre BDRs na BM&amp;F Bovespa</description>
 	<url>https://github.com/objectos/way-bvmf-bdr</url>
 	<licenses>
@@ -20,7 +20,7 @@
 	<scm>
 		<connection>scm:git:git@github.com:objectos/way-bvmf-bdr.git</connection>
 		<developerConnection>scm:git:git@github.com:objectos/way-bvmf-bdr.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>way-bvmf-bdr-0.1.0</tag>
 	</scm>
 	<developers>
 		<developer>
