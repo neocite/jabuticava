@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>br.com.objectos</groupId>
 		<artifactId>parent</artifactId>
-		<version>11</version>
+		<version>35</version>
 	</parent>
 	<artifactId>way-bvmf-fi</artifactId>
 	<version>1.1.2-SNAPSHOT</version>
@@ -20,8 +20,8 @@
 	<scm>
 		<connection>scm:git:git://objectos/way-bvmf-fi.git</connection>
 		<developerConnection>scm:git:git@github.com:objectos/way-bvmf-fi.git</developerConnection>
-	  <tag>HEAD</tag>
-  </scm>
+		<tag>HEAD</tag>
+	</scm>
 	<developers>
 		<developer>
 			<id>moe</id>
@@ -31,7 +31,6 @@
 	</developers>
 	<properties>
 		<codehaus.jackson.version>1.9.0</codehaus.jackson.version>
-		<org.jsoup.version>1.7.2</org.jsoup.version>
 	</properties>
 	<dependencies>
 		<dependency>
