@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>br.com.objectos</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0</version>
+	</parent>
+	<artifactId>way-debs</artifactId>
+	<version>1.2.2-SNAPSHOT</version>
+	<name>objectos :: way :: debentures.com.br</name>
+	<description>Extrai e trata informações do site debenture.com.br</description>
+	<url>https://github.com/objectos/way-debs</url>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<scm>
+		<connection>scm:git:git://objectos/way-debs.git</connection>
+		<developerConnection>scm:git:git@github.com:objectos/way-debs.git</developerConnection>
+		<url>https://github.com/objectos/way-debs</url>
+	</scm>
+	<developers>
+		<developer>
+			<id>moe</id>
+			<name>Marcio Endo</name>
+			<email>marcio.endo@objectos.com.br</email>
+		</developer>
+	</developers>
+	<properties>
+		<br.com.objectos.way-io.version>1.2</br.com.objectos.way-io.version>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<excludedGroups>manual</excludedGroups>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>br.com.objectos</groupId>
+			<artifactId>way-io</artifactId>
+			<version>${br.com.objectos.way-io.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.objectos</groupId>
+			<artifactId>way-io</artifactId>
+			<version>${br.com.objectos.way-io.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>
