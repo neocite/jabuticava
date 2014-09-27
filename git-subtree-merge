@@ -1,0 +1,10 @@
+#!/bin/bash
+
+project=$1
+url=$2
+
+git remote add -f $project $url 
+git merge -s ours --no-commit $project/master
+git read-tree --prefix=$project/ -u $project/master
+git commit -m "$project"
+git pull -s subtree $project master
