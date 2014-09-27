@@ -1,0 +1,170 @@
+<div class="way-duplicata">
+  <div class="dup dup-hd0">
+    <div class="col col00">
+      <div class="mwrap">
+        {{#cedente}}
+        <div class="cwrap">
+          <h1>{{nome}}</h1>
+          <span class="dup-field">Tel. {{telefone}}</span>
+          <span class="dup-field">{{site}}</span>
+        </div>
+        {{/cedente}}
+      </div>
+    </div>
+    <div class="col col01">
+      {{#cedente}}
+      <div class="dup-cep">
+        <span class="dup-label">CEP: </span>
+        <span class="dup-field">{{cep}}</span>
+      </div>
+      <div class="cwrap">
+        <span class="dup-label">Razão Social: </span>
+        <span class="dup-field">{{razaoSocial}}</span>
+        <span class="dup-label">CNPJ: </span>
+        <span class="dup-field">{{cadastroRFB}}</span>
+        <span class="dup-label">Endereço: </span>
+        <span class="dup-field">{{endereco}} - {{bairro}}</span>
+        <span class="dup-label">Município / UF: </span>
+        <span class="dup-field">{{cidade}} - {{estado}}</span>
+      </div>
+      {{/cedente}}
+    </div>
+  </div>
+
+  <div class="dup dup-hd1">
+    <div class="col col00">
+      <div class="mwrap">
+        <div class="cwrap">
+          {{#fatura}}
+          <h4>Fatura</h4>
+          <table class="dup-table">
+            <thead>
+              <tr>
+                <th>Número</th>
+                <th>Valor</th>
+                <th>Dt Emissão</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{numero}}</td>
+                <td>{{valor.text}}</td>                  
+                <td>{{emissao}}</td>                  
+              </tr>
+            </tbody>
+          </table>
+          {{/fatura}}
+        </div>
+      </div>
+    </div>
+    <div class="col col01">
+      <div class="mwrap">
+        <div class="cwrap">
+          {{#titulo}}
+          <h4>Duplicata</h4>
+          <table class="dup-table">
+            <thead>
+              <tr>
+                <th>Número</th>
+                <th>Valor</th>
+                <th>Vencto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{numero}}</td>
+                <td>{{valor.text}}</td>                  
+                <td>{{vencimento}}</td>                  
+              </tr>
+            </tbody>
+          </table>
+          {{/titulo}}
+       </div>
+      </div>
+    </div>
+    <div class="col col02">
+      <div class="cwrap">
+        <span class="dup-label dup-label-mini">Para uso de de instituição financeira</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="dup dup-bd">
+    <div class="col col-lt">
+      <div class="dup dup-bd00">
+        <div class="mwrap">
+          <div class="cwrap">
+            <span class="dup-label dup-label-mini">Desconto</span>
+          </div>
+        </div>
+      </div>          
+      
+      <div class="dup dup-bd01">
+        <div class="mwrap">
+          <div class="cwrap">
+            <span class="dup-field">{{cedente.razaoSocial}}</span>
+          </div>
+        </div>
+      </div>          
+    </div>
+    <div class="col col-rt">
+      <div class="cwrap">
+        <div class="dup dup-bd00">
+          {{#sacado}}
+          <h4>Sacado/Devedor</h4>
+          <div class="cwrap">
+            <span class="dup-label">Razão Social: </span>
+            <span class="dup-field">{{nome}}&nbsp;</span>
+            <span class="dup-label">CPF/CNPJ: </span>          
+            <span class="dup-field">{{cadastroRFB}}&nbsp;</span>
+            <span class="dup-label">Endereço: </span>          
+            <span class="dup-field">{{endereco}} - {{bairro}}</span>          
+            <span class="dup-label">Município / UF: </span>          
+            <span class="dup-field">{{cidade}} / {{estado}}</span>          
+            <span class="dup-label">CEP: </span>          
+            <span class="dup-field">{{cep}}&nbsp;</span>          
+            <span class="dup-label">Praça de pagamento: </span>
+            <span class="dup-field">a mesma</span> 
+          {{/sacado}}
+          </div>
+        </div>
+        <div class="dup dup-bd01">
+          <div class="cwrap">
+            <span class="dup-label">Valor por extenso </span>             
+            <span class="dup-field">{{titulo.valor.extenso}}&nbsp;</span>              
+          </div>
+        </div>
+        <div class="dup dup-bd02">
+          <div class="cwrap">
+            <div class="cpadd">
+              <p>
+              Reconheço(emos) a exatidão desta DUPLICATA de
+              <span class="dup-field">{{tipo}}</span>
+              na importância acima que pagarei(emos) à 
+              <span class="dup-field">{{cedente.razaoSocial}}</span>
+              ou a sua ordem, na praça e vencimentos acima indicados.
+              </p>
+              
+              <table class="dup-table-ft">
+                <tbody>
+                  <tr>
+                    <td class="td0">Em</td>
+                    <td class="td1">____/____/________</td>
+                    <td class="td2"></td>
+                  </tr>
+                  <tr>
+                    <td class="td0"></td>
+                    <td class="td1">&nbsp;</td>
+                    <td class="td2 ass">
+                      <span class="dup-field">{{sacado.nome}}</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </div>
+</div>
